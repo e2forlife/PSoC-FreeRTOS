@@ -61,6 +61,10 @@ void `$INSTANCE_NAME`_Start( void );
 
 cystatus `$INSTANCE_NAME`_RegisterCommand( `$INSTANCE_NAME`_CLIfunc fn, char *cmd, char *description);
 void `$INSTANCE_NAME`_SystemMsg(const char *str, uint8 level);
+uint8 `$INSTANCE_NAME`_AreYouSure( char* msg, uint8 defVal );
+uint32 `$INSTANCE_NAME`_GetValueParam(char *arg);
+uint32 `$INSTANCE_NAME`_convHex(char *hex);
+
 int `$INSTANCE_NAME`_CliGetArguments( char *buffer, int *argc, char **argv );
 
 cystatus `$INSTANCE_NAME`_CliHelp( int argc, char **argv );
