@@ -91,6 +91,77 @@ void `$INSTANCE_NAME`_SystemMsg(const char *str, uint8 level)
 	}
 }
 /* ------------------------------------------------------------------------ */
+uint8 `$INSTANCE_NAME`_AreYouSure( char* msg, uint8 defVal )
+{
+	const char *values[] = {"No", "Yes"};
+	char out[31];
+	uint8 idx;
+	uint8 result;
+	
+	result = 255;
+	
+	`$COM_INSTANCE`_PrintString(msg);
+	if (defVal != 0) {
+		sprintf(out," {c6}%s{c4}/{c14}%s{c7} : ", values[0], values[1] );
+	}
+	else {
+		sprintf(out," {c14}%s{c4}/{c6}%s{c7} : ", values[0], values[1] );
+	}	
+	`$COM_INSTANCE`_PrintString(out);
+	do {
+		out[0] = `$COM_INSTANCE`_GetChar();
+	
+		if (toupper((int)out[0]) == 'Y') {
+			result = 1;
+		}
+		else if (toupper((int)out[0]) == 'N') {
+			result = 0;
+		}
+		else if ((out[0] == '\r') || (out[0] == '\n')) {
+			result = defVal;
+		}
+	} while (result > 1);
+	
+	return result;
+}
+/* ------------------------------------------------------------------------ */
+uint32 `$INSTANCE_NAME`_GetValueParam(char *arg)
+{
+	uint32 value;
+	
+	value = 0;
+	
+	if (strncmp(arg,"0x",2) == 0) {
+		value = `$INSTANCE_NAME`_convHex(&arg[2]);
+	}
+	else if (isdigit((int)arg[0])) {
+		sscanf(arg,"%lu",&value);
+	}
+	
+	return value;
+}
+/* ------------------------------------------------------------------------ */
+uint32 `$INSTANCE_NAME`_convHex(char *hex)
+{
+	uint32 value;
+	int idx;
+	int digit;
+	
+	value = 0;
+	for(idx=0;(hex[idx]!=0)&&(idx<8)&&(isxdigit((int)(hex[idx])));++idx) {
+		value <<= 4;
+		digit = toupper((int)hex[idx]);
+		if (digit >= 'A') {
+			value += 10 + (digit - 'A');
+		}
+		else {
+			value += (digit - '0');
+		}
+	}
+	
+	return value;
+}
+/* ------------------------------------------------------------------------ */
 cystatus `$INSTANCE_NAME`_CliHelp( int argc, char **argv )
 {
 	int idx;
@@ -118,7 +189,7 @@ cystatus `$INSTANCE_NAME`_CliClearScreen( int argc, char **argv )
 	argc = argc;
 	argv = argv;
 	
-	`$COM_INSTANCE`_PrintString("{cls}");
+	`$COM_INSTANCE`_PrintString("{row;col;mv;cls}");
 	return CYRET_SUCCESS;
 }
 /* ------------------------------------------------------------------------ */
