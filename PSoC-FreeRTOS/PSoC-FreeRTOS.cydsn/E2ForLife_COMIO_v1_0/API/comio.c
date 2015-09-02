@@ -31,22 +31,17 @@
 #include <stdio.h>
 
 #include "`$INSTANCE_NAME`.h"
-
-#include "`$COM_INSTANCE`.h"
-#include "`$COM_INSTANCE`_cdc.h"
+#include "`$COM_DEVICE`.h"
 
 #include "`$FreeRTOS`.h"
-#include "`$FreeRTOS`_task.h"
-#include "`$FreeRTOS`_queue.h"
 #include "`$FreeRTOS`_semphr.h"
 
 /* ======================================================================== */
+uint8 `$INSTANCE_NAME`_initVar;
 
-xQueueHandle `$INSTANCE_NAME`_RxQ;
-xQueueHandle `$INSTANCE_NAME`_TxQ;
 xSemaphoreHandle `$INSTANCE_NAME`_Mutex;
 
-uint8 `$INSTANCE_NAME`_initVar;
+extern uint8 `$COM_DEVICE`_initVar;
 
 /* ======================================================================== */
 void `$INSTANCE_NAME`_Start( void )
@@ -61,27 +56,22 @@ void `$INSTANCE_NAME`_Start( void )
 /* ------------------------------------------------------------------------ */
 void `$INSTANCE_NAME`_Init( void )
 {
-	/*  Initialize the USB COM port */
-	
-	if (`$COM_INSTANCE`_initVar == 0) {
-    	/* Start USBFS Operation with 3V operation */
-		#if (CYDEV_VDDIO1_MV < 5000)
-    		`$COM_INSTANCE`_Start(0u, `$COM_INSTANCE`_3V_OPERATION);
-		#else
-			`$COM_INSTANCE`_Start(0u, `$COM_INSTANCE`_5V_OPERATION);
-		#endif
+	/*
+	 * If the I/O Driver has not yet been started, initialize and start the
+	 * device by callin gthe system API.
+	 */
+	if (`$COM_DEVICE`_initVar == 0) {
+		`$COM_DEVICE`_Start();
 	}
 	
-	/* Initialize and create the semaphore */
+	/*  Initialize the I/O library */
 	`$INSTANCE_NAME`_Mutex = xSemaphoreCreateMutex();
-	
-	/* Initialize USB Buffers */
-	`$INSTANCE_NAME`_TxQ = xQueueCreate( `$TX_SIZE`, 1 );
-	`$INSTANCE_NAME`_RxQ = xQueueCreate( `$RX_SIZE`, 1 );
-	
-	xTaskCreate( `$INSTANCE_NAME`_Task,"`$INSTANCE_NAME` Task", 400, NULL, `$USB_PRIORITY`, NULL);
-	
-	`$INSTANCE_NAME`_initVar = 1;
+	if ( `$INSTANCE_NAME`_Mutex != NULL ) {
+		`$INSTANCE_NAME`_initVar = 1;
+	}
+	else {
+		`$INSTANCE_NAME`_initVar = 0;
+	}
 }
 /* ------------------------------------------------------------------------ */
 void `$INSTANCE_NAME`_Enable( void )
@@ -97,109 +87,22 @@ void `$INSTANCE_NAME`_Enable( void )
 	}
 }
 /* ======================================================================== */
-void `$INSTANCE_NAME`_Task( void *pvParameters )
-{
-    uint16 count;
-    uint8 buffer[`$INSTANCE_NAME`_BUFFER_LEN];
-	uint16 idx;
-	
-	for (;;) {
-		/* Handle enumeration of USB port */
-    	if(`$COM_INSTANCE`_IsConfigurationChanged() != 0u) /* Host could send double SET_INTERFACE request */
-    	{
-        	if(`$COM_INSTANCE`_GetConfiguration() != 0u)   /* Init IN endpoints when device configured */
-        	{
-            	/* Enumeration is done, enable OUT endpoint for receive data from Host */
-            	`$COM_INSTANCE`_CDC_Init();
-        	}
-    	}
-		/*
-		 *
-		 */
-	    if(`$COM_INSTANCE`_GetConfiguration() != 0u)
-	    {
-			/*
-			 * Process received data from the USB, and store it in to the
-			 * receiver message Q.
-			 */
-	        if(`$COM_INSTANCE`_DataIsReady() != 0u)
-	        {   
-	            count = `$COM_INSTANCE`_GetAll(buffer);
-	            if(count != 0u)
-	            {
-					/* insert data in to Receive FIFO */
-					for(idx=0;idx<count;++idx) {
-						xQueueSend( `$INSTANCE_NAME`_RxQ, (void*)&buffer[idx],0);
-						#if (`$DEBUG_USB_RX_ECHO` == 1 )
-							xQueueSend( `$INSTANCE_NAME`_TxQ, (void*)&buffer[idx],0);
-						#endif
-					}
-				}
-			}
-			/*
-			 * Send a block of data ack through the USB port to the PC,
-			 * by checkig to see if there is data to send, then sending
-			 * up to the BUFFER_LEN of data (64 bytes)
-			 */
-			count = uxQueueMessagesWaiting( `$INSTANCE_NAME`_TxQ );
-			count = (count > `$INSTANCE_NAME`_BUFFER_LEN)? `$INSTANCE_NAME`_BUFFER_LEN:count;
-			
-			/* When component is ready to send more data to the PC */			
-            if ( (`$COM_INSTANCE`_CDCIsReady() != 0u) && (count > 0) ) {
-				/*
-				 * Read the data from the transmit queue and buffer it
-				 * locally so that the data can be utilized.
-				 */
-				for (idx = 0; idx < count; ++idx) {
-					xQueueReceive( `$INSTANCE_NAME`_TxQ,&buffer[idx],0);
-				}
-				/* Send data back to host */
-    	        `$COM_INSTANCE`_PutData(buffer, count);
-				
-				/* If the last sent packet is exactly maximum packet size, 
-            	 *  it shall be followed by a zero-length packet to assure the
-             	 *  end of segment is properly identified by the terminal.
-             	 */
-            	if(count == `$INSTANCE_NAME`_BUFFER_LEN){
-					/* Wait till component is ready to send more data to the PC */
-                	while(`$COM_INSTANCE`_CDCIsReady() == 0u) {
-						vTaskDelay( `$USB_SCAN_RATE` / portTICK_RATE_MS );
-					}
-                	`$COM_INSTANCE`_PutData(NULL, 0u);         /* Send zero-length packet to PC */
-            	} 
-			}
-		}
-		
-		vTaskDelay(`$USB_SCAN_RATE`/portTICK_PERIOD_MS);
-	}
-}
-
-/* ======================================================================== */
-/* ======================================================================== */
 /* ------------------------------------------------------------------------ */
 char `$INSTANCE_NAME`_GetChar( void )
 {
 	char value;
-	portBASE_TYPE xStatus;
 	
-	/* wait for data to become available */
-	xStatus = xQueueReceive( `$INSTANCE_NAME`_RxQ, &value, portMAX_DELAY);
+	/* Quit when not yet initialized */
+	if (`$INSTANCE_NAME`_initVar == 0) return 0;
 	
-	if (xStatus != pdPASS) {
-		value = 255;
-	}
+	`$COM_DEVICE`_ReadByte( (uint8*) &value);
 	
 	return value;
 }
 /* ------------------------------------------------------------------------ */
 cystatus `$INSTANCE_NAME`_PutChar( char ch )
 {
-	
-	portBASE_TYPE xStatus;
-	
-	xStatus = xQueueSend( `$INSTANCE_NAME`_TxQ, &ch, portMAX_DELAY);
-	
-	return (xStatus == pdPASS)?CYRET_SUCCESS:CYRET_MEMORY;
+	return `$COM_DEVICE`_WriteByte( (uint8) ch );
 }
 /* ------------------------------------------------------------------------ */
 int `$INSTANCE_NAME`_ProcessString( const char *buffer, char *argv )
@@ -291,8 +194,7 @@ int `$INSTANCE_NAME`_ProcessEscapeSequence( const char *str)
 				value = 1;
 			}
 			sprintf(out, "\x1b[%luD",value);
-			oi = 0;
-			while (out[oi] != 0) `$INSTANCE_NAME`_PutChar(out[oi++]);
+			`$COM_DEVICE`_Write((uint8*)out,strlen(out));
 		}
 		else if (strncmp(argv, "right",5) == 0) {
 			if (argv[5] != 0) {
@@ -302,13 +204,11 @@ int `$INSTANCE_NAME`_ProcessEscapeSequence( const char *str)
 				value = 1;
 			}
 			sprintf(out, "\x1b[%luC",value);
-			oi = 0;
-			while (out[oi] != 0) `$INSTANCE_NAME`_PutChar(out[oi++]);
+			`$COM_DEVICE`_Write((uint8*)out,strlen(out));
 		}
 		else if (strcmp(argv,"cls") == 0) {
 			sprintf(out, "\x1b[2J");
-			oi = 0;
-			while (out[oi] != 0) `$INSTANCE_NAME`_PutChar(out[oi++]);
+			`$COM_DEVICE`_Write((uint8*)out,strlen(out));
 		}
 		else if (strncmp(argv,"cl",2) == 0) {
 			if (argv[2] != 0) {
@@ -318,8 +218,7 @@ int `$INSTANCE_NAME`_ProcessEscapeSequence( const char *str)
 				value = 1;
 			}
 			sprintf(out, "\x1b[%luK", value);
-			oi = 0;
-			while (out[oi] != 0) `$INSTANCE_NAME`_PutChar(out[oi++]);
+			`$COM_DEVICE`_Write((uint8*)out,strlen(out));
 		}
 		else if (strncmp(argv,"row",3) == 0) {
 			if (argv[3] != 0) {
@@ -339,8 +238,7 @@ int `$INSTANCE_NAME`_ProcessEscapeSequence( const char *str)
 		}
 		else if (strcmp(argv,"mv") == 0) {
 			sprintf(out,"\x1b[%lu;%luH",row,col);
-			oi = 0;
-			while (out[oi] != 0) `$INSTANCE_NAME`_PutChar(out[oi++]);
+			`$COM_DEVICE`_Write((uint8*)out,strlen(out));
 		}
 		else if (strcmp(argv, "hide") == 0) {
 			sprintf(out,"\x1b[?25l");
@@ -349,8 +247,7 @@ int `$INSTANCE_NAME`_ProcessEscapeSequence( const char *str)
 		}
 		else if (strcmp(argv, "show") == 0) {
 			sprintf(out,"\x1b[?25h");
-			oi = 0;
-			while (out[oi] != 0) `$INSTANCE_NAME`_PutChar(out[oi++]);
+			`$COM_DEVICE`_Write((uint8*)out,strlen(out));
 		}
 		else if (argv[0] == 'c') {
 			/* Set Foreground Color */
@@ -362,8 +259,7 @@ int `$INSTANCE_NAME`_ProcessEscapeSequence( const char *str)
 			}
 			value = (value > 7) ? (90 + (value&0x07)):(value + 30);
 			sprintf( out, "\x1b[%lum",value);
-			oi = 0;
-			while (out[oi] != 0) `$INSTANCE_NAME`_PutChar(out[oi++]);
+			`$COM_DEVICE`_Write((uint8*)out,strlen(out));
 		}
 		else if (argv[0] == 'b') {
 			/* Set background color */
@@ -375,8 +271,7 @@ int `$INSTANCE_NAME`_ProcessEscapeSequence( const char *str)
 			}
 			value = (value > 7) ? (100 + (value&0x07)):(value + 40);
 			sprintf( out, "\x1b[%lum",value);
-			oi = 0;
-			while (out[oi] != 0) `$INSTANCE_NAME`_PutChar(out[oi++]);
+			`$COM_DEVICE`_Write((uint8*)out,strlen(out));
 		}
 		else if (argv[0] == '{') {
 			`$INSTANCE_NAME`_PutChar('{');
@@ -424,57 +319,8 @@ cystatus `$INSTANCE_NAME`_PrintString( const char *str )
 	
 	return result;
 }
-/* ------------------------------------------------------------------------ */
-cystatus `$INSTANCE_NAME`_SetColor( uint8 fg, uint8 bg )
-{
-	char buffer[21];
-	
-	fg = (fg > 7) ?	(90 + (fg&0x07)):(fg + 30);
-	bg = (bg > 7) ? (100+(bg&7)):(bg + 40);
-	sprintf(buffer,"\x1b[%d;%dm",fg,bg);
-	return `$INSTANCE_NAME`_PrintString(buffer);
-}
 /* ------------------------------------------------------------------------- */
-cystatus `$INSTANCE_NAME`_ClearLine(uint8 mode)
-{
-	char buffer[15];
-	
-	sprintf(buffer,"\x1b[%dK",mode);
-	return `$INSTANCE_NAME`_PrintString(buffer);
-}
-/* ------------------------------------------------------------------------- */
-cystatus `$INSTANCE_NAME`_Position(uint8 row, uint8 col)
-{
-	char buffer[21];
-	
-	sprintf(buffer,"\x1b[%d;%dH",row+1,col+1);
-	return `$INSTANCE_NAME`_PrintString(buffer);
-}
-/* ------------------------------------------------------------------------- */
-//cystatus `$INSTANCE_NAME`_PrintStringColor(const char *str, uint8 fg, uint8 bg)
-//{
-//	cystatus result;
-//	int idx;
-//	
-//	result = `$INSTANCE_NAME`_SetColor(fg,bg);
-//	idx = 0;
-//	while ( (str[idx] != 0) && (result == CYRET_SUCCESS) ) {
-//		if ( ( (str[idx] == '[') || (str[idx] == ']') || (str[idx] == '(') || (str[idx] == ')') ) && (bg!=4) ) {
-//			result = `$INSTANCE_NAME`_SetColor(4,bg);
-//			`$INSTANCE_NAME`_PutChar( str[idx] );
-//			result = `$INSTANCE_NAME`_SetColor(fg,bg);
-//		}
-//		else {
-//			`$INSTANCE_NAME`_PutChar( str[idx] );
-//		}
-//		++idx;
-//	}
-//	`$INSTANCE_NAME`_SetColor(7,0);
-//	
-//	return result;
-//}
-/* ------------------------------------------------------------------------- */
-cystatus `$INSTANCE_NAME`_GetString(char *str)
+cystatus `$INSTANCE_NAME`_GenericGetString(char *str, uint8 quiet)
 {
 	cystatus result;
 	char ch;
@@ -485,7 +331,7 @@ cystatus `$INSTANCE_NAME`_GetString(char *str)
 	
 	xSemaphoreTake( `$INSTANCE_NAME`_Mutex, portMAX_DELAY);
 	{
-		ch = `$INSTANCE_NAME`_GetChar();
+		`$COM_DEVICE`_ReadByte((uint8*)&ch);
 		/* 
 		 * While there are no EOL character read, read the data fro mthe queue,
 		 * and take a peek at the next data in the buffer.
@@ -500,11 +346,9 @@ cystatus `$INSTANCE_NAME`_GetString(char *str)
 				str[idx] = 0;
 				if (idx>0) {
 					idx--;
+					if (quiet == 0) `$COM_DEVICE`_Write((uint8*)"\b \b",3);
 				}
-				`$INSTANCE_NAME`_PutChar('\b');
-				`$INSTANCE_NAME`_PutChar(' ');
-				`$INSTANCE_NAME`_PutChar('\b');
-				ch = `$INSTANCE_NAME`_GetChar();
+				`$COM_DEVICE`_ReadByte((uint8*)&ch);
 			}
 			/*
 			 * When a newline is read, push the character back in to the
@@ -513,8 +357,8 @@ cystatus `$INSTANCE_NAME`_GetString(char *str)
 			 */
 			else if ((ch!='\r')&&(ch!='\n')) {
 				str[idx++] = ch;
-				`$INSTANCE_NAME`_PutChar( ch );
-				ch = `$INSTANCE_NAME`_GetChar();
+				if (quiet == 0) `$COM_DEVICE`_WriteByte( (uint8) ch );
+				`$COM_DEVICE`_ReadByte( (uint8*) &ch );
 			}
 			str[idx] = 0;
 		}
@@ -524,11 +368,11 @@ cystatus `$INSTANCE_NAME`_GetString(char *str)
 		 * of the next string.
 		 */
 		if ( (ch == '\r') || (ch == '\n') ) {
-			while( ((ch == '\r') || (ch == '\n')) && (uxQueueMessagesWaiting(`$INSTANCE_NAME`_RxQ) > 0) )
+			while( ((ch == '\r') || (ch == '\n')) && (`$COM_DEVICE`_DataWaiting() > 0) )
 			{
-				ch = `$INSTANCE_NAME`_GetChar(); /* Remove the EOL character from buffer */
+				`$COM_DEVICE`_ReadByte((uint8*)&ch);
 				if ( (ch != '\r') && (ch != '\n') ) {
-					xQueueSendToFront( `$INSTANCE_NAME`_RxQ, &ch, 0);
+					`$COM_DEVICE`_UnRead((uint8*)&ch,1);
 				}
 			}
 			result = CYRET_FINISHED;
@@ -537,6 +381,12 @@ cystatus `$INSTANCE_NAME`_GetString(char *str)
 	xSemaphoreGive( `$INSTANCE_NAME`_Mutex );
 	return result;
 }
+
+cystatus `$INSTANCE_NAME`_GetString(char *str)
+{
+	return `$INSTANCE_NAME`_GenericGetString(str, 0);
+}
+
 /* ------------------------------------------------------------------------- */
 /*
  * scan key, and process escape sequences for command keys.
@@ -547,17 +397,21 @@ uint16 `$INSTANCE_NAME`_ScanKey( void )
 	char ch;
 	
 	result = 0xFF00;
-	if (uxQueueMessagesWaiting( `$INSTANCE_NAME`_RxQ ) > 0) {
-		ch = `$INSTANCE_NAME`_GetChar();
+	if (`$COM_DEVICE`_DataWaiting() > 0) {
+		`$COM_DEVICE`_ReadByte( (uint8*)&ch );
 		if (ch == '\x1b') {
-			ch = `$INSTANCE_NAME`_GetChar(); /* wait for bracket */
+			`$COM_DEVICE`_ReadByte( (uint8*) &ch );
 			if (ch == '[') {
 				do {
-					ch = `$INSTANCE_NAME`_GetChar(); /* Get command */
+					`$COM_DEVICE`_ReadByte((uint8*)&ch);
 				}
 				while ( !isalpha((int)ch) );
 				result = (uint16) ch;
 				result |= `$INSTANCE_NAME`_KEY_CSI;
+			}
+			else {
+				`$COM_DEVICE`_UnRead((uint8*)&ch,1);
+				result = `$INSTANCE_NAME`_KEY_ESC;
 			}
 		}
 		else if ( ch < 32 ) {

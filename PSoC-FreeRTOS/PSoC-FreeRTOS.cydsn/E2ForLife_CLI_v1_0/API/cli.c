@@ -47,10 +47,15 @@
 
 int `$INSTANCE_NAME`_CLIrefresh;
 uint8 `$INSTANCE_NAME`_CLIinitVar;
+uint8 `$INSTANCE_NAME`_CLIquiet;
 
 /* ------------------------------------------------------------------------ */
 void `$INSTANCE_NAME`_Start( void )
 {
+	`$INSTANCE_NAME`_CLIquiet = 0;
+	`$INSTANCE_NAME`_CLIrefresh = 1;
+	`$INSTANCE_NAME`_CLIinitVar = 1;
+	
 	/*
 	 * Register commands for help and clear
 	 */
@@ -67,6 +72,8 @@ void `$INSTANCE_NAME`_Start( void )
 /* ------------------------------------------------------------------------ */
 void `$INSTANCE_NAME`_SystemMsg(const char *str, uint8 level)
 {
+	if (`$INSTANCE_NAME`_CLIquiet != 0) return;
+	
 	switch(level) {
 		case `$INSTANCE_NAME`_NOTE:
 			`$COM_INSTANCE`_PrintString("\r\n{c4}[{c10}NOTE{c4}]{c7}:");
@@ -95,7 +102,6 @@ uint8 `$INSTANCE_NAME`_AreYouSure( char* msg, uint8 defVal )
 {
 	const char *values[] = {"No", "Yes"};
 	char out[31];
-	uint8 idx;
 	uint8 result;
 	
 	result = 255;
@@ -195,6 +201,8 @@ cystatus `$INSTANCE_NAME`_CliClearScreen( int argc, char **argv )
 /* ------------------------------------------------------------------------ */
 void `$INSTANCE_NAME`_CliShowPrompt( char *lineBuffer )
 {
+	if (`$INSTANCE_NAME`_CLIquiet != 0) return;
+	
 	`$COM_INSTANCE`_PrintString("\r\n");
 	`$COM_INSTANCE`_PrintString("`$UserMessageString`");
 	`$COM_INSTANCE`_PrintString("`$UserPromptString`");
@@ -394,10 +402,10 @@ void `$INSTANCE_NAME`_vCliTask( void *pvParameters )
 		`$INSTANCE_NAME`_CliShowPrompt(lineBuffer);
 		
 		/* Read the input line from the user with blocking functions */
-		`$COM_INSTANCE`_GetString( lineBuffer );
+		`$COM_INSTANCE`_GenericGetString( lineBuffer, `$INSTANCE_NAME`_CLIquiet );
 		
 		/* Set the color to neutral to avoid screen junk when executing commands */
-		`$COM_INSTANCE`_SetColor(7,0);
+		if (`$INSTANCE_NAME`_CLIquiet == 0) `$COM_INSTANCE`_PrintString("{c7;b0}");
 		
 		/*
 		 * Strip arguments from the line buffer, and handle compound

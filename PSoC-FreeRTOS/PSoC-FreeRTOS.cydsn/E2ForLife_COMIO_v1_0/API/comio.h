@@ -34,10 +34,6 @@
 #define `$INSTANCE_NAME`_YES            ( 1 )
 #define `$INSTANCE_NAME`_NO             ( 0 )
 
-#define `$INSTANCE_NAME`_BLOCKING_SEND   ( `$USE_BLOCKING_SEND` )
-#define `$INSTANCE_NAME`_BLOCKING_GETS   ( `$INSTANCE_NAME`_NO )
-#define `$INSTANCE_NAME`_USB_MODE        ( `$USING_USB` )
-	
 void `$INSTANCE_NAME`_Start( void );
 void `$INSTANCE_NAME`_Init( void );
 void `$INSTANCE_NAME`_Enable( void );
@@ -52,21 +48,14 @@ cystatus `$INSTANCE_NAME`_PrintString( const char *str );
 cystatus `$INSTANCE_NAME`_SetColor( uint8 fg, uint8 bg );
 cystatus `$INSTANCE_NAME`_ClearLine(uint8 mode);
 cystatus `$INSTANCE_NAME`_Position(uint8 row, uint8 col);
-//cystatus `$INSTANCE_NAME`_PrintStringColor(const char *str, uint8 fg, uint8 bg);
 cystatus `$INSTANCE_NAME`_GetString( char *str );
+cystatus `$INSTANCE_NAME`_GenericGetString( char *str, uint8 quiet );
 uint16 `$INSTANCE_NAME`_ScanKey( void );
 
 #define `$INSTANCE_NAME`_HideCursor        ( `$INSTANCE_NAME`_PutString("\x1b[?25l") )
 #define `$INSTANCE_NAME`_ShowCursor        ( `$INSTANCE_NAME`_PutString("\x1b[?25h") )
 #define `$INSTANCE_NAME`_SaveCursor        ( `$INSTANCE_NAME`_PutString("\x1b[s") )
 #define `$INSTANCE_NAME`_RestoreCursor     ( `$INSTANCE_NAME`_PutString("\x1b[u") )
-
-/* The size of the buffer is equal to maximum packet size of the 
-*  IN and OUT bulk endpoints. 
-*/
-#define `$INSTANCE_NAME`_BUFFER_LEN   ( 64u )
-#define `$INSTANCE_NAME`_RX_SIZE      ( `$RX_SIZE` )
-#define `$INSTANCE_NAME`_TX_SIZE      ( `$TX_SIZE` )
 
 /* ------------------------------------------------------------------------ */
 #define `$INSTANCE_NAME`_KEY_UP         ( 'A' )
@@ -77,6 +66,7 @@ uint16 `$INSTANCE_NAME`_ScanKey( void );
 #define `$INSTANCE_NAME`_KEY_CSI       ( 0x0100 )
 #define `$INSTANCE_NAME`_KEY_CTRL      ( 0x0200 )
 #define `$INSTANCE_NAME`_KEY_SHFT      ( 0x0300 )
+#define `$INSTANCE_NAME`_KEY_ESC       ( 0x0400 )
 
 /* ------------------------------------------------------------------------ */
 
