@@ -30,10 +30,35 @@
 	#define `$INSTANCE_NAME`_H
 
 #include <cytypes.h>
+#include "`$FreeRTOS`.h"
+#include "`$FreeRTOS`_task.h"
+#include "`$FreeRTOS`_queue.h"
 
 #define `$INSTANCE_NAME`_YES            ( 1 )
 #define `$INSTANCE_NAME`_NO             ( 0 )
 
+/* ======================================================================== */
+/*
+ * Reference the external queues used for CLI communications.  these can be
+ * the same or all different
+ */
+#if !defined(`$INSTANCE_NAME`_`$InputQueue`)
+	#define `$INSTANCE_NAME`_`$InputQueue`
+	extern xQueueHandle `$InputQueue`;
+#endif
+
+#if !defined( `$INSTANCE_NAME`_`$OutputQueue`)
+	#define `$INSTANCE_NAME`_`$OutputQueue`
+	extern xQueueHandle `$OutputQueue`;
+#endif
+
+#if !defined( `$INSTANCE_NAME`_`$ErrorQueue`)
+	#define `$INSTANCE_NAME`_`$ErrorQueue`
+	extern xQueueHandle `$ErrorQueue`;
+#endif
+
+/* ======================================================================== */
+	
 
 /*
  * read function/write function pointer types
@@ -57,10 +82,13 @@ typedef struct {
 #define `$INSTANCE_NAME`_ERROR      ( 2 )
 #define `$INSTANCE_NAME`_FATAL      ( 0xFF )
 
+/* Handler for depricated message function */
+#define `$INSTANCE_NAME`_SystemMsg                    `$INSTANCE_NAME`_Message
+
 void `$INSTANCE_NAME`_Start( void );
 
 cystatus `$INSTANCE_NAME`_RegisterCommand( `$INSTANCE_NAME`_CLIfunc fn, char *cmd, char *description);
-void `$INSTANCE_NAME`_SystemMsg(const char *str, uint8 level);
+void `$INSTANCE_NAME`_Message(const char *str, uint8 level);
 uint8 `$INSTANCE_NAME`_AreYouSure( char* msg, uint8 defVal );
 uint32 `$INSTANCE_NAME`_GetValueParam(char *arg);
 uint32 `$INSTANCE_NAME`_convHex(char *hex);
@@ -84,7 +112,32 @@ cystatus `$ISTANCE_NAME`_KillTask(int argc, char **argv )
  */
 void `$INSTANCE_NAME`_vCliTask( void *pvParameters );
 
+/* ------------------------------------------------------------------------ */
+/* Functions for the CLI I/O Driver */
 
+char `$INSTANCE_NAME`_GetChar( void );
+cystatus `$INSTANCE_NAME`_GenericPutChar( char ch, xQueueHandle h );
+int `$INSTANCE_NAME`_ProcessEscapeSequence( const char *str, xQueueHandle h);
+cystatus `$INSTANCE_NAME`_GenericPrintString( const char *str, xQueueHandle h );
+cystatus `$INSTANCE_NAME`_GenericGetString(char *str);
+uint16 `$INSTANCE_NAME`_ScanKey( void );
+
+#define `$INSTANCE_NAME`_PrintString(str)      {`$INSTANCE_NAME`_GenericPrintString(str, `$OutputQueue`);}
+#define `$INSTANCE_NAME`_PutChar(ch)           `$INSTANCE_NAME`_GenericPutChar(ch, `$OutputQueue`)
+#define `$INSTANCE_NAME`_GetString(str)        `$INSTANCE_NAME`_GenericGetString(str)
+
+/* ------------------------------------------------------------------------ */
+#define `$INSTANCE_NAME`_KEY_UP         ( 'A' )
+#define `$INSTANCE_NAME`_KEY_DOWN       ( 'B' )
+#define `$INSTANCE_NAME`_KEY_LEFT       ( 'D' )
+#define `$INSTANCE_NAME`_KEY_RIGHT      ( 'C' )
+
+#define `$INSTANCE_NAME`_KEY_CSI       ( 0x0100 )
+#define `$INSTANCE_NAME`_KEY_CTRL      ( 0x0200 )
+#define `$INSTANCE_NAME`_KEY_SHFT      ( 0x0300 )
+#define `$INSTANCE_NAME`_KEY_ESC       ( 0x0400 )
+
+/* ------------------------------------------------------------------------ */
 
 #endif
 /* [] END OF FILE */

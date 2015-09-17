@@ -33,11 +33,6 @@
 #include <ctype.h>
 	
 #include "`$INSTANCE_NAME`.h"
-#include "`$COM_INSTANCE`.h"
-
-#include "`$FreeRTOS`.h"
-#include "`$FreeRTOS`_task.h"
-#include "`$FreeRTOS`_queue.h"
 	
 /* ------------------------------------------------------------------------ */
 	
@@ -45,16 +40,16 @@
 
 /* ------------------------------------------------------------------------ */
 
-int `$INSTANCE_NAME`_CLIrefresh;
-uint8 `$INSTANCE_NAME`_CLIinitVar;
-uint8 `$INSTANCE_NAME`_CLIquiet;
+uint8 `$INSTANCE_NAME`_initVar;
+
+/* ======================================================================== */
+extern uint8 `$INSTANCE_NAME`_initVar;
+/* ======================================================================== */
 
 /* ------------------------------------------------------------------------ */
 void `$INSTANCE_NAME`_Start( void )
 {
-	`$INSTANCE_NAME`_CLIquiet = 0;
-	`$INSTANCE_NAME`_CLIrefresh = 1;
-	`$INSTANCE_NAME`_CLIinitVar = 1;
+	`$INSTANCE_NAME`_initVar = 1;
 	
 	/*
 	 * Register commands for help and clear
@@ -70,30 +65,29 @@ void `$INSTANCE_NAME`_Start( void )
 	xTaskCreate( `$INSTANCE_NAME`_vCliTask, "Cli Task", 600, (void*)&`$INSTANCE_NAME`_CommandTable[0], `$CLI_PRIORITY`, NULL);
 }
 /* ------------------------------------------------------------------------ */
-void `$INSTANCE_NAME`_SystemMsg(const char *str, uint8 level)
+//void `$INSTANCE_NAME`_SystemMsg(const char *str, uint8 level)
+void `$INSTANCE_NAME`_Message(const char *str, uint8 level)
 {
-	if (`$INSTANCE_NAME`_CLIquiet != 0) return;
-	
 	switch(level) {
 		case `$INSTANCE_NAME`_NOTE:
-			`$COM_INSTANCE`_PrintString("\r\n{c4}[{c10}NOTE{c4}]{c7}:");
-			`$COM_INSTANCE`_PrintString(str);
+			`$INSTANCE_NAME`_GenericPrintString("\r\n{c4}[{c10}NOTE{c4}]{c7}:", `$ErrorQueue`);
+			`$INSTANCE_NAME`_GenericPrintString(str, `$ErrorQueue`);
 			break;
 		case `$INSTANCE_NAME`_WARN:
-			`$COM_INSTANCE`_PrintString("\r\n{c4}[{c11}WARNING{c4}]{c7}: ");
-			`$COM_INSTANCE`_PrintString(str);
+			`$INSTANCE_NAME`_GenericPrintString("\r\n{c4}[{c11}WARNING{c4}]{c7}: ", `$ErrorQueue`);
+			`$INSTANCE_NAME`_GenericPrintString(str, `$ErrorQueue`);
 			break;
 		case `$INSTANCE_NAME`_ERROR:
-			`$COM_INSTANCE`_PrintString("\r\n{c4}[{c9}ERROR{c4}]{c7}: ");
-			`$COM_INSTANCE`_PrintString(str);
+			`$INSTANCE_NAME`_GenericPrintString("\r\n{c4}[{c9}ERROR{c4}]{c7}: ", `$ErrorQueue`);
+			`$INSTANCE_NAME`_GenericPrintString(str, `$ErrorQueue`);
 			break;
 		case `$INSTANCE_NAME`_FATAL:
-			`$COM_INSTANCE`_PrintString("\r\n{c4}[{c9}FATAL{c4}]{c7}: {c9}");
-			`$COM_INSTANCE`_PrintString(str);
+			`$INSTANCE_NAME`_GenericPrintString("\r\n{c4}[{c9}FATAL{c4}]{c7}: {c9}", `$ErrorQueue`);
+			`$INSTANCE_NAME`_GenericPrintString(str, `$ErrorQueue`);
 			break;
 		default:
-			`$COM_INSTANCE`_PrintString("\r\n{c4}[{c15}????{c4}]{c7}: ");
-			`$COM_INSTANCE`_PrintString(str);
+			`$INSTANCE_NAME`_GenericPrintString("\r\n{c4}[{c15}????{c4}]{c7}: ", `$ErrorQueue`);
+			`$INSTANCE_NAME`_GenericPrintString(str, `$ErrorQueue`);
 			break;
 	}
 }
@@ -106,16 +100,16 @@ uint8 `$INSTANCE_NAME`_AreYouSure( char* msg, uint8 defVal )
 	
 	result = 255;
 	
-	`$COM_INSTANCE`_PrintString(msg);
+	`$INSTANCE_NAME`_PrintString(msg);
 	if (defVal != 0) {
 		sprintf(out," {c6}%s{c4}/{c14}%s{c7} : ", values[0], values[1] );
 	}
 	else {
 		sprintf(out," {c14}%s{c4}/{c6}%s{c7} : ", values[0], values[1] );
 	}	
-	`$COM_INSTANCE`_PrintString(out);
+	`$INSTANCE_NAME`_PrintString(out);
 	do {
-		out[0] = `$COM_INSTANCE`_GetChar();
+		out[0] = `$INSTANCE_NAME`_GetChar();
 	
 		if (toupper((int)out[0]) == 'Y') {
 			result = 1;
@@ -173,20 +167,20 @@ cystatus `$INSTANCE_NAME`_CliHelp( int argc, char **argv )
 	int idx;
 	char bfr[51];
 	
-	`$COM_INSTANCE`_PrintString("{row1;col1;mv;cls}");
+	`$INSTANCE_NAME`_PrintString("{row1;col1;mv;cls}");
 	
 	idx = 0;
 	while ( strlen(`$INSTANCE_NAME`_CommandTable[idx].name) != 0) {
 		if ( strlen(`$INSTANCE_NAME`_CommandTable[idx].desc) > 0 ) {
 			sprintf(bfr,"\r\n{c4}[{c15}%10s{c4}]{c7} : ",`$INSTANCE_NAME`_CommandTable[idx].name);
-			`$COM_INSTANCE`_PrintString(bfr);
+			`$INSTANCE_NAME`_PrintString(bfr);
 			sprintf(bfr,"{c%d}",((idx&0x01)?10:2));
-			`$COM_INSTANCE`_PrintString(bfr);
-			`$COM_INSTANCE`_PrintString(`$INSTANCE_NAME`_CommandTable[idx].desc);
+			`$INSTANCE_NAME`_PrintString(bfr);
+			`$INSTANCE_NAME`_PrintString(`$INSTANCE_NAME`_CommandTable[idx].desc);
 		}
 		++idx;
 	}
-	`$COM_INSTANCE`_PrintString("\r\n\n");
+	`$INSTANCE_NAME`_PrintString("\r\n\n");
 	return CYRET_SUCCESS;
 }
 /* ------------------------------------------------------------------------ */
@@ -195,18 +189,16 @@ cystatus `$INSTANCE_NAME`_CliClearScreen( int argc, char **argv )
 	argc = argc;
 	argv = argv;
 	
-	`$COM_INSTANCE`_PrintString("{row;col;mv;cls}");
+	`$INSTANCE_NAME`_PrintString("{row;col;mv;cls}");
 	return CYRET_SUCCESS;
 }
 /* ------------------------------------------------------------------------ */
 void `$INSTANCE_NAME`_CliShowPrompt( char *lineBuffer )
 {
-	if (`$INSTANCE_NAME`_CLIquiet != 0) return;
-	
-	`$COM_INSTANCE`_PrintString("\r\n");
-	`$COM_INSTANCE`_PrintString("`$UserMessageString`");
-	`$COM_INSTANCE`_PrintString("`$UserPromptString`");
-	`$COM_INSTANCE`_PrintString( lineBuffer);
+
+	`$INSTANCE_NAME`_PrintString("\r\n");
+	`$INSTANCE_NAME`_PrintString("`$UserMessageString`");
+	`$INSTANCE_NAME`_PrintString("`$UserPromptString`");
 }
 /* ------------------------------------------------------------------------ */
 cystatus `$INSTANCE_NAME`_RegisterCommand( `$INSTANCE_NAME`_CLIfunc fn, char *cmd, char *description)
@@ -318,7 +310,7 @@ cystatus `$INSTANCE_NAME`_CliProcessCommand(const `$INSTANCE_NAME`_CLI_COMMAND *
 	cystatus result;
 	
 	if (tbl == NULL) {
-		`$INSTANCE_NAME`_SystemMsg("Invalid command table",`$INSTANCE_NAME`_FATAL);
+		`$INSTANCE_NAME`_Message("{c9}Invalid command table{c7}",`$INSTANCE_NAME`_FATAL);
 		return CYRET_UNKNOWN;
 	}
 	
@@ -335,16 +327,18 @@ cystatus `$INSTANCE_NAME`_CliProcessCommand(const `$INSTANCE_NAME`_CLI_COMMAND *
 				}
 				else {
 					result = CYRET_INVALID_OBJECT;
-					sprintf(outBuffer,"\"%s\" has not yet been implemented.",argv[0]);
-					`$INSTANCE_NAME`_SystemMsg(outBuffer,`$INSTANCE_NAME`_WARN);
+					`$INSTANCE_NAME`_Message("{c3}The Command {c11}",`$INSTANCE_NAME`_WARN);
+					`$INSTANCE_NAME`_PrintString(argv[0])
+					`$INSTANCE_NAME`_PrintString("{c3} has not yet been implemented{c7}.");
 				}
 			}
 			++idx;
 		}
 		
 		if (result == CYRET_UNKNOWN) {
-			sprintf(outBuffer,"Unknown Command \"%s\"",argv[0]);
-			`$INSTANCE_NAME`_SystemMsg(outBuffer, `$INSTANCE_NAME`_ERROR);
+			`$INSTANCE_NAME`_Message("{c1}Unknown Command \"{c9}", `$INSTANCE_NAME`_ERROR);
+			`$INSTANCE_NAME`_PrintString(argv[0]);
+			`$INSTANCE_NAME`_PrintString("{c1}\"{c7}");
 		}
 	}
 	return result;
@@ -360,7 +354,7 @@ void `$INSTANCE_NAME`_vCliTask( void *pvParameters )
 	int idx;
 	char *argv[25];
 	int argc;
-	
+	cystatus result;
 	
 	/*
 	 * Grab the adadress of the command table from the OS parameters
@@ -383,7 +377,7 @@ void `$INSTANCE_NAME`_vCliTask( void *pvParameters )
 	 * the second it attaches, we must wait for user input to validate the
 	 * connection, and make sure that the prompts are visible.
 	 */
-	`$COM_INSTANCE`_GetChar();
+	`$INSTANCE_NAME`_GetChar();
 	lineBuffer[0] = 0;
 	/*
 	 * The connection has been validated, this merge region allows the
@@ -402,10 +396,10 @@ void `$INSTANCE_NAME`_vCliTask( void *pvParameters )
 		`$INSTANCE_NAME`_CliShowPrompt(lineBuffer);
 		
 		/* Read the input line from the user with blocking functions */
-		`$COM_INSTANCE`_GenericGetString( lineBuffer, `$INSTANCE_NAME`_CLIquiet );
+		`$INSTANCE_NAME`_GetString( lineBuffer );
 		
 		/* Set the color to neutral to avoid screen junk when executing commands */
-		if (`$INSTANCE_NAME`_CLIquiet == 0) `$COM_INSTANCE`_PrintString("{c7;b0}");
+		`$INSTANCE_NAME`_PrintString("{c7;b0}");
 		
 		/*
 		 * Strip arguments from the line buffer, and handle compound
@@ -416,7 +410,15 @@ void `$INSTANCE_NAME`_vCliTask( void *pvParameters )
 		while ( lineBuffer[ idx ] != 0) {
 			idx += `$INSTANCE_NAME`_CliGetArguments(&lineBuffer[idx],&argc,argv);
 			if (argc > 0) {
-				`$INSTANCE_NAME`_CliProcessCommand(CommandTable,argc,argv);
+				result = `$INSTANCE_NAME`_CliProcessCommand(CommandTable,argc,argv);
+				if (result != CYRET_SUCCESS) {
+					`$INSTANCE_NAME`_PrintString("\r\n\n");
+					`$INSTANCE_NAME`_Message("{c1}Command Error{c7}: ",`$INSTANCE_NAME`_ERROR);
+					sprintf(lineBuffer,"{c14}0x%08lX",result);
+					`$INSTANCE_NAME`_PrintString(lineBuffer);
+					lineBuffer[idx] = 0;
+				}
+				`$INSTANCE_NAME`_PrintString("{c7;b0}\r\n\n");
 			}
 		}
 		

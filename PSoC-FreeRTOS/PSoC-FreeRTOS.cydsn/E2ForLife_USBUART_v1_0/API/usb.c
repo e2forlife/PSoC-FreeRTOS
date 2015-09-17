@@ -41,9 +41,8 @@
 
 /* ======================================================================== */
 
-xQueueHandle `$INSTANCE_NAME`_RxQ;
-xQueueHandle `$INSTANCE_NAME`_TxQ;
-xSemaphoreHandle `$INSTANCE_NAME`_Mutex;
+xQueueHandle `$ReceiveDataQueue`;
+xQueueHandle `$TransmitDataQueue`;
 
 uint8 `$INSTANCE_NAME`_initVar;
 
@@ -71,12 +70,9 @@ void `$INSTANCE_NAME`_Init( void )
 		#endif
 	}
 	
-	/* Initialize and create the semaphore */
-	`$INSTANCE_NAME`_Mutex = xSemaphoreCreateMutex();
-	
 	/* Initialize USB Buffers */
-	`$INSTANCE_NAME`_TxQ = xQueueCreate( `$TX_SIZE`, 1 );
-	`$INSTANCE_NAME`_RxQ = xQueueCreate( `$RX_SIZE`, 1 );
+	`$TransmitDataQueue` = xQueueCreate( `$TX_SIZE`, 1 );
+	`$ReceiveDataQueue` = xQueueCreate( `$RX_SIZE`, 1 );
 	
 	xTaskCreate( `$INSTANCE_NAME`_Task,"`$INSTANCE_NAME` Task", 400, NULL, `$USB_PRIORITY`, NULL);
 	
@@ -128,7 +124,7 @@ void `$INSTANCE_NAME`_Task( void *pvParameters )
 	            {
 					/* insert data in to Receive FIFO */
 					for(idx=0;idx<count;++idx) {
-						xQueueSend( `$INSTANCE_NAME`_RxQ, (void*)&buffer[idx],0);
+						xQueueSend( `$ReceiveDataQueue`, (void*)&buffer[idx],0);
 					}
 				}
 			}
@@ -137,7 +133,7 @@ void `$INSTANCE_NAME`_Task( void *pvParameters )
 			 * by checkig to see if there is data to send, then sending
 			 * up to the BUFFER_LEN of data (64 bytes)
 			 */
-			count = uxQueueMessagesWaiting( `$INSTANCE_NAME`_TxQ );
+			count = uxQueueMessagesWaiting( `$TransmitDataQueue` );
 			count = (count > `$INSTANCE_NAME`_BUFFER_LEN)? `$INSTANCE_NAME`_BUFFER_LEN:count;
 			
 			/* When component is ready to send more data to the PC */			
@@ -147,7 +143,7 @@ void `$INSTANCE_NAME`_Task( void *pvParameters )
 				 * locally so that the data can be utilized.
 				 */
 				for (idx = 0; idx < count; ++idx) {
-					xQueueReceive( `$INSTANCE_NAME`_TxQ,&buffer[idx],0);
+					xQueueReceive( `$TransmitDataQueue`,&buffer[idx],0);
 				}
 				/* Send data back to host */
     	        `$INSTANCE_NAME`_USBUART_PutData(buffer, count);
@@ -169,88 +165,5 @@ void `$INSTANCE_NAME`_Task( void *pvParameters )
 		vTaskDelay(`$USB_SCAN_RATE`/portTICK_PERIOD_MS);
 	}
 }
-
-/* ======================================================================== */
-cystatus `$INSTANCE_NAME`_Read(uint8* value, uint32 length)
-{
-	uint32 idx;
-	cystatus status;
-	
-	xSemaphoreTake(`$INSTANCE_NAME`_Mutex, portMAX_DELAY);
-	{
-		status = CYRET_SUCCESS;
-		idx = 0;
-		while ( (idx<length) && (status == CYRET_SUCCESS) ) {
-			if ( xQueueReceive( `$INSTANCE_NAME`_RxQ, (void*)&value[idx], portMAX_DELAY) != pdPASS) {
-				status = CYRET_MEMORY;
-			}
-			++idx;
-		}
-	}
-	xSemaphoreGive( `$INSTANCE_NAME`_Mutex );
-	return status;
-}
-/* ------------------------------------------------------------------------ */
-cystatus `$INSTANCE_NAME`_ReadByte( uint8* value )
-{
-	portBASE_TYPE xStatus;
-	
-	/* wait for data to become available */
-	xStatus = xQueueReceive( `$INSTANCE_NAME`_RxQ, (void*)value, portMAX_DELAY);
-	
-	return (xStatus == pdPASS)?CYRET_SUCCESS:CYRET_MEMORY;;
-}
-/* ------------------------------------------------------------------------ */
-uint32 `$INSTANCE_NAME`_DataWaiting( void )
-{
-	return (uint32) uxQueueMessagesWaiting( `$INSTANCE_NAME`_RxQ );
-}
-/* ------------------------------------------------------------------------ */
-void `$INSTANCE_NAME`_UnRead( uint8* value, uint32 len )
-{
-	uint32 idx;
-	portBASE_TYPE xStatus;
-	
-	xSemaphoreTake(`$INSTANCE_NAME`_Mutex, portMAX_DELAY);
-	{
-		xStatus = pdPASS;
-		idx = 0;
-		while ( (idx<len) && (xStatus == pdPASS) ) {
-			xStatus = xQueueSendToFront( `$INSTANCE_NAME`_RxQ, &value[idx], 0);
-		}
-	}
-	xSemaphoreGive( `$INSTANCE_NAME`_Mutex );
-}	
-/* ======================================================================== */
-/* ------------------------------------------------------------------------ */
-cystatus `$INSTANCE_NAME`_WriteByte( uint8 ch )
-{
-	
-	portBASE_TYPE xStatus;
-	
-	xStatus = xQueueSend( `$INSTANCE_NAME`_TxQ, (void*)&ch, portMAX_DELAY);
-	
-	return (xStatus == pdPASS)?CYRET_SUCCESS:CYRET_MEMORY;
-}
-/* ------------------------------------------------------------------------ */
-cystatus `$INSTANCE_NAME`_Write( uint8 *str, uint32 len )
-{
-	uint32 idx;
-	portBASE_TYPE xStatus;
-	
-	xSemaphoreTake(`$INSTANCE_NAME`_Mutex, portMAX_DELAY);
-	{
-		xStatus = pdPASS;
-		idx = 0;
-		for(idx=0; (idx<len) && (xStatus == pdPASS); ++idx ) {
-			/* insert character in to the send fifo */
-			xStatus = xQueueSend( `$INSTANCE_NAME`_TxQ, (void*)&str[idx], portMAX_DELAY);
-		}
-	}
-	xSemaphoreGive( `$INSTANCE_NAME`_Mutex );
-	
-	return (xStatus == pdPASS)?CYRET_SUCCESS:CYRET_MEMORY;
-}
-
 /* ======================================================================== */
 /* [] END OF FILE */
