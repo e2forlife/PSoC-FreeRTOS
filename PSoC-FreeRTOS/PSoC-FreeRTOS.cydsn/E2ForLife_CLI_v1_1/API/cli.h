@@ -123,6 +123,7 @@ cystatus `$INSTANCE_NAME`_GenericGetString(char *str);
 uint16 `$INSTANCE_NAME`_ScanKey( void );
 
 #define `$INSTANCE_NAME`_PrintString(str)      {`$INSTANCE_NAME`_GenericPrintString(str, `$OutputQueue`);}
+#define `$INSTANCE_NAME`_ErrorString(str)      {`$INSTANCE_NAME`_GenericPrintString(str, `$ErrorQueue`);}
 #define `$INSTANCE_NAME`_PutChar(ch)           `$INSTANCE_NAME`_GenericPutChar(ch, `$OutputQueue`)
 #define `$INSTANCE_NAME`_GetString(str)        `$INSTANCE_NAME`_GenericGetString(str)
 

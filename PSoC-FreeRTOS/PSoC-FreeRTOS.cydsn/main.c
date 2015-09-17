@@ -10,8 +10,11 @@
  * ========================================
 */
 #include <project.h>
+#include <stdio.h>
 
 void vMainTask( void *pvParameters);
+
+xQueueHandle OLED_Queue;
 
 int main()
 {
@@ -21,6 +24,24 @@ int main()
 	 * Initialize the Two Thread tasks for the USBUART and the CLI interface
 	 * that are both seperate component add-ons to the basic FreeRTOS.
 	 */
+	OLED_RST_Write( 0 );
+	
+	I2C_Start();
+	OLED_RST_Write( 1 );
+	CyDelay( 500 );
+
+	SSD1306_Start();
+	CyDelay( 500 );
+	SSD1306_PrintString("{row;col;mv;clr}Welcome to FreeRTOS ");
+	SSD1306_PrintString("{row3;col1;mv;big}v8.2.2");
+	SSD1306_Refresh();
+//	CyDelay(10);
+	SSD1306_Refresh();
+	CyDelay(1000);
+	
+	/* Create a Queue for the OLED output device */
+	OLED_Queue = xQueueCreate( 512, 1 );
+	
 	USBUART_Start();
 	CLI_Start();
 	
@@ -29,7 +50,6 @@ int main()
 	 */
 	xTaskCreate( vMainTask, "MAIN Task", 400, NULL, 3, NULL );
 
-	
 	/*
 	 * Initialize OS interrupt vectors and start the scheduler. This function
 	 * shoud never return because the scheduler is running, so something real
@@ -46,14 +66,29 @@ int main()
 /* ======================================================================== */
 void vMainTask( void *pvParameters)
 {
-	int blink;
-	char ch;
+	uint8 csi;
+	char c;
 	
-	blink = 70;	
+	SSD1306_PrintString("{row;col;clr;big}    PSoC\n \x0E Rocks \x0E");
+	csi = 0;
+	
 	for(;;) {
-		
-		vTaskDelay( 1000/portTICK_PERIOD_MS);
+		SSD1306_Refresh();
+		vTaskDelay(20/portTICK_RATE_MS);
+		while (uxQueueMessagesWaiting( OLED_Queue) > 0 ) {
+			xQueueReceive( OLED_Queue, (void*)&c, portMAX_DELAY);
+			if (csi) {
+				if (isalpha((int)c) ) {
+					csi = 0;
+				}
+			}
+			else if (c == '\x1b') {
+				csi = 1;
+			}
+			else {
+				SSD1306_PutChar( c );
+			}
+		}
 	}
 }
-
 /* [] END OF FILE */

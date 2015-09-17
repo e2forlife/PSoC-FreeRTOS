@@ -328,8 +328,8 @@ cystatus `$INSTANCE_NAME`_CliProcessCommand(const `$INSTANCE_NAME`_CLI_COMMAND *
 				else {
 					result = CYRET_INVALID_OBJECT;
 					`$INSTANCE_NAME`_Message("{c3}The Command {c11}",`$INSTANCE_NAME`_WARN);
-					`$INSTANCE_NAME`_PrintString(argv[0])
-					`$INSTANCE_NAME`_PrintString("{c3} has not yet been implemented{c7}.");
+					`$INSTANCE_NAME`_ErrorString(argv[0])
+					`$INSTANCE_NAME`_ErrorString("{c3} has not yet been implemented{c7}.");
 				}
 			}
 			++idx;
@@ -337,8 +337,8 @@ cystatus `$INSTANCE_NAME`_CliProcessCommand(const `$INSTANCE_NAME`_CLI_COMMAND *
 		
 		if (result == CYRET_UNKNOWN) {
 			`$INSTANCE_NAME`_Message("{c1}Unknown Command \"{c9}", `$INSTANCE_NAME`_ERROR);
-			`$INSTANCE_NAME`_PrintString(argv[0]);
-			`$INSTANCE_NAME`_PrintString("{c1}\"{c7}");
+			`$INSTANCE_NAME`_ErrorString(argv[0]);
+			`$INSTANCE_NAME`_ErrorString("{c1}\"{c7}");
 		}
 	}
 	return result;
@@ -412,10 +412,10 @@ void `$INSTANCE_NAME`_vCliTask( void *pvParameters )
 			if (argc > 0) {
 				result = `$INSTANCE_NAME`_CliProcessCommand(CommandTable,argc,argv);
 				if (result != CYRET_SUCCESS) {
-					`$INSTANCE_NAME`_PrintString("\r\n\n");
+					`$INSTANCE_NAME`_PrintString("\r\n");
 					`$INSTANCE_NAME`_Message("{c1}Command Error{c7}: ",`$INSTANCE_NAME`_ERROR);
 					sprintf(lineBuffer,"{c14}0x%08lX",result);
-					`$INSTANCE_NAME`_PrintString(lineBuffer);
+					`$INSTANCE_NAME`_ErrorString(lineBuffer);
 					lineBuffer[idx] = 0;
 				}
 				`$INSTANCE_NAME`_PrintString("{c7;b0}\r\n\n");
