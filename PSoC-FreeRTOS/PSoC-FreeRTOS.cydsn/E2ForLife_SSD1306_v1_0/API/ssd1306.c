@@ -29,18 +29,147 @@
 #include <cylib.h>
 #include <stdio.h>
 
+#include "cyfitter.h"
+#include "cypins.h"
 #include "`$INSTANCE_NAME`.h"
-#include "`$InterfaceName`.h"
 
 #if (`$Mode` == 1)
-	#if defined(CY_SCB_I2C_H)
-		#include "`$InterfaceName`_i2c.h"
-	#endif	
+
 #else
 	#error Only I2C is presently supported
 #endif
 
+/* ------------------------------------------------------------------------ */
+#if (`$VBLANK_MODE` == 3)
+	void `$INSTANCE_NAME`_HW_Delay(uint32 time)
+	{
+		for (int i=0;i<time;++i);
+	}
+#else
+	void `$INSTANCE_NAME`_HW_Delay(uint32 time)
+	{
+		CyDelayUs( time );
+	}
+#endif
 
+void `$INSTANCE_NAME`_HW_Start( void )
+{
+	CyPins_SetPin(`$INSTANCE_NAME`_SDO__0__PC);
+	`$INSTANCE_NAME`_HW_Delay(2);
+	CyPins_SetPin(`$INSTANCE_NAME`_SCL__0__PC);
+	`$INSTANCE_NAME`_HW_Delay(2);
+	CyPins_ClearPin(`$INSTANCE_NAME`_SDO__0__PC);
+	`$INSTANCE_NAME`_HW_Delay(2);
+	CyPins_ClearPin(`$INSTANCE_NAME`_SCL__0__PC);
+	`$INSTANCE_NAME`_HW_Delay(2);
+}
+
+void `$INSTANCE_NAME`_HW_Stop( void )
+{
+	CyPins_ClearPin(`$INSTANCE_NAME`_SCL__0__PC);
+	`$INSTANCE_NAME`_HW_Delay(2);
+	CyPins_ClearPin(`$INSTANCE_NAME`_SDO__0__PC);
+	`$INSTANCE_NAME`_HW_Delay(2);
+	CyPins_SetPin(`$INSTANCE_NAME`_SCL__0__PC);
+	`$INSTANCE_NAME`_HW_Delay(2);
+	CyPins_SetPin(`$INSTANCE_NAME`_SDO__0__PC);
+	`$INSTANCE_NAME`_HW_Delay(2);
+}
+
+uint8 `$INSTANCE_NAME`_HW_Write( uint8 value )
+{
+	uint8 index;
+
+	for(index = 0; index < 8; index++)
+	{
+		if (value&0x80) {
+			CyPins_SetPin(`$INSTANCE_NAME`_SDO__0__PC);
+		}
+		else {
+			CyPins_ClearPin(`$INSTANCE_NAME`_SDO__0__PC);
+		}
+		value <<= 1;            		// Shift the byte by one bit
+		`$INSTANCE_NAME`_HW_Delay(2);
+		CyPins_SetPin(`$INSTANCE_NAME`_SCL__0__PC);
+		`$INSTANCE_NAME`_HW_Delay(2);
+		CyPins_ClearPin(`$INSTANCE_NAME`_SCL__0__PC);
+		`$INSTANCE_NAME`_HW_Delay(2);
+	}
+
+	CyPins_SetPin(`$INSTANCE_NAME`_SDO__0__PC);
+	`$INSTANCE_NAME`_HW_Delay(2);
+	CyPins_SetPin(`$INSTANCE_NAME`_SCL__0__PC);
+	`$INSTANCE_NAME`_HW_Delay(2);
+	index = CyPins_ReadPin(`$INSTANCE_NAME`_SDO__0__PC);
+	`$INSTANCE_NAME`_HW_Delay(2);
+	CyPins_ClearPin(`$INSTANCE_NAME`_SCL__0__PC);
+	`$INSTANCE_NAME`_HW_Delay(2);
+	
+	return(index!=0)?1:0;
+}
+/* ------------------------------------------------------------------------ */
+
+#if (`$VBLANK_MODE` == 2)
+	/*
+	 * We are going to use FreeRTOS to execute automatic VBlanks to refresh
+	 * the display.
+	 */
+	#include "FreeRTOS.h"
+	#include "FreeRTOS_task.h"
+	#include "FreeRTOS_semphr.h"
+
+	xTaskHandle `$INSTANCE_NAME`_task;
+	xSemaphoreHandle `$INSTANCE_NAME`_mutex;
+	
+	void `$INSTANCE_NAME`_vblankTask( void *pvParameters )
+	{
+		for(;;) {
+			/*
+			 * Wait for a VBLANK to occur.
+			 */
+			vTaskDelay(`$VBLANK_RATE`/portTICK_RATE_MS);
+			xSemaphoreTake( `$INSTANCE_NAME`_mutex, portMAX_DELAY );
+			{
+				/* render the display by sending the data to the controller */
+				SSD1306_Refresh();
+			}
+			xSemaphoreGive( `$INSTANCE_NAME`_mutex );
+			/*
+			 * Call user VBLANK Callback
+			 */
+			/* `#START VBLANK_TASK` */
+			
+			/* `#END` */
+		}
+		
+	}
+	
+#elif (`$VBLANK_MODE` == 3)
+	/*
+	 * Using local interrupt driven vblanks, executed on a timer base
+	 */
+	#include "`$INSTANCE_NAME`_VBLANK_TIMER.h"
+	#include "`$INSTANCE_NAME`_eventVBlank.h"
+	
+	CY_ISR( `$INSTANCE_NAME`_eventVBLANK )
+	{
+		uint8 status;
+		
+		status = CyEnterCriticalSection();
+		`$INSTANCE_NAME`_Refresh();
+		CyExitCriticalSection(status);
+		
+		/*
+		 * Call user VBLANK Callback
+		 */
+		/* `#START VBLANK_TASK` */
+		
+		/* `#END` */
+		status = `$INSTANCE_NAME`_VBLANK_TIMER_STATUS;
+		/* this line does nothing but eliminate a bogus warning */
+		status = status;
+	}
+#endif
 
 /* ------------------------------------------------------------------------ */
 /* Global Component Data */
@@ -105,6 +234,42 @@ void `$INSTANCE_NAME`_Enable( void )
 	 * Just turn on the display
 	 */
 	`$INSTANCE_NAME`_SendCommand( 0xAF );
+	/* and then send the default raster to the display */
+	`$INSTANCE_NAME`_Refresh();
+	
+	/*
+	 * Setup the vblank calls, if any, based upon the configuration selections
+	 * made in the dialog window.
+	 */
+	#if (`$VBLANK_MODE` == 2)
+		/* 
+		 * FreeRTOS mode:
+		 * OS mode uses tasks to render the character raster, also, if there is
+		 * data sitting in the queue, it will be read and proecssed to render
+		 * the font bitmaps to the screen.
+		 */
+		xTaskCreate(`$INSTANCE_NAME`_vblankTask,"VBLANK",800,NULL,`$VBLANK_PRIORITY`, &`$INSTANCE_NAME`_task);
+		`$INSTANCE_NAME`_mutex = xSemaphoreCreateMutex();
+		
+	#elif (`$VBLANK_MODE` == 3)
+		/* 
+		 * IRQ Mode:
+		 * When using the IRQ mode, all that needs to be done is to start the
+		 * timer, then enable the IRQ event handler to redraw the screen.
+		 */
+		`$INSTANCE_NAME`_VBLANK_TIMER_Start();
+		/* 
+		 * After the timer is started, set the vblank period, since this can't
+		 * be done through the configuration dialog.
+		 */
+		`$INSTANCE_NAME`_VBLANK_TIMER_WritePeriod( `$VBLANK_RATE` );
+		`$INSTANCE_NAME`_eventVBlank_StartEx( `$INSTANCE_NAME`_eventVBLANK );
+		
+	#endif
+	/* 
+	 * Manual mode (and undefined modes) we do nothing since the main software
+	 * is taking the responsibility of refreshing the display
+	 */
 }
 /* ------------------------------------------------------------------------ */
 void `$INSTANCE_NAME`_Start( void )
@@ -116,68 +281,38 @@ void `$INSTANCE_NAME`_Start( void )
 }
 /* ------------------------------------------------------------------------ */
 void `$INSTANCE_NAME`_SendCommand( uint8 command )
-#if( `$Mode` == 1)
 {
-	uint8 cmd[2];
-	
-	/*
-	 * Create a buffer with a control byte, and the command byte and send
-	 * both to the I2C port using the SCB call to write a buffer using the
-	 * complete transfer mode.  Then, wait for the command to complete, so
-	 * before returning.
-	 */
-	cmd[0] = 0x00;
-	cmd[1] = command;
-#if defined(CY_SCB_I2C_H)
-	I2C_I2CMasterWriteBuf(`$INSTANCE_NAME`_I2C_ADDRESS,&cmd[0],2,`$InterfaceName`_I2C_MODE_COMPLETE_XFER);
-
-
-	while (0u == (`$InterfaceName`_I2CMasterStatus() & `$InterfaceName`_I2C_MSTAT_WR_CMPLT))
-    {
-		/* TODO: Merge Region for Idle processing when sending commands */
-    }
-	`$InterfaceNmae`_I2CMasterClearStatus();
-#else	
-	`$InterfaceName`_MasterWriteBuf(`$INSTANCE_NAME`_I2C_ADDRESS,&cmd[0],2,`$InterfaceName`_MODE_COMPLETE_XFER);
-	while(`$InterfaceName`_MasterStatus() & `$InterfaceName`_MSTAT_XFER_INP);
-	
-	`$InterfaceName`_MasterClearStatus();
-#endif
-
+	`$INSTANCE_NAME`_HW_Start();
+	`$INSTANCE_NAME`_HW_Write(`$INSTANCE_NAME`_I2C_ADDRESS<<1);
+	`$INSTANCE_NAME`_HW_Write( 0 );
+	`$INSTANCE_NAME`_HW_Write( command );
+	`$INSTANCE_NAME`_HW_Stop();
 }
-#else
-	#error That mode is not currently supported yet.
-#endif
 /* ------------------------------------------------------------------------ */
 void `$INSTANCE_NAME`_Refresh( void )
-#if (`$Mode` == 1)
 {
+	int idx;
 	/*
 	 * redraw the screen using the I2C interface to send the buffer to the
 	 * display VRAM.
 	 */
-	`$INSTANCE_NAME`_Raster[0] = 0x40;
-#if defined(CY_SCB_I2C_H)
-	`$InterfaceName`_I2CMasterWriteBuf(`$INSTANCE_NAME`_I2C_ADDRESS,&`$INSTANCE_NAME`_Raster[0],`$INSTANCE_NAME`_RASTER_SIZE+1,`$InterfaceName`_I2C_MODE_COMPLETE_XFER);
+//	`$INSTANCE_NAME`_SendCommand(0x21);
+//	`$INSTANCE_NAME`_SendCommand(0);
+//	`$INSTANCE_NAME`_SendCommand(127);
+//	`$INSTANCE_NAME`_SendCommand(0x22);
+//	`$INSTANCE_NAME`_SendCommand(0);
+//	`$INSTANCE_NAME`_SendCommand( 3 );
 
-	while (0u == (`$InterfaceName`_I2CMasterStatus() & `$InterfaceName`_I2C_MSTAT_WR_CMPLT))
-    {
-		/* TODO: Merge Region for Idle processing when sending commands */
-    }
-	`$InterfaceName`_I2CMasterClearStatus();	
-#else
-	int idx;
+	`$INSTANCE_NAME`_Raster[0] = 0x40;
 	
-	while (`$InterfaceName`_MasterSendStart(`$INSTANCE_NAME`_I2C_ADDRESS, 0) != `$InterfaceName`_MSTR_NO_ERROR);
+	`$INSTANCE_NAME`_HW_Start();
+	`$INSTANCE_NAME`_HW_Write(`$INSTANCE_NAME`_I2C_ADDRESS<<1);
 	for(idx = 0;idx<`$INSTANCE_NAME`_RASTER_SIZE+1;++idx) {
-		`$InterfaceName`_MasterWriteByte( `$INSTANCE_NAME`_Raster[idx] );
+		`$INSTANCE_NAME`_HW_Write( `$INSTANCE_NAME`_Raster[idx] );
 	}
-	`$InterfaceName`_MasterSendStop();
-#endif
+	`$INSTANCE_NAME`_HW_Stop();
+	
 }
-#else
-	#error That mode is presently unsupported.
-#endif
 
 /* ------------------------------------------------------------------------ */
 void `$INSTANCE_NAME`_ScrollUp(int lines)
@@ -198,11 +333,15 @@ void `$INSTANCE_NAME`_PutChar( char c )
 	int xpos;
 	int ypos;
 	
+	#if (`$VBLANK_MODE` == 2)
+	xSemaphoreTake( `$INSTANCE_NAME`_mutex, portMAX_DELAY);
+	{
+	#endif
 	/*
 	 * Render a character on the display, then update the cursor location
 	 * to the next available space.
 	 */
-	if (`$INSTANCE_NAME`_CursorY > (`$INSTANCE_NAME`_DISPLAY_HEIGHT/8)) {
+	if (`$INSTANCE_NAME`_CursorY >= (`$INSTANCE_NAME`_DISPLAY_HEIGHT/8)) {
 		/*
 		 * The new character is giong to display below the bottom of the
 		 * display, so, scroll the display up one line, and clear the bottom
@@ -273,6 +412,10 @@ void `$INSTANCE_NAME`_PutChar( char c )
 			`$INSTANCE_NAME`_CursorY++;
 		}
 	}
+	#if (`$VBLANK_MODE` == 2)
+	}
+	xSemaphoreGive( `$INSTANCE_NAME`_mutex );
+	#endif
 }
 /* ------------------------------------------------------------------------ */
 void `$INSTANCE_NAME`_SizedPutChar(char c, uint8 xsize, uint8 ysize)

@@ -14,7 +14,7 @@
 
 void vMainTask( void *pvParameters);
 
-xQueueHandle OLED_Queue;
+extern xQueueHandle OLED_Queue;
 
 int main()
 {
@@ -26,23 +26,15 @@ int main()
 	 */
 	OLED_RST_Write( 0 );
 	
-	I2C_Start();
 	OLED_RST_Write( 1 );
 	CyDelay( 500 );
 
 	SSD1306_Start();
-	CyDelay( 500 );
 	SSD1306_PrintString("{row;col;mv;clr}Welcome to FreeRTOS ");
 	SSD1306_PrintString("{row3;col1;mv;big}v8.2.2");
 	SSD1306_Refresh();
-//	CyDelay(10);
-	SSD1306_Refresh();
-	CyDelay(1000);
-	
-	/* Create a Queue for the OLED output device */
-	OLED_Queue = xQueueCreate( 512, 1 );
-	
 	USBUART_Start();
+	
 	CLI_Start();
 	
 	/*
@@ -66,29 +58,12 @@ int main()
 /* ======================================================================== */
 void vMainTask( void *pvParameters)
 {
-	uint8 csi;
 	char c;
 	
-	SSD1306_PrintString("{row;col;clr;big}    PSoC\n \x0E Rocks \x0E");
-	csi = 0;
-	
+	c = 0;
 	for(;;) {
-		SSD1306_Refresh();
-		vTaskDelay(20/portTICK_RATE_MS);
-		while (uxQueueMessagesWaiting( OLED_Queue) > 0 ) {
-			xQueueReceive( OLED_Queue, (void*)&c, portMAX_DELAY);
-			if (csi) {
-				if (isalpha((int)c) ) {
-					csi = 0;
-				}
-			}
-			else if (c == '\x1b') {
-				csi = 1;
-			}
-			else {
-				SSD1306_PutChar( c );
-			}
-		}
+		SSD1306_PutChar( c++ );
+		vTaskDelay( 1000/portTICK_RATE_MS);
 	}
 }
 /* [] END OF FILE */
