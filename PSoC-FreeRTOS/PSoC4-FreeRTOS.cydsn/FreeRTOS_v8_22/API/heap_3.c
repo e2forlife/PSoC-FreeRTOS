@@ -66,132 +66,70 @@
 
     1 tab == 4 spaces!
 */
+#if (`$MemManager` == 3)
 
-/* ************************************************************************ */
-/* PSoC Extensions for FreeRTOS                                             */
-/* Author: Chuck Erhardt (chuck@e2forlife.com)                              */
-/* these extensions are to wrap the FreeRTOS M3 implementation with the     */
-/* standard PSoC Creator API, auto-assign the ISRs required, and start      */
-/* the scheduler without having to write that code every time. Also the     */
-/* creator component allows for OS configuration from the block diagram     */
-/* editor like other PSoC Creator components                                */
-/* ************************************************************************ */
+/*
+ * Implementation of pvPortMalloc() and vPortFree() that relies on the
+ * compilers own malloc() and free() implementations.
+ *
+ * This file can only be used if the linker is configured to to generate
+ * a heap memory area.
+ *
+ * See heap_1.c, heap_2.c and heap_4.c for alternative implementations, and the
+ * memory management pages of http://www.FreeRTOS.org for more information.
+ */
 
+#include <stdlib.h>
 
-/* Include FreeRTOS APIs and defines */
-#include <FreeRTOS.h>
-#include <FreeRTOS_task.h>
-#include <FreeRTOS_queue.h>
-#include <FreeRTOS_event_groups.h>
+/* Defining MPU_WRAPPERS_INCLUDED_FROM_API_FILE prevents task.h from redefining
+all the API functions to use the MPU wrappers.  That should only be done when
+task.h is included from an application file. */
+#define MPU_WRAPPERS_INCLUDED_FROM_API_FILE
 
-/* Declaration of NVIC base vector for FreeRTOS exception handling */
-#define CORTEX_INTERRUPT_BASE          (16)
+#include "`$INSTANCE_NAME`.h"
+#include "`$INSTANCE_NAME`_task.h"
 
-/* Declarations of the exception handlers for FreeRTOS */
-extern void xPortPendSVHandler(void);
-extern void xPortSysTickHandler(void);
-extern void vPortSVCHandler(void);
+#undef MPU_WRAPPERS_INCLUDED_FROM_API_FILE
 
-#include <cytypes.h>
-#include <cylib.h>
+/*-----------------------------------------------------------*/
 
-#if (CY_PSOC5)
-	#include "core_cm3_psoc5.h"
-#elif (CY_PSOC4)
-	#include "core_cm0_psoc4.h"
-#endif
-
-uint8 `$INSTANCE_NAME`_initVar = 0;
-
-/* ------------------------------------------------------------------------ */
-void `$INSTANCE_NAME`_Init( void )
+void *pvPortMalloc( size_t xWantedSize )
 {
-    /* Handler for Cortex Supervisor Call (SVC, formerly SWI) - address 11 */
-    CyIntSetSysVector( CORTEX_INTERRUPT_BASE + SVCall_IRQn,
-        (cyisraddress)vPortSVCHandler );
-    
-    /* Handler for Cortex PendSV Call - address 14 */
-	CyIntSetSysVector( CORTEX_INTERRUPT_BASE + PendSV_IRQn,
-        (cyisraddress)xPortPendSVHandler );    
-    
-    /* Handler for Cortex SYSTICK - address 15 */
-	CyIntSetSysVector( CORTEX_INTERRUPT_BASE + SysTick_IRQn,
-        (cyisraddress)xPortSysTickHandler );
-	
-	`$INSTANCE_NAME`_initVar = 1;
-}
-/* ------------------------------------------------------------------------ */
-void `$INSTANCE_NAME`_Enable( void )
-{
-	/* start the scheduler so the tasks will start executing */
-	vTaskStartScheduler();	
-}
-/* ------------------------------------------------------------------------ */
-void `$INSTANCE_NAME`_Start( void )
-{
-	if (`$INSTANCE_NAME`_initVar == 0) {
-		`$INSTANCE_NAME`_Init();
+void *pvReturn;
+
+	vTaskSuspendAll();
+	{
+		pvReturn = malloc( xWantedSize );
+		traceMALLOC( pvReturn, xWantedSize );
 	}
-	`$INSTANCE_NAME`_Enable();
-	
-	/*
-	 * After the scheduler starts in Enable(), the code should never get to
-	 * this location.
-	 */
-	for (;;);
+	( void ) xTaskResumeAll();
+
+	#if( configUSE_MALLOC_FAILED_HOOK == 1 )
+	{
+		if( pvReturn == NULL )
+		{
+			extern void vApplicationMallocFailedHook( void );
+			vApplicationMallocFailedHook();
+		}
+	}
+	#endif
+
+	return pvReturn;
 }
+/*-----------------------------------------------------------*/
 
-/* ========================================================================= */
-
-/*
- * Function:	vApplicationStackOverflowHook
- *
- * Called if a task exceeds its alloted stack.
- *
- * Requires configCHECK_FOR_STACK_OVERFLOW to be set in FreeRTOSConfig.h.
- *
- * Globals:		None
- *
- * Parameters:	Task handle and name
- *
- * Return:		Never returns - this is a fatal error condition
- */
-void vApplicationStackOverflowHook( xTaskHandle pxTask, signed char *pcTaskName )
+void vPortFree( void *pv )
 {
-	/* The stack space has been execeeded for a task */
-	taskDISABLE_INTERRUPTS();
-	while( 1 )
-    {
-        /* Do nothing - this is a placeholder for a breakpoint */
-    }
-}
-
-
-#if (`$USE_MALLOC_FAILED_HOOK` == 1)
-/*
- * Function:	vApplicationMallocFailedHook
- *
- * Called if a malloc from the FreeRTOS heap fails. This may require more
- * heap (configTOTAL_HEAP_SIZE in FreeRTOSVConfig.h) or a different heap
- * algorithm (heap_?.c in Source\portable\MemMang).
- *
- * Requires configUSE_MALLOC_FAILED_HOOK to be set in FreeRTOSConfig.h.
- *
- * Globals:		None
- *
- * Parameters:	Task handle and name
- *
- * Return:		Never returns - this is a fatal error condition
- */
-void vApplicationMallocFailedHook( void )
-{
-	/* The heap space has been execeeded. */
-	taskDISABLE_INTERRUPTS();
-	while( 1 )
-    {
-        /* Do nothing - this is a placeholder for a breakpoint */
-    }
+	if( pv )
+	{
+		vTaskSuspendAll();
+		{
+			free( pv );
+			traceFREE( pv, 0 );
+		}
+		( void ) xTaskResumeAll();
+	}
 }
 #endif
 
-/* [] END OF FILE */
+

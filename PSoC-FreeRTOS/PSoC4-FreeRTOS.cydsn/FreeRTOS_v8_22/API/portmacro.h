@@ -67,131 +67,18 @@
     1 tab == 4 spaces!
 */
 
-/* ************************************************************************ */
-/* PSoC Extensions for FreeRTOS                                             */
-/* Author: Chuck Erhardt (chuck@e2forlife.com)                              */
-/* these extensions are to wrap the FreeRTOS M3 implementation with the     */
-/* standard PSoC Creator API, auto-assign the ISRs required, and start      */
-/* the scheduler without having to write that code every time. Also the     */
-/* creator component allows for OS configuration from the block diagram     */
-/* editor like other PSoC Creator components                                */
-/* ************************************************************************ */
-
-
-/* Include FreeRTOS APIs and defines */
-#include <FreeRTOS.h>
-#include <FreeRTOS_task.h>
-#include <FreeRTOS_queue.h>
-#include <FreeRTOS_event_groups.h>
-
-/* Declaration of NVIC base vector for FreeRTOS exception handling */
-#define CORTEX_INTERRUPT_BASE          (16)
-
-/* Declarations of the exception handlers for FreeRTOS */
-extern void xPortPendSVHandler(void);
-extern void xPortSysTickHandler(void);
-extern void vPortSVCHandler(void);
-
+/*
+ * This is a header to select the device type, and include the correct portmacro
+ * header file when using the PSoC.
+ */
 #include <cytypes.h>
-#include <cylib.h>
 
-#if (CY_PSOC5)
-	#include "core_cm3_psoc5.h"
-#elif (CY_PSOC4)
-	#include "core_cm0_psoc4.h"
-#endif
-
-uint8 `$INSTANCE_NAME`_initVar = 0;
-
-/* ------------------------------------------------------------------------ */
-void `$INSTANCE_NAME`_Init( void )
-{
-    /* Handler for Cortex Supervisor Call (SVC, formerly SWI) - address 11 */
-    CyIntSetSysVector( CORTEX_INTERRUPT_BASE + SVCall_IRQn,
-        (cyisraddress)vPortSVCHandler );
-    
-    /* Handler for Cortex PendSV Call - address 14 */
-	CyIntSetSysVector( CORTEX_INTERRUPT_BASE + PendSV_IRQn,
-        (cyisraddress)xPortPendSVHandler );    
-    
-    /* Handler for Cortex SYSTICK - address 15 */
-	CyIntSetSysVector( CORTEX_INTERRUPT_BASE + SysTick_IRQn,
-        (cyisraddress)xPortSysTickHandler );
-	
-	`$INSTANCE_NAME`_initVar = 1;
-}
-/* ------------------------------------------------------------------------ */
-void `$INSTANCE_NAME`_Enable( void )
-{
-	/* start the scheduler so the tasks will start executing */
-	vTaskStartScheduler();	
-}
-/* ------------------------------------------------------------------------ */
-void `$INSTANCE_NAME`_Start( void )
-{
-	if (`$INSTANCE_NAME`_initVar == 0) {
-		`$INSTANCE_NAME`_Init();
-	}
-	`$INSTANCE_NAME`_Enable();
-	
-	/*
-	 * After the scheduler starts in Enable(), the code should never get to
-	 * this location.
-	 */
-	for (;;);
-}
-
-/* ========================================================================= */
-
-/*
- * Function:	vApplicationStackOverflowHook
- *
- * Called if a task exceeds its alloted stack.
- *
- * Requires configCHECK_FOR_STACK_OVERFLOW to be set in FreeRTOSConfig.h.
- *
- * Globals:		None
- *
- * Parameters:	Task handle and name
- *
- * Return:		Never returns - this is a fatal error condition
- */
-void vApplicationStackOverflowHook( xTaskHandle pxTask, signed char *pcTaskName )
-{
-	/* The stack space has been execeeded for a task */
-	taskDISABLE_INTERRUPTS();
-	while( 1 )
-    {
-        /* Do nothing - this is a placeholder for a breakpoint */
-    }
-}
-
-
-#if (`$USE_MALLOC_FAILED_HOOK` == 1)
-/*
- * Function:	vApplicationMallocFailedHook
- *
- * Called if a malloc from the FreeRTOS heap fails. This may require more
- * heap (configTOTAL_HEAP_SIZE in FreeRTOSVConfig.h) or a different heap
- * algorithm (heap_?.c in Source\portable\MemMang).
- *
- * Requires configUSE_MALLOC_FAILED_HOOK to be set in FreeRTOSConfig.h.
- *
- * Globals:		None
- *
- * Parameters:	Task handle and name
- *
- * Return:		Never returns - this is a fatal error condition
- */
-void vApplicationMallocFailedHook( void )
-{
-	/* The heap space has been execeeded. */
-	taskDISABLE_INTERRUPTS();
-	while( 1 )
-    {
-        /* Do nothing - this is a placeholder for a breakpoint */
-    }
-}
+#if (CY_PSOC4)
+	#include "`$INSTANCE_NAME`_portmacro_CM0.h"
+#elif (CY_PSOC5)
+	#include "`$INSTANCE_NAME`_portmacro_CM3.h"
+#else
+	#error this device is not currently supported. please check future versions.
 #endif
 
 /* [] END OF FILE */
