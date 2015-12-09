@@ -338,219 +338,191 @@ cystatus `$INSTANCE_NAME`_PutChar( char c )
 	return CYRET_SUCCESS;
 }
 /* ------------------------------------------------------------------------ */
-int `$INSTANCE_NAME`_ProcessString( const char *buffer, char *argv )
+void `$INSTANCE_NAME`_PrintString( char *str )
 {
-	int idx;
-	int ptr;
-	cystatus result;
+	int idx = 0;
+	int cmdix = 0;
+	uint8 mode;
+	uint8 expandX,expandY;
+	char cmd[21];
+	int value;
 	
-	result = CYRET_STARTED;
-	idx = 0;
-	ptr = 0;
-	while ( (buffer[idx] != 0) && (result == CYRET_STARTED) ) {
-		/*
-		 * drop leading whitespace, and set all spaces to NULL to
-		 * prevent later confusion.
-		 */
-		while ( (buffer[idx] != 0) && isspace((int)buffer[idx]) ) {
-			++idx;
-		}
-		/*
-		 * now, we know that the index is pointing to a non-space character,
-		 * so process the character based upon it's state.
-		 */
-		if (buffer[idx] == ';') {
-			/* 
-			 * The end of a command can be the end of the buffer, or, a
-			 * semicolon can be used for the creation of compound
-			 * statements.
-			 * A compound statement seperator was detected, so, clear it to
-			 * form a terminator for the last argument, and then, set the
-			 * result to finished to let the processor know that the arguments
-			 * of the current command are now fully split.
-			 */
-			argv[ptr] = 0;
-			idx++;
-			result = CYRET_FINISHED;
-		}
-		else if (buffer[idx] == '}') {
-			/* End of sequence was detected, just return */
-			idx++;
-			result = CYRET_FINISHED;
-		}
-		/*
-		 * Otherwise, store the character location, and move the index pointer
-		 * to the next break in the input, or the end of the buffer
-		 */
-		else {
-			argv[ptr++] = buffer[idx++];
-			while ( (!isspace((int)buffer[idx])) && (buffer[idx] != 0) && (buffer[idx] != ';') && (buffer[idx] != '}') ) {
-				argv[ptr++] = buffer[idx++];
-			}
-			argv[ptr] = 0;
-		}
-	}
-	
-	return idx;
-}
-/* ------------------------------------------------------------------------ */
-int `$INSTANCE_NAME`_ProcessEscapeSequence( const char *str)
-{
-	int idx;
-	char argv[25];
-	int done;
-	uint32 row, col;
-	uint32 value;	
-	
-	/* trap an error that shouldn't happen, but might make print code easier */
-	if ( str[0] != '{') return 0;
-	
-	row = 1;
-	col = 1;
-	done = 0;
-	idx = 1;
-	
-	while (done == 0) {
-		idx += `$INSTANCE_NAME`_ProcessString( &str[idx], argv );
-		if (str[idx-1] == '}') {
-			done = 1;
-		}		
-		else if (strncmp(argv, "right",5) == 0) {
-			if (argv[5] != 0) {
-				sscanf(&argv[5],"%lu",&value);
-			}
-			else {
-				value = 1;
-			}
-			`$INSTANCE_NAME`_CursorX += value;
-			if (`$INSTANCE_NAME`_CursorX >= (`$INSTANCE_NAME`_LCDWIDTH/6)) {
-				`$INSTANCE_NAME`_CursorX = (`$INSTANCE_NAME`_LCDWIDTH/6) - 1;
-			}
-		}
-		else if (strncmp(argv, "up",5) == 0) {
-			if (argv[5] != 0) {
-				sscanf(&argv[5],"%lu",&value);
-			}
-			else {
-				value = 1;
-			}
-			if (`$INSTANCE_NAME`_CursorY >= value) {
-				`$INSTANCE_NAME`_CursorY -= value;
-			}
-			else {
-				`$INSTANCE_NAME`_CursorY = 0;
-			}
-		}
-		else if (strncmp(argv, "down",5) == 0) {
-			if (argv[5] != 0) {
-				sscanf(&argv[5],"%lu",&value);
-			}
-			else {
-				value = 1;
-			}
-			
-			`$INSTANCE_NAME`_CursorY += value;
-			if (`$INSTANCE_NAME`_CursorY >= (`$INSTANCE_NAME`_LCDHEIGHT/8)) {
-				`$INSTANCE_NAME`_CursorX = (`$INSTANCE_NAME`_LCDHEIGHT/8)-1;
-			}
-		}
-		else if (strncmp(argv, "left",5) == 0) {
-			if (argv[5] != 0) {
-				sscanf(&argv[5],"%lu",&value);
-			}
-			else {
-				value = 1;
-			}
-			if (`$INSTANCE_NAME`_CursorX >= value) {
-				`$INSTANCE_NAME`_CursorX -= value;
-			}
-			else {
-				`$INSTANCE_NAME`_CursorX = 0;
-			}
-		}
-		else if (strcmp(argv,"cls") == 0) {
-			/* clear screen */
-			`$INSTANCE_NAME`_ClearDisplay();
-		}
-		else if (strncmp(argv,"cl",2) == 0) {
-			/* Clear line */
-			if (argv[2] != 0) {
-				sscanf(&argv[2],"%lu",&value);
-			}
-			else {
-				value = 0;
-			}
-			`$INSTANCE_NAME`_ClearLine(value);
-		}
-		else if (strncmp(argv,"row",3) == 0) {
-			if (argv[3] != 0) {
-				sscanf(&argv[3],"%lu",&row);
-			}
-			else {
-				row = 1;
-			}
-		}
-		else if (strncmp(argv,"col",3) == 0) {
-			if (argv[3] != 0) {
-				sscanf(&argv[3],"%lu",&col);
-			}
-			else {
-				col = 1;
-			}
-		}
-		else if (strcmp(argv,"mv") == 0) {
-			`$INSTANCE_NAME`_CursorY = row - 1;
-			`$INSTANCE_NAME`_CursorX = col - 1;
-		}
-		else if (strcmp(argv, "hide") == 0) {
-		}
-		else if (strcmp(argv, "show") == 0) {
-		}
-		else if (argv[0] == 'c') {
-		}
-		else if (argv[0] == 'b') {
-		}
-		else if (argv[0] == '{') {
-			`$INSTANCE_NAME`_PutChar('{');
-		}
-	}
-	
-	return idx;
-}
-/* ------------------------------------------------------------------------ */
-cystatus `$INSTANCE_NAME`_PrintString( const char *str )
-{
-	int idx;
-	cystatus result;
+	/* default the mode to "Normal output" */
+	mode = 0;
+	expandX = 0; /* default to normal sized fonts */
+	expandY = 0;
 	
 	/*
-	 * Inline escape sequences are contained within braces. To output an
-	 * open brace, use a double brace {{}.
-	 * {c#}        : Set Foreground Color
-	 * {b#}        : Set background Color
-	 * {left#}     : Cursor Left
-	 * {right#}    : Cursor Right
-	 * {cls}       : Clear Screen
-	 * {cl#}       : Clear Line
-	 * {row#}      : Set Row
-	 * {col#}      : Set Column
-	 * {mv}        : move cursor to row column
-	 * {hide}      : hide cursor
-	 * {show}      : show cursor
+	 * Loop through the string and process commands or, output the character
+	 * until the end of string is detected.
 	 */
-	result = CYRET_SUCCESS;
-	idx = 0;
-	while ( (str[idx] != 0) && (result == CYRET_SUCCESS) ) {
-		if ( str[idx] == '{') {
-			idx += `$INSTANCE_NAME`_ProcessEscapeSequence( &str[idx] );
+	while (str[idx] != 0) {
+		/*
+		 * When an escape sequence is detected, process the command, or, 
+		 * buffer the data.
+		 */
+		if (mode != 0) {
+			if ((str[idx] == ';')||(str[idx]=='}')) {
+				/*
+				 * the end of the command was detected, so process the
+				 * command sequence.
+				 */
+				if (strncmp(cmd,"up",2) == 0) {
+					if (isdigit((int)cmd[3]) ) {
+						sscanf(&cmd[3],"%d",&value);
+					}
+					else {
+						value = 1;
+					}
+					for (cmdix=0;cmdix<value;++cmdix) {
+						if (`$INSTANCE_NAME`_CursorY > 0) {
+							`$INSTANCE_NAME`_CursorY--;
+						}
+					}
+				}
+				else if (strncmp(cmd,"down",4) == 0) {
+					if (isdigit((int)cmd[3]) ) {
+						sscanf(&cmd[3],"%d",&value);
+					}
+					else {
+						value = 1;
+					}
+					for (cmdix=0;cmdix<value;++cmdix) {
+						if (`$INSTANCE_NAME`_CursorY < (`$INSTANCE_NAME`_DISPLAY_HEIGHT/8)) {
+							`$INSTANCE_NAME`_CursorY++;
+						}
+					}
+				}
+				else if (strncmp(cmd,"right",5) == 0) {
+					if (isdigit((int)cmd[3]) ) {
+						sscanf(&cmd[3],"%d",&value);
+					}
+					else {
+						value = 1;
+					}
+					for (cmdix=0;cmdix<value;++cmdix) {
+						if (`$INSTANCE_NAME`_CursorX < (`$INSTANCE_NAME`_DISPLAY_WIDTH/6)) {
+							`$INSTANCE_NAME`_CursorX++;
+						}
+					}
+				}
+				else if (strncmp(cmd,"left",4) == 0) {
+					if (isdigit((int)cmd[3]) ) {
+						sscanf(&cmd[3],"%d",&value);
+					}
+					else {
+						value = 1;
+					}
+					for (cmdix=0;cmdix<value;++cmdix) {
+						if (`$INSTANCE_NAME`_CursorX > 0) {
+							`$INSTANCE_NAME`_CursorX--;
+						}
+					}
+				}
+				else if (strncmp(cmd,"clr",3) == 0) {
+					if (cmd[3] == '1') {
+						/* up to the current row */
+						value = (`$INSTANCE_NAME`_CursorY*128);
+						memset((void*)&`$INSTANCE_NAME`_Raster[1],0,value);
+					}
+					else if (cmd[3] == '2') {
+						/* from current row down */
+						value = (`$INSTANCE_NAME`_CursorY*128);
+						memset((void*)&`$INSTANCE_NAME`_Raster[value+1],0,`$INSTANCE_NAME`_RASTER_SIZE-value);
+					}
+					else if (cmd[3] == '3') {
+						/* clear current row */
+						value = `$INSTANCE_NAME`_CursorY;
+					}
+					else if (cmd[3] == '4') {
+						/* clear from current pos to end */
+						value = ((`$INSTANCE_NAME`_CursorX*6) + (`$INSTANCE_NAME`_CursorY*128)) + 1;
+						memset((void*)&`$INSTANCE_NAME`_Raster[value+1],0,128-(`$INSTANCE_NAME`_CursorX*6));
+					}
+					else if (cmd[3] == '5') {
+						/* clear from current position to beginning */
+						value = (`$INSTANCE_NAME`_CursorY*128);
+						memset((void*)&`$INSTANCE_NAME`_Raster[value+1],0,`$INSTANCE_NAME`_CursorX*6);
+					}
+					else {
+						/* clear whole display */
+						memset((void*)&`$INSTANCE_NAME`_Raster[1],0,`$INSTANCE_NAME`_RASTER_SIZE);
+					}
+
+				}
+				else if (strncmp(cmd,"row",3) == 0) {
+					if (isdigit((int)cmd[3]) ) {
+						sscanf(&cmd[3],"%d",&value);
+						if (value > (`$INSTANCE_NAME`_DISPLAY_HEIGHT/8)) {
+							value = `$INSTANCE_NAME`_DISPLAY_HEIGHT/8 - 1;
+						}
+						else if (value < 1) {
+							value = 1;
+						}
+					}
+					else {
+						value = 1;
+					}
+					`$INSTANCE_NAME`_CursorY = value - 1;
+				}
+				else if (strncmp(cmd,"col",3) == 0) {
+					if (isdigit((int)cmd[3]) ) {
+						sscanf(&cmd[3],"%d",&value);
+						if (value > (`$INSTANCE_NAME`_DISPLAY_WIDTH/6)) {
+							value = `$INSTANCE_NAME`_DISPLAY_WIDTH/6 - 1;
+						}
+						else if (value < 1) {
+							value = 1;
+						}
+					}
+					else {
+						value = 1;
+					}
+					`$INSTANCE_NAME`_CursorX = value - 1;
+				}
+				else if (strncmp(cmd,"big",5) == 0) {
+					expandX = 1;
+					expandY = 1;
+				}
+				else if (strncmp(cmd,"wide",4) == 0) {
+					expandX = 1;
+					expandY = 0;
+				}
+				else if (strncmp(cmd,"tall",4) == 0) {
+					expandX = 0;
+					expandY = 1;
+				}
+				else if (strncmp(cmd,"normal",6) == 0) {
+					expandX = 0;
+					expandY = 0;
+				}
+				cmdix = 0;
+				memset((void*)&cmd[0],0,21);
+				if (str[idx] == '}') {
+					mode = 0;
+				}
+			}
+			else {
+				if (cmdix < 20) {
+					cmd[cmdix++] = tolower((int)str[idx]);
+					cmd[cmdix] = 0;
+				}
+			}
+		}
+		else if (str[idx] == '{') {
+			cmdix = 0;
+			mode = 1;
 		}
 		else {
-			/* insert character in to the send fifo */
-			result = `$INSTANCE_NAME`_PutChar(str[idx++]);
+			if (( expandX != 0)||(expandY != 0) ) {
+				`$INSTANCE_NAME`_SizedPutChar( str[idx],expandX,expandY );
+			}
+			else {
+				`$INSTANCE_NAME`_PutChar( str[idx] );
+			}
 		}
+		++idx;
 	}
-	
-	return result;
 }
 /* ------------------------------------------------------------------------ */
 /* [] END OF FILE */

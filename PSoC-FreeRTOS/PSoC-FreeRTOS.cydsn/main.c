@@ -16,25 +16,32 @@ void vMainTask( void *pvParameters);
 
 extern xQueueHandle OLED_Queue;
 
+xQueueHandle qIn;
+xQueueHandle qOut;
+
 int main()
 {
     CyGlobalIntEnable; /* Enable global interrupts. */
+
+	
+	qIn = xQueueCreate( 512, sizeof(char) );
+	qOut = xQueueCreate( 512 sizeof(char) );
+	
+//	OLED_RST_Write( 0 );
+//	
+//	OLED_RST_Write( 1 );
+//	CyDelay( 500 );
+//	
+//	SSD1306_Start();
+//	SSD1306_PrintString("{row;col;mv;clr}Welcome to FreeRTOS ");
+//	SSD1306_PrintString("{row3;col1;mv;big}v8.2.2");
+//	SSD1306_Refresh();
 	
 	/*
 	 * Initialize the Two Thread tasks for the USBUART and the CLI interface
 	 * that are both seperate component add-ons to the basic FreeRTOS.
 	 */
-	OLED_RST_Write( 0 );
-	
-	OLED_RST_Write( 1 );
-	CyDelay( 500 );
-
-	SSD1306_Start();
-	SSD1306_PrintString("{row;col;mv;clr}Welcome to FreeRTOS ");
-	SSD1306_PrintString("{row3;col1;mv;big}v8.2.2");
-	SSD1306_Refresh();
 	USBUART_Start();
-	
 	CLI_Start();
 	
 	/*
@@ -62,7 +69,7 @@ void vMainTask( void *pvParameters)
 	
 	c = 0;
 	for(;;) {
-		SSD1306_PutChar( c++ );
+//		SSD1306_PutChar( c++ );
 		vTaskDelay( 1000/portTICK_RATE_MS);
 	}
 }
