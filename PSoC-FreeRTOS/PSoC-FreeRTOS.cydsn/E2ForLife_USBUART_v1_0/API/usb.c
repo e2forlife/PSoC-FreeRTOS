@@ -41,9 +41,6 @@
 
 /* ======================================================================== */
 
-xQueueHandle `$ReceiveDataQueue`;
-xQueueHandle `$TransmitDataQueue`;
-
 uint8 `$INSTANCE_NAME`_initVar;
 
 /* ======================================================================== */
@@ -69,11 +66,7 @@ void `$INSTANCE_NAME`_Init( void )
 			`$INSTANCE_NAME`_USBUART_Start(0u, `$INSTANCE_NAME`_USBUART_5V_OPERATION);
 		#endif
 	}
-	
-	/* Initialize USB Buffers */
-	`$TransmitDataQueue` = xQueueCreate( `$TX_SIZE`, 1 );
-	`$ReceiveDataQueue` = xQueueCreate( `$RX_SIZE`, 1 );
-	
+		
 	xTaskCreate( `$INSTANCE_NAME`_Task,"`$INSTANCE_NAME` Task", 400, NULL, `$USB_PRIORITY`, NULL);
 	
 	`$INSTANCE_NAME`_initVar = 1;
@@ -94,6 +87,8 @@ void `$INSTANCE_NAME`_Enable( void )
 /* ======================================================================== */
 void `$INSTANCE_NAME`_Task( void *pvParameters )
 {
+	extern xQueueHandle `$ReceiveDataQueue`;
+	extern xQueueHandle `$TransmitDataQueue`;
     uint16 count;
     uint8 buffer[`$INSTANCE_NAME`_BUFFER_LEN];
 	uint16 idx;
