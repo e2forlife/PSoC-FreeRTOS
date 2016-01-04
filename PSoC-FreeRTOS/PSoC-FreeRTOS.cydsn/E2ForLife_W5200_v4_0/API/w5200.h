@@ -50,6 +50,14 @@
 #define `$INSTANCE_NAME`_CMD_SEND_KEEP       ( 0x22 )
 #define `$INSTANCE_NAME`_CMD_RECV            ( 0x40 )
 	
+#define `$INSTANCE_NAME`_STS_CLOSED          ( 0x00 )
+#define `$INSTANCE_NAME`_STS_INIT            ( 0x13 )
+#define `$INSTANCE_NAME`_STS_LISTEN          ( 0x14 )
+#define `$INSTANCE_NAME`_STS_ESTABLISHED     ( 0x17 )
+#define `$INSTANCE_NAME`_STS_CLOSE_WAIT      ( 0x1C )
+#define `$INSTANCE_NAME`_STS_UDP             ( 0x22 )
+#define `$INSTANCE_NAME`_STS_IPRAW           ( 0x32 )
+#define `$INSTANCE_NAME`_STS_MACRAW          ( 0x42 )
 /* ======================================================================== */
 /* Hardware access */
 cystatus `$INSTANCE_NAME`_HW_ChipAccess( uint16 adr, uint8 *buffer, uint16 len, uint8 write);
@@ -63,6 +71,12 @@ cystatus `$INSTANCE_NAME`_utlPHYPowerMode( uint8 pwrdwn );
 /* ======================================================================== */
 uint8 `$INSTANCE_NAME`_SocketOpen(uint16 port, uint8 socketParam);
 cystatus `$INSTANCE_NAME`_SocketClose(uint8 skt );
+uint8 `$INSTANCE_NAME`_SocketStatus( uint8 skt );
+cystatus `$INSTANCE_NAME`_SocketCommand(uint8 skt, uint8 cmd);
+uint16 `$INSTANCE_NAME`_SocketDataWaiting(uint8 skt);
+uint16 `$INSTANCE_NAME`_SocketTxFree(uint8 skt);
+
+uint8 `$INSTANCE_NAME`_TcpOpenServer(uint16 port);
 
 /* ======================================================================== */
 /* Initialization and common code */

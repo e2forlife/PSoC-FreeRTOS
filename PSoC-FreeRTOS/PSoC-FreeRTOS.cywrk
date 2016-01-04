@@ -9,10 +9,11 @@
 <projects>
 <v>.\PSoC-FreeRTOS.cydsn\PSoC-FreeRTOS.cyprj</v>
 <v>.\PSoC4-FreeRTOS.cydsn\PSoC4-FreeRTOS.cyprj</v>
+<v>.\E2ForLife+FreeRTOS.cylib\E2ForLife+FreeRTOS.cyprj</v>
 </projects>
 <workspace_id v="84947cc7-3c6e-4d50-9fc2-84f1d87db3d8" />
 <WriteAppVersionLastSavedWith v="3.3.0.410" />
-<WriteAppMarketingVersionLastSavedWith v="3.3" />
+<WriteAppMarketingVersionLastSavedWith v="3.3 CP1" />
 <CyGuid_dcbd9771-0334-43dc-9cc3-fe99dc3c5316 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjDependencyList" version="4">
 <wrkspc_dependencies />
 </CyGuid_dcbd9771-0334-43dc-9cc3-fe99dc3c5316>
