@@ -58,6 +58,13 @@
 #define `$INSTANCE_NAME`_STS_UDP             ( 0x22 )
 #define `$INSTANCE_NAME`_STS_IPRAW           ( 0x32 )
 #define `$INSTANCE_NAME`_STS_MACRAW          ( 0x42 )
+	
+#define `$INSTANCE_NAME`_IR_CONNECT          ( 0x01 )
+#define `$INSTANCE_NAME`_IR_DISCON           ( 0x02 )
+#define `$INSTANCE_NAME`_IR_RECV             ( 0x04 )
+#define `$INSTANCE_NAME`_IR_TIMEOUT          ( 0x08 )
+#define `$INSTANCE_NAME`_IR_SENDOK           ( 0x10 )
+
 /* ======================================================================== */
 /* Hardware access */
 cystatus `$INSTANCE_NAME`_HW_ChipAccess( uint16 adr, uint8 *buffer, uint16 len, uint8 write);
@@ -75,6 +82,8 @@ uint8 `$INSTANCE_NAME`_SocketStatus( uint8 skt );
 cystatus `$INSTANCE_NAME`_SocketCommand(uint8 skt, uint8 cmd);
 uint16 `$INSTANCE_NAME`_SocketDataWaiting(uint8 skt);
 uint16 `$INSTANCE_NAME`_SocketTxFree(uint8 skt);
+
+cystatus `$INSTANCE_NAME`_SocketSend(uint8 skt, uint8 *packet, uint16 len);
 
 uint8 `$INSTANCE_NAME`_TcpOpenServer(uint16 port);
 

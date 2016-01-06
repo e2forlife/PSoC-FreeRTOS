@@ -37,15 +37,24 @@
 #include "`$FreeRTOS`.h"
 #include "`$FreeRTOS`_semphr.h"
 #include "`$FreeRTOS`_queue.h"
+#include "`$FreeRTOS`_task.h"
 
 /* ======================================================================== */
 #if (`$NUM_SOCKETS` == 1)
 	const uint8 `$INSTANCE_NAME`_memSize = 16;
 #elif (`$NUM_SOCKETS` == 2)
 	const uint8 `$INSTANCE_NAME`_memSize = 8;
-#elif ( (`$NUM_SOCKETS` == 3) || (`$NUM_SOCKETS` == 4) )
-	const uint8 `$INSTANCE_NAME`_memSize = 4
-#elif ( (`$NUM_SOCKETS` > 4) && (`$NUM_SOCKETS` < 9) )
+#elif (`$NUM_SOCKETS` == 3)
+	const uint8 `$INSTANCE_NAME`_memSize = 4;
+#elif (`$NUM_SOCKETS` == 4)
+	const uint8 `$INSTANCE_NAME`_memSize = 4;
+#elif (`$NUM_SOCKETS` == 5)
+	const uint8 `$INSTANCE_NAME`_memSize = 2;
+#elif (`$NUM_SOCKETS` == 6)
+	const uint8 `$INSTANCE_NAME`_memSize = 2;
+#elif (`$NUM_SOCKETS` == 7)
+	const uint8 `$INSTANCE_NAME`_memSize = 2;
+#elif (`$NUM_SOCKETS` == 8)
 	const uint8 `$INSTANCE_NAME`_memSize = 2;
 #else
 	#error Unsupported number of sockets selected.
@@ -55,13 +64,14 @@
 xSemaphoreHandle `$INSTANCE_NAME`_ControllerMutex;
 
 uint8 `$INSTANCE_NAME`_Sockets[8];
+uint8 `$INSTANCE_NAME`_SubnetMask[4];
 
 #define `$INSTANCE_NAME`_DISABLE()      ( `$CSN`_Write(`$CSN`_Read() |   (1<<`$SS_NUM`)) )
 #define `$INSTANCE_NAME`_ENABLE()       ( `$CSN`_Write(`$CSN`_Read() & (~(1<<`$SS_NUM`))) )
 
-#define `$INSTANCE_NAME`_TX_BASE(s)     (0x8000 + ((s*4*`$INSTANCE_NAME`_memSize)*256) )
-#define `$INSTANCE_NAME`_RX_BASE(s)     (0xC000 + ((s*4*`$INSTANCE_NAME`_memSize)*256) )
-#define `$INSTANCE_NAME`_SKT_BASE(s)    (0x4000 + (s*256) )
+#define `$INSTANCE_NAME`_TX_BASE(s)     ( (s<`$NUM_SOCKETS`)?(0x8000 + ((s*4*`$INSTANCE_NAME`_memSize)*256)):(0x8000) )
+#define `$INSTANCE_NAME`_RX_BASE(s)     ( (s<`$NUM_SOCKETS`)?(0xC000 + ((s*4*`$INSTANCE_NAME`_memSize)*256)):(0xC000) )
+#define `$INSTANCE_NAME`_SKT_BASE(s)    (0x4000 | (uint16)(s<<8) )
 
 /* ------------------------------------------------------------------------ */
 /* HEX digit conversion tools for MAC Address parsing */
@@ -130,19 +140,17 @@ cystatus `$INSTANCE_NAME`_HW_DisableDevice( void )
 /* ------------------------------------------------------------------------ */
 cystatus `$INSTANCE_NAME`_HW_ChipAccess( uint16 adr, uint8 *buffer, uint16 len, uint8 write)
 {
-	uint32 rx_count;
-	uint32 tx_count;
-	uint8 ch;
+	uint32 count;
 	uint8 status;
 	
-	/* set the default byte counters to no data sent or received */
-	rx_count = 0;
-	tx_count = 0;
 	/* fault checking. Quit if bad data, parametes, or voids are passed */
+	if (len == 0) return CYRET_BAD_PARAM;
 	if (len > 0x7FFF) return CYRET_BAD_PARAM;
 	if (buffer == NULL) return CYRET_BAD_PARAM;
 	if (`$INSTANCE_NAME`_HW_EnableDevice() != CYRET_SUCCESS) return CYRET_TIMEOUT;
 
+	`$SPI`_ClearFIFO();
+	
 	/*  Send the address to the W5200 */
 	`$SPI`_WriteTxData( HI8(adr) );
 	`$SPI`_WriteTxData( LO8(adr) );
@@ -154,47 +162,41 @@ cystatus `$INSTANCE_NAME`_HW_ChipAccess( uint16 adr, uint8 *buffer, uint16 len, 
 		`$SPI`_WriteTxData( HI8(len) & 0x7F);
 	}
 	`$SPI`_WriteTxData( LO8(len) );
+	
 	/*
 	 * Now the header has been transmitted to the device, perform the data block
 	 * writes.
 	 */
-	/*
-	 * The first step to writing/reading the data block is to wait for room
-	 * to be available within the SPI FIFO buffer.
-	 */
-	while (tx_count < len) {
-		/* check for waiting data in the receive fifo */
-		status = `$SPI`_ReadRxStatus();
-		if ( status & 0x30 ) { /* NOT EMPTY + FULL */
-			ch = `$SPI`_ReadRxData();
-			++rx_count;
-			if ((write==0)&&(rx_count>5)) {
-				buffer[rx_count-5] = ch;
-			}
-		}
-		/* push the next byte of data from the queue in to the transmit FIFO */
-		status = `$SPI`_ReadTxStatus();
-		if ( status&0x17 ) { /* IDLE + NOT FULL + EMPTY + DONE */
-			ch = (write == 0)?0xFF:buffer[tx_count];
-			`$SPI`_WriteTxData(ch);
-			++tx_count;
+	/* Clear the header from the data buffer */
+	count = 0;
+	do {
+		status = `$SPI`_GetRxBufferSize();
+		if (status > 0) {
+			`$SPI`_ReadRxData();
+			++count;
 		}
 	}
-	/*
-	 * The last byte of data has been sent to the device, so now wait for the
-	 * end of the received data that is probably still being clocked in to the
-	 * SPI received.
-	 */
-	while (rx_count < (len+4) ) {
-		status = `$SPI`_ReadRxStatus();
-		if (status & 0x30) {
-			ch = `$SPI`_ReadRxData();
-			++rx_count;
-			if (write==0) {
-				buffer[rx_count-5] = ch;
-			}
+	while (count < 4);
+
+	for (count = 0; count < len;++count) {
+		/* wait for room in the tx buffer */
+		do {
+			status = `$SPI`_GetTxBufferSize();
 		}
-	}		
+		while (status >= 4);
+		
+		`$SPI`_WriteTxData( (write!=0) ?buffer[count] : 0xFF );
+
+		/* wait for response data */
+		do {
+			status = `$SPI`_GetRxBufferSize();
+		}
+		while (status == 0);
+		status = `$SPI`_ReadRxData();
+		if( write==0) {
+			buffer[count] = status;
+		}
+	}
 	/*
 	 * Received all of the bytes we should have, so clear the FIFOs
 	 */
@@ -331,73 +333,67 @@ cystatus `$INSTANCE_NAME`_utlPHYPowerMode( uint8 pwrdwn )
 /* ======================================================================== */
 cystatus `$INSTANCE_NAME`_InitializeSocket(uint8 sock)
 {
-	uint8 cfg[14];
-	uint8 verify[14];
+	uint8 cfg[2];
+	uint8 verify[2];
 	uint16 adr;
+	uint16 sockBase;
+	uint8 ir;
 	
-	adr = 0x401E + (sock*256);
+	adr = 0x401E | (uint16)(sock<<8);
 	if (sock < `$NUM_SOCKETS`) {
 		/* Compute the memory length from table lookup */
 		cfg[0] = `$INSTANCE_NAME`_memSize;
 		cfg[1] = `$INSTANCE_NAME`_memSize;
-		/* Set the Tx Pointers */
-		cfg[2] = 0; /* Tx Free*/
-		cfg[3] = 0;
-		cfg[4] = 0x80 + ((4*`$INSTANCE_NAME`_memSize)*sock);
-		cfg[5] = 0x00;
-		cfg[6] = cfg[4];
-		cfg[7] = 0;
-		/* Set the Rx Pointers */
-		cfg[8] = 0; /* received data size */
-		cfg[9] = 0;
-		cfg[10] = cfg[4] + 0x40;
-		cfg[11] = 0;
-		cfg[12] = cfg[6] + 0x40;
-		cfg[13] = 0;
 		`$INSTANCE_NAME`_Sockets[sock] = 0;
 	}
 	else {
 		/* Socket is invalid, so set the mem ptrs to remove it from the map */
 		cfg[0] = 0;
 		cfg[1] = 0;
-		/* Set the Tx Pointers */
-		cfg[2] = 0; /* Tx Free*/
-		cfg[3] = 0;
-		cfg[4] = 0x80;
-		cfg[5] = 0x00;
-		cfg[6] = 0x80;
-		cfg[7] = 0;
-		/* Set the Rx Pointers */
-		cfg[8] = 0; /* received data size */
-		cfg[9] = 0;
-		cfg[10] = 0xC0;
-		cfg[11] = 0;
-		cfg[12] = 0xC0;
-		cfg[13] = 0;
 		`$INSTANCE_NAME`_Sockets[sock] = 0xFF;
 	}
+		
 	`$INSTANCE_NAME`_HW_ChipAccess(adr,&cfg[0], 2, 1);
-	`$INSTANCE_NAME`_HW_ChipAccess(adr+4,&cfg[4],4,1);
-	`$INSTANCE_NAME`_HW_ChipAccess(adr+10,&cfg[10],4,1);
+	`$INSTANCE_NAME`_HW_ChipAccess(adr,&verify[0],2,0);
+
+	/* Initialize memory pointers */
+	sockBase = `$INSTANCE_NAME`_TX_BASE(sock);
+	sockBase = CYSWAP_ENDIAN16(sockBase);
+	`$INSTANCE_NAME`_HW_ChipAccess(adr+4,(uint8*)&sockBase,2,1);
+	`$INSTANCE_NAME`_HW_ChipAccess(adr+6,(uint8*)&sockBase,2,1);
+	sockBase = `$INSTANCE_NAME`_RX_BASE(sock);
+	sockBase = CYSWAP_ENDIAN16(sockBase);
+	`$INSTANCE_NAME`_HW_ChipAccess(adr+10,(uint8*)&sockBase,2,1);
+	`$INSTANCE_NAME`_HW_ChipAccess(adr+12,(uint8*)&sockBase,2,1);
+	/* Clear all pending interrupts */
+	ir = 0xFF;
+	`$INSTANCE_NAME`_HW_ChipAccess(`$INSTANCE_NAME`_SKT_BASE(sock)+2,&ir,1,1);
+	/* 
+	 * Setup the interrupt mask for the socket. this is used to determine that 
+	 * send data has completed, and verifying that a connection is still valid.
+	 */
+	ir = `$INSTANCE_NAME`_IR_SENDOK | `$INSTANCE_NAME`_IR_TIMEOUT | `$INSTANCE_NAME`_IR_DISCON;
+	`$INSTANCE_NAME`_HW_ChipAccess(`$INSTANCE_NAME`_SKT_BASE(sock)+0x002C,&ir,1,1);
 	
-	`$INSTANCE_NAME`_HW_ChipAccess(adr,&verify[0],14,0);
-	
-	return (strncmp(cfg,verify,14)==0)?CYRET_SUCCESS : CYRET_BAD_DATA;
+	return ((cfg[0]==verify[0])&&(cfg[1]==verify[1]))?CYRET_SUCCESS : CYRET_BAD_DATA;
 }
 /* ------------------------------------------------------------------------ */
 cystatus `$INSTANCE_NAME`_Initialize( void )
 {
 	uint8 cfg[18];
 	uint8 rsp[18];
-	uint16 adr;
-	uint16 rxAdr;
-	uint16 txAdr;
 	int idx;
 	
 	if (`$INSTANCE_NAME`_utlIPAddress("`$GATEWAY`",(uint32*)&cfg[0]) != CYRET_SUCCESS) return CYRET_BAD_DATA;
-	if (`$INSTANCE_NAME`_utlIPAddress("`$SUBNET`",(uint32*)&cfg[4]) != CYRET_SUCCESS) return CYRET_BAD_DATA;
+	if (`$INSTANCE_NAME`_utlIPAddress("`$SUBNET`",(uint32*)&`$INSTANCE_NAME`_SubnetMask) != CYRET_SUCCESS) return CYRET_BAD_DATA;
 	if (`$INSTANCE_NAME`_utlMACAddress("`$MAC`",&cfg[8]) != CYRET_SUCCESS) return CYRET_BAD_DATA;
 	if (`$INSTANCE_NAME`_utlIPAddress("`$IP`",(uint32*)&cfg[14])  != CYRET_SUCCESS) return CYRET_BAD_DATA;
+	
+	/* assign default subnet mask as EVERYTHING! (errata) */
+	cfg[4] = 0;
+	cfg[5] = 0;
+	cfg[6] = 0;
+	cfg[7] = 0;
 	
 	/* Write the common configuration registers */
 	`$INSTANCE_NAME`_HW_ChipAccess(1,&cfg[0],18,1);
@@ -580,7 +576,7 @@ uint8 `$INSTANCE_NAME`_TcpOpenServer(uint16 port)
 /* ------------------------------------------------------------------------ */
 uint16 `$INSTANCE_NAME`_SocketDataWaiting(uint8 skt)
 {
-	uint8 adr;
+	uint16 adr;
 	uint16 result[2];
 	
 	adr = `$INSTANCE_NAME`_SKT_BASE(skt) + 0x0026;
@@ -596,7 +592,7 @@ uint16 `$INSTANCE_NAME`_SocketDataWaiting(uint8 skt)
 /* ------------------------------------------------------------------------ */
 uint16 `$INSTANCE_NAME`_SocketTxFree(uint8 skt)
 {
-	uint8 adr;
+	uint16 adr;
 	uint16 result[2];
 	
 	adr = `$INSTANCE_NAME`_SKT_BASE(skt) + 0x0020;
@@ -610,19 +606,68 @@ uint16 `$INSTANCE_NAME`_SocketTxFree(uint8 skt)
 	return CYSWAP_ENDIAN16(result[1]);
 }
 /* ------------------------------------------------------------------------ */
-cystatus `$INSTANCE_NAME`_SocketSend(uint8 skt, uint8 *packet, uint16 len)
+uint16 `$INSTANCE_NAME`_SocketGetTxWritePtr(uint8 skt)
+{
+	uint16 adr;
+	uint16 result[2];
+	
+	adr = `$INSTANCE_NAME`_SKT_BASE(skt) + 0x0024;
+	
+	do {
+		`$INSTANCE_NAME`_HW_ChipAccess(adr,(uint8*)&result[0],2,0);
+		`$INSTANCE_NAME`_HW_ChipAccess(adr,(uint8*)&result[1],2,0);
+	}
+	while (result[0] != result[1]);
+	
+	return CYSWAP_ENDIAN16(result[1]);
+}
+/* ------------------------------------------------------------------------ */
+uint16 `$INSTANCE_NAME`_SocketGetTxReadPtr(uint8 skt)
+{
+	uint16 adr;
+	uint16 result[2];
+	
+	adr = `$INSTANCE_NAME`_SKT_BASE(skt) + 0x0022;
+	
+	do {
+		`$INSTANCE_NAME`_HW_ChipAccess(adr,(uint8*)&result[0],2,0);
+		`$INSTANCE_NAME`_HW_ChipAccess(adr,(uint8*)&result[1],2,0);
+	}
+	while (result[0] != result[1]);
+	
+	return CYSWAP_ENDIAN16(result[1]);
+}
+/* ------------------------------------------------------------------------ */
+uint16 `$INSTANCE_NAME`_SocketGetRxReadPtr(uint8 skt)
+{
+	uint16 adr;
+	uint16 result[2];
+	
+	adr = `$INSTANCE_NAME`_SKT_BASE(skt) + 0x0028;
+	
+	do {
+		`$INSTANCE_NAME`_HW_ChipAccess(adr,(uint8*)&result[0],2,0);
+		`$INSTANCE_NAME`_HW_ChipAccess(adr,(uint8*)&result[1],2,0);
+	}
+	while (result[0] != result[1]);
+	
+	return CYSWAP_ENDIAN16(result[1]);
+}
+/* ------------------------------------------------------------------------ */
+cystatus `$INSTANCE_NAME`_SocketTxProcessing(uint8 skt, uint8 *packet, uint16 len)
 {
 	uint16 base, max;
 	uint16 ptr;
 	uint16 adr;
 	uint16 free;
-	uint16 rd;
+	uint8 status;
 	
+	if (skt >= `$NUM_SOCKETS`) return CYRET_BAD_PARAM;
 	/* 
 	 * compute the max buffer length, and verify that the packet length does not
 	 * exceed the limits.
 	 */
-	max = (`$INSTANCE_NAME`_memSize*1024);
+	max = (uint16)(`$INSTANCE_NAME`_memSize*1024);
 	if (len >= max) return CYRET_BAD_PARAM;
 	/*
 	 * compute the base pointer for the buffer memory, and the max offset address
@@ -630,36 +675,39 @@ cystatus `$INSTANCE_NAME`_SocketSend(uint8 skt, uint8 *packet, uint16 len)
 	 * the buffer can be managed corectly.
 	 */
 	base = `$INSTANCE_NAME`_TX_BASE(skt);
-	max = base + max;
 	/*
 	 * read the free space available within the buffer to determine if there is
 	 * enough room available to write the complete packet. when there is not
 	 * enough free space, delay until more room becomes available.
 	 */
 	free = `$INSTANCE_NAME`_SocketTxFree(skt);
-	while (free < len) {
+	`$INSTANCE_NAME`_HW_ChipAccess(`$INSTANCE_NAME`_SKT_BASE(skt)+3,&status,1,0);
+	while ( (free < len) && (status == `$INSTANCE_NAME`_STS_ESTABLISHED) ) {
 		vTaskDelay(1/portTICK_RATE_MS);
 		free = `$INSTANCE_NAME`_SocketTxFree(skt);
+		`$INSTANCE_NAME`_HW_ChipAccess(`$INSTANCE_NAME`_SKT_BASE(skt)+3,&status,1,0);	
 	}
+	
 	/*
 	 * read the buffer offset pointer value from the W5200 to determine where
 	 * to begin writing data to the device.  Since this is read as BIG endian,
 	 * swap the bytes to make the value usable.  Also calculate the write
 	 * address in to the W5200 memory buffers.
 	 */
-	`$INSTANCE_NAME`_HW_ChipAccess(`$INSTANCE_NAME`_SKT_BASE(skt)+0x24,(uint8*)&ptr,2,0);
-	`$INSTANCE_NAME`_HW_ChipAccess(`$INSTANCE_NAME`_SKT_BASE(skt)+0x22,(uint8*)&rd,2,0);
-	ptr = CYSWAP_ENDIAN16(ptr);
-	rd = CYSWAP_ENDIAN16(rd);
-	adr = ptr + base;
+	ptr = `$INSTANCE_NAME`_SocketGetTxWritePtr(skt);
+	adr = base + (ptr & (max-1));
 	/* calculate the number bytes exceeding the memory range */
-	free = ((adr+len)>max)?(adr+len)-max:0;
+	free = max - (ptr&(max-1));
 	/*
-	 * write the block of data in to the output buffer.
+	 * after calculating the amount of data to be written, write the block of
+	 * data in to the transmit buffer.
 	 */
-	`$INSTANCE_NAME`_HW_ChipAccess(adr,&packet[0],len-free,1);
-	if (free > 0) {
-		`$INSTANCE_NAME`_HW_ChipAccess(base,&packet[len-free],free,1);
+	if (len > free) {
+		`$INSTANCE_NAME`_HW_ChipAccess(adr,packet,free,1);
+		`$INSTANCE_NAME`_HW_ChipAccess(base,&packet[free],len-free,1);
+	}
+	else {
+		`$INSTANCE_NAME`_HW_ChipAccess(adr,packet,len,1);
 	}
 	/*
 	 * update TX pointer in memory and issue a SEND command to transmit the
@@ -668,13 +716,155 @@ cystatus `$INSTANCE_NAME`_SocketSend(uint8 skt, uint8 *packet, uint16 len)
 	ptr = ptr+len;
 	ptr = CYSWAP_ENDIAN16(ptr);
 	`$INSTANCE_NAME`_HW_ChipAccess(`$INSTANCE_NAME`_SKT_BASE(skt)+0x24,(uint8*)&ptr,2,1);
-	`$INSTANCE_NAME`_SocketCommand(skt, `$INSTANCE_NAME`_CMD_SEND);
+
+	return CYRET_SUCCESS;
+}
+/* ------------------------------------------------------------------------ */
+cystatus `$INSTANCE_NAME`_SocketSend(uint8 skt, uint8 *packet, uint16 len)
+{
+	uint8 sts[2];
+	uint8 errata[4];
+	cystatus result = 0;
+	
+	if (skt > 7) return CYRET_BAD_PARAM;
+
+	/*
+	 * Allocate Semaphore to prevent other threads from accessing the chip (and
+	 * otherwise changing registers) during the data transmission to the device
+	 * buffer.
+	 */
+	if (xSemaphoreTake(`$INSTANCE_NAME`_ControllerMutex,portMAX_DELAY) == pdPASS) {
+	
+		errata[0] = 0;
+		errata[1] = 0;
+		errata[2] = 0;
+		errata[3] = 0;
+		result = `$INSTANCE_NAME`_SocketTxProcessing(skt,packet,len);
+		/* Clear pending flags in the IR */
+		sts[0] = `$INSTANCE_NAME`_IR_SENDOK | `$INSTANCE_NAME`_IR_TIMEOUT;
+		result = `$INSTANCE_NAME`_HW_ChipAccess(`$INSTANCE_NAME`_SKT_BASE(skt)+2,&sts[0],1,1);
+		/* set subnet mask (errata) */
+		`$INSTANCE_NAME`_HW_ChipAccess(5,`$INSTANCE_NAME`_SubnetMask,4,1);
+		
+		`$INSTANCE_NAME`_SocketCommand(skt,`$INSTANCE_NAME`_CMD_SEND);
+		result = `$INSTANCE_NAME`_HW_ChipAccess(`$INSTANCE_NAME`_SKT_BASE(skt)+2,sts,2,0);
+		
+		result = (sts[0]&`$INSTANCE_NAME`_IR_TIMEOUT)? CYRET_TIMEOUT :
+			(sts[0]&`$INSTANCE_NAME`_IR_DISCON)?CYRET_TIMEOUT :
+			(sts[0]&`$INSTANCE_NAME`_IR_SENDOK)?CYRET_SUCCESS :
+			(sts[1] != `$INSTANCE_NAME`_STS_ESTABLISHED) ? CYRET_TIMEOUT : CYRET_STARTED;
+		
+		while ( result == CYRET_STARTED) {
+			vTaskDelay(1/portTICK_RATE_MS);
+			`$INSTANCE_NAME`_HW_ChipAccess(`$INSTANCE_NAME`_SKT_BASE(skt)+2,sts,2,0);
+			result = (sts[0]&`$INSTANCE_NAME`_IR_TIMEOUT)? CYRET_TIMEOUT :
+				(sts[0]&`$INSTANCE_NAME`_IR_DISCON)?CYRET_TIMEOUT :
+				(sts[0]&`$INSTANCE_NAME`_IR_SENDOK)?CYRET_SUCCESS :
+				(sts[1] != `$INSTANCE_NAME`_STS_ESTABLISHED) ? CYRET_TIMEOUT : CYRET_STARTED;
+		}
+
+		/* Clear pending flags in the IR */
+		sts[0] = 0x1F;
+		`$INSTANCE_NAME`_HW_ChipAccess(`$INSTANCE_NAME`_SKT_BASE(skt)+2,&sts[0],1,1);
+		
+		/* reset subnet mask to all zeros * (errata) */
+		`$INSTANCE_NAME`_HW_ChipAccess(5, errata,4,1);
+	}
+	xSemaphoreGive( `$INSTANCE_NAME`_ControllerMutex );
+	return result;
+}
+/* ------------------------------------------------------------------------ */
+uint16 `$INSTANCE_NAME`_SocketRxProcessing(uint8 skt, uint8 *packet, uint16 len)
+{
+	uint16 base, max;
+	uint16 ptr;
+	uint16 adr;
+	uint16 free;
+//	uint8 status;
+	
+	if (skt >= `$NUM_SOCKETS`) return CYRET_BAD_PARAM;
+	/* 
+	 * compute the max buffer length, and verify that the packet length does not
+	 * exceed the limits.
+	 */
+	max = (uint16)(`$INSTANCE_NAME`_memSize*1024);
+	if (len >= max) return CYRET_BAD_PARAM;
+	/*
+	 * compute the base pointer for the buffer memory, and the max offset address
+	 * of the memory buffer.  This allows for the detection of poiner wrap so
+	 * the buffer can be managed corectly.
+	 */
+	base = `$INSTANCE_NAME`_RX_BASE(skt);
 	
 	/*
-	 * read socket pointer to determine the length of data transmitted.
+	 * read the buffer offset pointer value from the W5200 to determine where
+	 * to begin writing data to the device.  Since this is read as BIG endian,
+	 * swap the bytes to make the value usable.  Also calculate the write
+	 * address in to the W5200 memory buffers.
 	 */
-	
+	ptr = `$INSTANCE_NAME`_SocketGetRxReadPtr(skt);
+	adr = base + (ptr & (max-1));
+	/* calculate the number bytes exceeding the memory range */
+	free = max - (ptr&(max-1));
+	/*
+	 * after calculating the amount of data to be written, write the block of
+	 * data in to the transmit buffer.
+	 */
+	if (len > free) {
+		`$INSTANCE_NAME`_HW_ChipAccess(adr,packet,free,0);
+		`$INSTANCE_NAME`_HW_ChipAccess(base,&packet[free],len-free,0);
+	}
+	else {
+		`$INSTANCE_NAME`_HW_ChipAccess(adr,packet,len,0);
+	}
+	/*
+	 * update TX pointer in memory and issue a SEND command to transmit the
+	 * socket data through the Ethernet protocol.
+	 */
+	ptr = ptr+len;
+	ptr = CYSWAP_ENDIAN16(ptr);
+	`$INSTANCE_NAME`_HW_ChipAccess(`$INSTANCE_NAME`_SKT_BASE(skt)+0x28,(uint8*)&ptr,2,1);
+
 	return CYRET_SUCCESS;
+	
+}
+/* ------------------------------------------------------------------------ */
+uint16 `$INSTANCE_NAME`_SocketReceive(uint8 skt, uint8 *packet, uint16 len)
+{
+	uint16 RxSize = 0;
+
+	/*
+	 * Return immediately upon the detection of a socket that is invalid
+	 */
+	if (skt >= `$NUM_SOCKETS`) return 0;
+
+	/*
+	 * Allocate Semaphore to prevent other threads from accessing the chip (and
+	 * otherwise changing registers) during the data transmission to the device
+	 * buffer.
+	 */
+	if (xSemaphoreTake(`$INSTANCE_NAME`_ControllerMutex,portMAX_DELAY) == pdPASS) {
+		/*
+		 * read the number of waiting bytes in the buffer memory
+		 * but, clip the length of data read to the requested
+		 * length of data.
+		 */
+		RxSize = `$INSTANCE_NAME`_SocketDataWaiting( skt );
+		RxSize = (RxSize > len) ? len : RxSize;
+		/* If there was waiting data, read it from the buffer */
+		if (RxSize > 0) {
+			`$INSTANCE_NAME`_SocketRxProcessing( skt, packet, RxSize);
+			/* 
+			 * after reading the buffer data, send the receive command
+			 * to the socket so that the W5100 completes the read
+			 */
+			`$INSTANCE_NAME`_SocketCommand(skt,`$INSTANCE_NAME`_CMD_RECV);
+		}
+	}
+	xSemaphoreGive( `$INSTANCE_NAME`_ControllerMutex );
+	/* return the number of read bytes from the buffer memory */
+	return RxSize;
+	
 }
 /* ======================================================================== */
 /* [] END OF FILE */
