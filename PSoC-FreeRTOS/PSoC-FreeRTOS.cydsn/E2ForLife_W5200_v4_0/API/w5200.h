@@ -84,6 +84,7 @@ uint16 `$INSTANCE_NAME`_SocketDataWaiting(uint8 skt);
 uint16 `$INSTANCE_NAME`_SocketTxFree(uint8 skt);
 
 cystatus `$INSTANCE_NAME`_SocketSend(uint8 skt, uint8 *packet, uint16 len);
+uint16 `$INSTANCE_NAME`_SocketReceive(uint8 skt, uint8 *packet, uint16 len);
 
 uint8 `$INSTANCE_NAME`_TcpOpenServer(uint16 port);
 

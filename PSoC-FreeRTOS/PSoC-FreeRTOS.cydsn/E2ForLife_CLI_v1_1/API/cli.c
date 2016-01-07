@@ -241,7 +241,7 @@ int `$INSTANCE_NAME`_CliGetArguments( char *buffer, int *argc, char **argv )
 	result = CYRET_STARTED;
 	idx = 0;
 	*argc = 0;
-	while ( (buffer[idx] != 0) && (result == CYRET_STARTED) ) {
+	while ( (buffer[idx] != 0) && (result == CYRET_STARTED) && (*argc < 25) ) {
 		/*
 		 * drop leading whitespace, and set all spaces to NULL to
 		 * prevent later confusion.

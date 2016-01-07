@@ -663,6 +663,8 @@ cystatus `$INSTANCE_NAME`_SocketTxProcessing(uint8 skt, uint8 *packet, uint16 le
 	uint8 status;
 	
 	if (skt >= `$NUM_SOCKETS`) return CYRET_BAD_PARAM;
+	if (len == 0) return CYRET_SUCCESS;
+	
 	/* 
 	 * compute the max buffer length, and verify that the packet length does not
 	 * exceed the limits.
@@ -727,7 +729,8 @@ cystatus `$INSTANCE_NAME`_SocketSend(uint8 skt, uint8 *packet, uint16 len)
 	cystatus result = 0;
 	
 	if (skt > 7) return CYRET_BAD_PARAM;
-
+	if (len == 0) return CYRET_SUCCESS;
+	
 	/*
 	 * Allocate Semaphore to prevent other threads from accessing the chip (and
 	 * otherwise changing registers) during the data transmission to the device
@@ -764,7 +767,7 @@ cystatus `$INSTANCE_NAME`_SocketSend(uint8 skt, uint8 *packet, uint16 len)
 		}
 
 		/* Clear pending flags in the IR */
-		sts[0] = 0x1F;
+		sts[0] = `$INSTANCE_NAME`_IR_SENDOK | `$INSTANCE_NAME`_IR_TIMEOUT | `$INSTANCE_NAME`_IR_DISCON;
 		`$INSTANCE_NAME`_HW_ChipAccess(`$INSTANCE_NAME`_SKT_BASE(skt)+2,&sts[0],1,1);
 		
 		/* reset subnet mask to all zeros * (errata) */

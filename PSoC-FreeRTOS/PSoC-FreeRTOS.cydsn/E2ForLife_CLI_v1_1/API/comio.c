@@ -285,10 +285,14 @@ cystatus `$INSTANCE_NAME`_GenericGetString(char *str)
 		 * When a newline is read, push the character back in to the
 		 * queue, since we don't want it, and don't read anymore data
 		 * from the queue.
+		 * v1.1.1 : Addd a conition to check for 0 values, since they shouldn't
+		 *          
 		 */
 		else if ((ch!='\r')&&(ch!='\n')) {
-			str[idx++] = ch;
-			`$INSTANCE_NAME`_PutChar( (uint8) ch );
+			if (ch != 0) {
+				str[idx++] = ch;
+				`$INSTANCE_NAME`_PutChar( (uint8) ch );
+			}
 			ch = `$INSTANCE_NAME`_GetChar();
 		}
 		str[idx] = 0;
