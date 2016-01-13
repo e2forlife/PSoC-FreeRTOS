@@ -82,6 +82,13 @@ typedef struct {
 #define `$INSTANCE_NAME`_ERROR      ( 2 )
 #define `$INSTANCE_NAME`_FATAL      ( 0xFF )
 
+/*
+ * Constant used to determine the status of the escape sequence processor.
+ * when this is set to 0, no processing of escape sequences is executed, when
+ * set to a 1, escape sequence to ANSI command is enabled.
+ */
+#define `$INSTANCE_NAME`_PROCESS_ESC_SEQUENCE    ( `$EnableEscapeSequence` )
+
 /* Handler for depricated message function */
 #define `$INSTANCE_NAME`_SystemMsg                    `$INSTANCE_NAME`_Message
 
@@ -98,14 +105,6 @@ int `$INSTANCE_NAME`_CliGetArguments( char *buffer, int *argc, char **argv );
 cystatus `$INSTANCE_NAME`_CliHelp( int argc, char **argv );
 cystatus `$INSTANCE_NAME`_CliClearScreen( int argc, char **argv );
 
-/**
- * When the trace facilities are being used in FreeRTOS, enable the task
- * monitoring, removall, and priority switching.
- */
-#if (configUSE_TRACE_FACILITY != 0)
-cystatus `$INSTANCE_NAME`_TaskList(int argc, char **argv );
-cystatus `$ISTANCE_NAME`_KillTask(int argc, char **argv )
-#endif
 /*
  * When the CLI TASK option is selected, add in the prototype for the
  * CLI task.

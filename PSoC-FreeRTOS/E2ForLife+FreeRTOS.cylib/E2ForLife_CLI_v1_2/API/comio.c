@@ -57,6 +57,7 @@ char `$INSTANCE_NAME`_GetChar( void )
 	return value;
 }
 /* ------------------------------------------------------------------------ */
+#if (`$EnableEscapeSequence` == 1)
 int `$INSTANCE_NAME`_ProcessEscapeSequence( const char *str, xQueueHandle h)
 {
 	int idx;
@@ -212,6 +213,7 @@ int `$INSTANCE_NAME`_ProcessEscapeSequence( const char *str, xQueueHandle h)
 	
 	return idx+1;
 }
+#endif
 /* ------------------------------------------------------------------------ */
 cystatus `$INSTANCE_NAME`_GenericPrintString( const char *str, xQueueHandle h )
 {
@@ -237,6 +239,7 @@ cystatus `$INSTANCE_NAME`_GenericPrintString( const char *str, xQueueHandle h )
 	result = CYRET_SUCCESS;
 	idx = 0;
 	while ( (str[idx] != 0) && (result == CYRET_SUCCESS) ) {
+		#if (`$EnableEscapeSequence` == 1)
 		if ( str[idx] == '{') {
 			idx += `$INSTANCE_NAME`_ProcessEscapeSequence( &str[idx], h );
 		}
@@ -244,6 +247,9 @@ cystatus `$INSTANCE_NAME`_GenericPrintString( const char *str, xQueueHandle h )
 			/* insert character in to the send fifo */
 			result = `$INSTANCE_NAME`_GenericPutChar(str[idx++], h);
 		}
+		#else
+			result = `$INSTANCE_NAME`_GenericPutChar(str[idx++],h);
+		#endif
 	}
 	
 	return result;
@@ -275,9 +281,11 @@ cystatus `$INSTANCE_NAME`_GenericGetString(char *str)
 			str[idx] = 0;
 			if (idx>0) {
 				idx--;
+				#if (`$EchoInput`==1)
 				`$INSTANCE_NAME`_PutChar('\b');
 				`$INSTANCE_NAME`_PutChar(' ');
 				`$INSTANCE_NAME`_PutChar('\b');
+				#endif
 			}
 			ch = `$INSTANCE_NAME`_GetChar();
 		}
@@ -285,36 +293,23 @@ cystatus `$INSTANCE_NAME`_GenericGetString(char *str)
 		 * When a newline is read, push the character back in to the
 		 * queue, since we don't want it, and don't read anymore data
 		 * from the queue.
+		 * v1.1.1 : Addd a conition to check for 0 values, since they shouldn't
+		 *          
 		 */
 		else if ((ch!='\r')&&(ch!='\n')) {
-			str[idx++] = ch;
-			`$INSTANCE_NAME`_PutChar( (uint8) ch );
+			if (ch != 0) {
+				str[idx++] = ch;
+				#if (`$EchoInput`==1)
+				`$INSTANCE_NAME`_PutChar( (uint8) ch );
+				#endif
+			}
 			ch = `$INSTANCE_NAME`_GetChar();
 		}
 		str[idx] = 0;
 	}
 	
-//	/*
-//	 * Remove the lingering EOL characters from the queue to prepare reading
-//	 * of the next string.
-//	 */
-//	if ( (ch == '\r') || (ch == '\n') ) {
-//		while( ((ch == '\r') || (ch == '\n')) && (`$COM_DEVICE`_DataWaiting() > 0) )
-//		{
-//			`$COM_DEVICE`_ReadByte((uint8*)&ch);
-//			if ( (ch != '\r') && (ch != '\n') ) {
-//				`$COM_DEVICE`_UnRead((uint8*)&ch,1);
-//			}
-//		}
-//		result = CYRET_FINISHED;
-//	}
 	return result;
 }
-
-//cystatus `$INSTANCE_NAME`_GetString(char *str)
-//{
-//	return `$INSTANCE_NAME`_GenericGetString(str, 0);
-//}
 
 /* ------------------------------------------------------------------------- */
 /*

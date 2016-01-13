@@ -41,6 +41,7 @@
 /* ------------------------------------------------------------------------ */
 
 uint8 `$INSTANCE_NAME`_initVar;
+xTaskHandle `$INSTANCE_NAME`_Task;
 
 /* ======================================================================== */
 extern uint8 `$INSTANCE_NAME`_initVar;
@@ -54,19 +55,23 @@ void `$INSTANCE_NAME`_Start( void )
 	/*
 	 * Register commands for help and clear
 	 */
+	#if (`$EnableHelpCommand` == 1)
 	`$INSTANCE_NAME`_RegisterCommand(`$INSTANCE_NAME`_CliHelp,"help","Display command table descriptions");
-	`$INSTANCE_NAME`_RegisterCommand(`$INSTANCE_NAME`_CliClearScreen,"cls","Clear the screen");
-	
-	#if (configUSE_TRACE_FACILITY != 0)
-	`$INSTANCE_NAME`_RegisterCommand(`$INSTANCE_NAME`_TaskList,"taskmgr","Display task information");
-	`$INSTANCE_NAME`_RegisterCommand(`$INSTANCE_NAME`_KillTask,"kill","Force delete a task.");	
 	#endif
 	
-	xTaskCreate( `$INSTANCE_NAME`_vCliTask, "Cli Task", 600, (void*)&`$INSTANCE_NAME`_CommandTable[0], `$CLI_PRIORITY`, NULL);
+	#if (`$EnableClearCommand` == 1)
+		#if (`$EnableEscapeSequence` == 1)
+	`$INSTANCE_NAME`_RegisterCommand(`$INSTANCE_NAME`_CliClearScreen,"cls","Clear the screen");
+		#endif
+	#endif
+	
+	
+	xTaskCreate( `$INSTANCE_NAME`_vCliTask, "Cli Task", `$StackSize`, (void*)&`$INSTANCE_NAME`_CommandTable[0], `$CLI_PRIORITY`, &`$INSTANCE_NAME`_Task);
 }
 /* ------------------------------------------------------------------------ */
 //void `$INSTANCE_NAME`_SystemMsg(const char *str, uint8 level)
 void `$INSTANCE_NAME`_Message(const char *str, uint8 level)
+#if (`$EnableEscapeSequence` == 1)
 {
 	switch(level) {
 		case `$INSTANCE_NAME`_NOTE:
@@ -91,6 +96,32 @@ void `$INSTANCE_NAME`_Message(const char *str, uint8 level)
 			break;
 	}
 }
+#else
+{
+	switch(level) {
+		case `$INSTANCE_NAME`_NOTE:
+			`$INSTANCE_NAME`_GenericPrintString("\r\n[NOTE]:", `$ErrorQueue`);
+			`$INSTANCE_NAME`_GenericPrintString(str, `$ErrorQueue`);
+			break;
+		case `$INSTANCE_NAME`_WARN:
+			`$INSTANCE_NAME`_GenericPrintString("\r\n[WARNING]: ", `$ErrorQueue`);
+			`$INSTANCE_NAME`_GenericPrintString(str, `$ErrorQueue`);
+			break;
+		case `$INSTANCE_NAME`_ERROR:
+			`$INSTANCE_NAME`_GenericPrintString("\r\n[ERROR]: ", `$ErrorQueue`);
+			`$INSTANCE_NAME`_GenericPrintString(str, `$ErrorQueue`);
+			break;
+		case `$INSTANCE_NAME`_FATAL:
+			`$INSTANCE_NAME`_GenericPrintString("\r\n[FATAL]: ", `$ErrorQueue`);
+			`$INSTANCE_NAME`_GenericPrintString(str, `$ErrorQueue`);
+			break;
+		default:
+			`$INSTANCE_NAME`_GenericPrintString("\r\n[????]: ", `$ErrorQueue`);
+			`$INSTANCE_NAME`_GenericPrintString(str, `$ErrorQueue`);
+			break;
+	}
+}
+#endif
 /* ------------------------------------------------------------------------ */
 uint8 `$INSTANCE_NAME`_AreYouSure( char* msg, uint8 defVal )
 {
@@ -102,10 +133,18 @@ uint8 `$INSTANCE_NAME`_AreYouSure( char* msg, uint8 defVal )
 	
 	`$INSTANCE_NAME`_PrintString(msg);
 	if (defVal != 0) {
+		#if (`$EnableEscapeSequence` == 1)
 		sprintf(out," {c6}%s{c4}/{c14}%s{c7} : ", values[0], values[1] );
+		#else
+		sprintf(out," %s/%s : ", values[0], values[1] );
+		#endif	
 	}
 	else {
+		#if (`$EnableEscapeSequence` == 1)
 		sprintf(out," {c14}%s{c4}/{c6}%s{c7} : ", values[0], values[1] );
+		#else
+		sprintf(out," %s/%s : ", values[0], values[1] );
+		#endif
 	}	
 	`$INSTANCE_NAME`_PrintString(out);
 	do {
@@ -167,16 +206,26 @@ cystatus `$INSTANCE_NAME`_CliHelp( int argc, char **argv )
 	int idx;
 	char bfr[51];
 	
+	#if (`$EnableEscapeSequence` == 1)
 	`$INSTANCE_NAME`_PrintString("{row1;col1;mv;cls}");
+	#else
+	`$INSTANCE_NAME`_PrintString("\r\n\n");
+	#endif
 	
 	idx = 0;
 	while ( strlen(`$INSTANCE_NAME`_CommandTable[idx].name) != 0) {
 		if ( strlen(`$INSTANCE_NAME`_CommandTable[idx].desc) > 0 ) {
+			#if (`$EnableEscapeSequence` == 1)
 			sprintf(bfr,"\r\n{c4}[{c15}%10s{c4}]{c7} : ",`$INSTANCE_NAME`_CommandTable[idx].name);
 			`$INSTANCE_NAME`_PrintString(bfr);
 			sprintf(bfr,"{c%d}",((idx&0x01)?10:2));
 			`$INSTANCE_NAME`_PrintString(bfr);
 			`$INSTANCE_NAME`_PrintString(`$INSTANCE_NAME`_CommandTable[idx].desc);
+			#else
+			sprintf(bfr,"\r\n[%10s] : ",`$INSTANCE_NAME`_CommandTable[idx].name);
+			`$INSTANCE_NAME`_PrintString(bfr);
+			`$INSTANCE_NAME`_PrintString(`$INSTANCE_NAME`_CommandTable[idx].desc);
+			#endif
 		}
 		++idx;
 	}
@@ -184,6 +233,8 @@ cystatus `$INSTANCE_NAME`_CliHelp( int argc, char **argv )
 	return CYRET_SUCCESS;
 }
 /* ------------------------------------------------------------------------ */
+#if (`$EnableEscapeSequence` == 1)
+	#if (`$EnableClearCommand` == 1)
 cystatus `$INSTANCE_NAME`_CliClearScreen( int argc, char **argv )
 {
 	argc = argc;
@@ -192,6 +243,8 @@ cystatus `$INSTANCE_NAME`_CliClearScreen( int argc, char **argv )
 	`$INSTANCE_NAME`_PrintString("{row;col;mv;cls}");
 	return CYRET_SUCCESS;
 }
+#endif
+#endif
 /* ------------------------------------------------------------------------ */
 void `$INSTANCE_NAME`_CliShowPrompt( char *lineBuffer )
 {
@@ -241,7 +294,7 @@ int `$INSTANCE_NAME`_CliGetArguments( char *buffer, int *argc, char **argv )
 	result = CYRET_STARTED;
 	idx = 0;
 	*argc = 0;
-	while ( (buffer[idx] != 0) && (result == CYRET_STARTED) ) {
+	while ( (buffer[idx] != 0) && (result == CYRET_STARTED) && (*argc < 25) ) {
 		/*
 		 * drop leading whitespace, and set all spaces to NULL to
 		 * prevent later confusion.
@@ -305,12 +358,16 @@ cystatus `$INSTANCE_NAME`_CliProcessCommand(const `$INSTANCE_NAME`_CLI_COMMAND *
 	int idx;
 	`$INSTANCE_NAME`_CLIfunc fn;
 	
-	static char outBuffer[`$MAX_CLI_OUTPUT_BUFFER`];
+	//static char outBuffer[`$MAX_CLI_OUTPUT_BUFFER`];
 	
 	cystatus result;
 	
 	if (tbl == NULL) {
+		#if (`$EnableEscapeSequence`==1)
 		`$INSTANCE_NAME`_Message("{c9}Invalid command table{c7}",`$INSTANCE_NAME`_FATAL);
+		#else
+		`$INSTANCE_NAME`_Message("Invalid command table",`$INSTANCE_NAME`_FATAL);
+		#endif
 		return CYRET_UNKNOWN;
 	}
 	
@@ -327,18 +384,30 @@ cystatus `$INSTANCE_NAME`_CliProcessCommand(const `$INSTANCE_NAME`_CLI_COMMAND *
 				}
 				else {
 					result = CYRET_INVALID_OBJECT;
+					#if (`$EnableEscapeSequence`==1)
 					`$INSTANCE_NAME`_Message("{c3}The Command {c11}",`$INSTANCE_NAME`_WARN);
-					`$INSTANCE_NAME`_ErrorString(argv[0])
+					`$INSTANCE_NAME`_ErrorString(argv[0])					
 					`$INSTANCE_NAME`_ErrorString("{c3} has not yet been implemented{c7}.");
+					#else
+					`$INSTANCE_NAME`_Message("The Command ",`$INSTANCE_NAME`_WARN);
+					`$INSTANCE_NAME`_ErrorString(argv[0])					
+					`$INSTANCE_NAME`_ErrorString(" has not yet been implemented.");
+					#endif
 				}
 			}
 			++idx;
 		}
 		
 		if (result == CYRET_UNKNOWN) {
+			#if (`$EnableEscapeSequence` == 1)
 			`$INSTANCE_NAME`_Message("{c1}Unknown Command \"{c9}", `$INSTANCE_NAME`_ERROR);
 			`$INSTANCE_NAME`_ErrorString(argv[0]);
 			`$INSTANCE_NAME`_ErrorString("{c1}\"{c7}");
+			#else
+			`$INSTANCE_NAME`_Message("Unknown Command \"", `$INSTANCE_NAME`_ERROR);
+			`$INSTANCE_NAME`_ErrorString(argv[0]);
+			`$INSTANCE_NAME`_ErrorString("\"");
+			#endif
 		}
 	}
 	return result;
@@ -370,6 +439,7 @@ void `$INSTANCE_NAME`_vCliTask( void *pvParameters )
 	
 	/* `#END` */
 
+	#if (`$WaitForInput` == 1)
 	/*
 	 * CLI Initialization:
 	 * Wait for user input to confirm that the CLI has connected with a
@@ -379,6 +449,8 @@ void `$INSTANCE_NAME`_vCliTask( void *pvParameters )
 	 */
 	`$INSTANCE_NAME`_GetChar();
 	lineBuffer[0] = 0;
+	#endif
+	
 	/*
 	 * The connection has been validated, this merge region allows the
 	 * definition of functions that are performed once the connection
@@ -393,13 +465,16 @@ void `$INSTANCE_NAME`_vCliTask( void *pvParameters )
 		/*
 		 * Wait for user input.
 		 */
+		#if (`$EnablePrompt` == 1)
 		`$INSTANCE_NAME`_CliShowPrompt(lineBuffer);
-		
+		#endif
 		/* Read the input line from the user with blocking functions */
 		`$INSTANCE_NAME`_GetString( lineBuffer );
 		
+		#if (`$EnableEscapeSequence` == 1)
 		/* Set the color to neutral to avoid screen junk when executing commands */
 		`$INSTANCE_NAME`_PrintString("{c7;b0}");
+		#endif
 		
 		/*
 		 * Strip arguments from the line buffer, and handle compound
@@ -413,12 +488,21 @@ void `$INSTANCE_NAME`_vCliTask( void *pvParameters )
 				result = `$INSTANCE_NAME`_CliProcessCommand(CommandTable,argc,argv);
 				if (result != CYRET_SUCCESS) {
 					`$INSTANCE_NAME`_PrintString("\r\n");
+					#if (`$EnableEscapeSequence`==1)
 					`$INSTANCE_NAME`_Message("{c1}Command Error{c7}: ",`$INSTANCE_NAME`_ERROR);
 					sprintf(lineBuffer,"{c14}0x%08lX",result);
+					#else
+					`$INSTANCE_NAME`_Message("Command Error: ",`$INSTANCE_NAME`_ERROR);
+					sprintf(lineBuffer,"0x%08lX",result);
+					#endif
 					`$INSTANCE_NAME`_ErrorString(lineBuffer);
 					lineBuffer[idx] = 0;
 				}
+				#if (`$EnableEscapeSequence` == 1)
 				`$INSTANCE_NAME`_PrintString("{c7;b0}\r\n\n");
+				#else
+				`$INSTANCE_NAME`_PrintString("\r\n\n");
+				#endif
 			}
 		}
 		
