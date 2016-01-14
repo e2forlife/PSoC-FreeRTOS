@@ -33,6 +33,8 @@
  * PSoC component standard interface.
  */
 #include <cytypes.h>
+`$CY_API_CALLBACK_HEADER_INCLUDE`   
+
 #include "`$INSTANCE_NAME`.h"
 
 #include "`$FreeRTOS`.h"
@@ -95,12 +97,19 @@ void `$INSTANCE_NAME`_TaskProc( void *pvParameters )
 		
 	/* `#END` */
 	
+	#if defined(`$INSTANCE_NAME`_TASK_INITIALIZE_CALLBACK)
+		`$INSTANCE_NAME`_TaskInitialize_Callback();
+	#endif
+	
 	for(;;) {
 		/* `#START TASK_LOOP_CODE` */
 	
 		/* --> Insert Code Here <-- */
 	
 		/* `#END` */
+		#if defined(`$INSTANCE_NAME`_TASK_LOOP_CALLBACK)
+			`$INSTANCE_NAME`_TaskLoop_Callback();
+		#endif
 		
 		/* End of the task main loop */
 		#if (`$TaskDelay` != 0)
@@ -119,6 +128,9 @@ void `$INSTANCE_NAME`_Start( void )
 	/* `#START TASK_GLOBAL_INIT` */
 	
 	/* `#END` */
+	#if defined(`$INSTANCE_NAME`_START_CALLBACK)
+		`$INSTANCE_NAME`_Start_Callback();
+	#endif
 	
 	if (`$INSTANCE_NAME`_initVar != 1) {
 		#if (`$UseMutex` == 1)
