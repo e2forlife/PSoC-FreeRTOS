@@ -53,7 +53,7 @@ uint8 `$INSTANCE_NAME`_initVar = 0u;
  * Place user included headers, defines and task global data in the
  * below merge region section.
  */
-/* `#START USER_INCLUDE SECTION */
+/* `#START USER_INCLUDE SECTION` */
 
 	/* --> Insert Code Here <-- */
 	

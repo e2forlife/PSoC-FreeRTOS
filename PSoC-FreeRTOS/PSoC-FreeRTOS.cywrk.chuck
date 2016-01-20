@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CyXmlSerializer>
+<!--This file is machine generated and read. It is not intended to be edited by hand.-->
+<!--Due to this, there is no schema for this file.-->
+<CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspcCustomData" version="4">
+<CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997 type_name="CyDesigner.Common.Base.CyCustomData" version="2">
+<userData>
+<dataGuid v="1b906a0f-a7b6-4e4d-a428-82f98b53cb35">
+<CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35 type_name="CyDesigner.Common.ProjMgmt.GUI.CyExplorerWindow+CyExplorerWindowState" version="3" SelectedTab="Components">
+<TreeKeys>
+<v>Source</v>
+<v>Components</v>
+<v>Output</v>
+</TreeKeys>
+<TreeStates>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="PSoC-FreeRTOS\E2ForLife+FreeRTOS">
+<ExpandedNodeIds>
+<v>PSoC-FreeRTOS</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\Header Files</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\Source Files</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\TopDesign</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\PSoC4-FreeRTOS.cydwr</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Header Files</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Header Files\cyapicallbacks.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Source Files</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Source Files\main.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\BLUE\BLUE.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\BLUE\BLUE.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\BLUE\BLUE_aliases.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cy_boot\cm0gcc.ld</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cy_boot\Cm0Iar.icf</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cy_boot\Cm0RealView.scat</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cy_boot\Cm0Start.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cy_boot\core_cm0.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cy_boot\core_cm0_psoc4.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cy_boot\core_cmFunc.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cy_boot\core_cmInstr.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cy_boot\CyBootAsmGnu.s</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cy_boot\CyBootAsmIar.s</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cy_boot\CyBootAsmRv.s</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cy_boot\CyFlash.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cy_boot\CyFlash.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cy_boot\CyLib.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cy_boot\CyLib.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cy_boot\cypins.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cy_boot\cyPm.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cy_boot\cyPm.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cy_boot\cytypes.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cy_boot\cyutils.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cy_lfclk\CyLFClk.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cy_lfclk\CyLFClk.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_Config.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_croutine.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_croutine.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_event_groups.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_event_groups.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_heap_1.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_heap_2.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_heap_3.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_heap_4.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_heap_5.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_list.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_list.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_mpu_wrappers.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_port_CM0.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_port_CM3.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_portable.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_portmacro.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_portmacro_CM0.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_portmacro_CM3.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_projdefs.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_queue.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_queue.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_semphr.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_StackMacros.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_task.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_tasks.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_timers.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\FreeRTOS\FreeRTOS_timers.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\GREEN\GREEN.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\GREEN\GREEN.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\GREEN\GREEN_aliases.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\RED\RED.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\RED\RED.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\RED\RED_aliases.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cycodeshareimport.ld</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cycodeshareimport.scat</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cydevice_trm.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cydevicegnu_trm.inc</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cydeviceiar_trm.inc</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cydevicerv_trm.inc</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cydisabledsheets.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cyfitter.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cyfitter_cfg.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cyfitter_cfg.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cyfittergnu.inc</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cyfitteriar.inc</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cyfitterrv.inc</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\cymetadata.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\Generated_Source\PSoC4\project.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\TopDesign</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\PSoC-FreeRTOS.cydwr</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Header Files</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Source Files</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Source Files\main.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\CLI\CLI.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\CLI\CLI.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\CLI\CLI_comio.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\cm3gcc.ld</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\Cm3Iar.icf</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\Cm3RealView.scat</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\Cm3Start.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\core_cm3.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\core_cm3_psoc5.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\core_cmFunc.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\core_cmInstr.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\CyBootAsmGnu.s</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\CyBootAsmIar.s</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\CyBootAsmRv.s</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\CyDmac.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\CyDmac.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\CyFlash.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\CyFlash.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\CyLib.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\CyLib.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\cypins.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\cyPm.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\cyPm.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\CySpc.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\CySpc.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\cytypes.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cy_boot\cyutils.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\ETH\ETH.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\ETH\ETH.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\ETHIO\ETHIO.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\ETHIO\ETHIO.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\ETHIO\ETHIO_PM.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_Config.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_croutine.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_croutine.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_event_groups.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_event_groups.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_heap_1.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_heap_2.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_heap_3.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_heap_4.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_heap_5.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_list.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_list.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_mpu_wrappers.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_port_CM0.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_port_CM3.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_portable.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_portmacro.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_portmacro_CM0.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_portmacro_CM3.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_projdefs.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_queue.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_queue.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_semphr.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_StackMacros.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_task.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_tasks.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_timers.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\FreeRTOS\FreeRTOS_timers.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\NVM_CSN\NVM_CSN.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\NVM_CSN\NVM_CSN.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\NVM_CSN\NVM_CSN_aliases.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\SPIM\SPIM.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\SPIM\SPIM.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\SPIM\SPIM_INT.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\SPIM\SPIM_PM.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\SPIM\SPIM_PVT.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\SPIM_IntClock\SPIM_IntClock.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\SPIM_IntClock\SPIM_IntClock.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USB\USB.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USB\USB.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART\USBUART.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART\USBUART.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART\USBUART_audio.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART\USBUART_audio.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART\USBUART_boot.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART\USBUART_cdc.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART\USBUART_cdc.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART\USBUART_cdc.inf</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART\USBUART_cls.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART\USBUART_descr.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART\USBUART_drv.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART\USBUART_episr.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART\USBUART_hid.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART\USBUART_hid.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART\USBUART_midi.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART\USBUART_midi.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART\USBUART_pm.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART\USBUART_pvt.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART\USBUART_std.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART\USBUART_vnd.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART_Dm\USBUART_Dm.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART_Dm\USBUART_Dm.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART_Dm\USBUART_Dm_aliases.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART_Dp\USBUART_Dp.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART_Dp\USBUART_Dp.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\USBUART_Dp\USBUART_Dp_aliases.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cycodeshareimport.ld</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cycodeshareimport.scat</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cydevice.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cydevice_trm.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cydevicegnu.inc</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cydevicegnu_trm.inc</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cydeviceiar.inc</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cydeviceiar_trm.inc</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cydevicerv.inc</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cydevicerv_trm.inc</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cydisabledsheets.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cyfitter.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cyfitter_cfg.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cyfitter_cfg.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cyfittergnu.inc</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cyfitteriar.inc</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cyfitterrv.inc</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\cymetadata.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5\project.h</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>PSoC-FreeRTOS</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\Header Files</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\Source Files</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\TopDesign</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\PSoC-FreeRTOS.cydwr</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Header Files</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Source Files</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Source Files\main.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\Generated_Source\PSoC5</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_Task_v1_0">
+<ExpandedNodeIds>
+<v>PSoC-FreeRTOS</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\E2ForLife_USBUART_v2_0\API</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\E2ForLife_USBUART_v2_0\API\usb.c</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\E2ForLife_USBUART_v2_0\API\usb.h</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\E2ForLife_USBUART_v2_0\E2ForLife_USBUART_v2_0.cysym</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_Task_v1_0</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_Task_v1_0\API</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\Config.h</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\croutine.c</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\croutine.h</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\event_groups.c</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\event_groups.h</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\FreeRTOS.c</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\FreeRTOS.h</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\heap_1.c</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\heap_2.c</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\heap_3.c</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\heap_4.c</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\heap_5.c</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\list.c</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\list.h</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\mpu_wrappers.h</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\port_CM0.c</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\port_CM3.c</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\portable.h</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\portmacro.h</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\portmacro_CM0.h</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\portmacro_CM3.h</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\projdefs.h</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\queue.c</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\queue.h</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\semphr.h</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\StackMacros.h</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\task.h</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\tasks.c</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\timers.c</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\API\timers.h</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2\FreeRTOS_v8_2.cysym</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\Config.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\croutine.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\croutine.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\event_groups.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\event_groups.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\FreeRTOS.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\FreeRTOS.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\heap_1.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\heap_2.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\heap_3.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\heap_4.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\heap_5.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\list.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\list.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\mpu_wrappers.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\port_CM0.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\port_CM3.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\portable.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\portmacro.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\portmacro_CM0.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\portmacro_CM3.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\projdefs.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\queue.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\queue.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\semphr.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\StackMacros.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\task.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\tasks.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\timers.c</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\API\timers.h</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\FreeRTOS_v8_22\FreeRTOS_v8_22.cysym</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\TopDesign</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\TopDesign\TopDesign.cysch</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_CLI_v1_0\API</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_CLI_v1_0\API\cli.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_CLI_v1_0\API\cli.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_CLI_v1_0\E2ForLife_CLI_v1_0.cysym</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_CLI_v1_1\API</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_CLI_v1_1\API\cli.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_CLI_v1_1\API\cli.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_CLI_v1_1\API\comio.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_CLI_v1_1\E2ForLife_CLI_v1_1.cysym</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_COMIO_v1_0\API</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_COMIO_v1_0\API\comio.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_COMIO_v1_0\API\comio.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_COMIO_v1_0\E2ForLife_COMIO_v1_0.cysym</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_SSD1306_v1_0\API</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_SSD1306_v1_0\API\font.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_SSD1306_v1_0\API\ssd1306.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_SSD1306_v1_0\API\ssd1306.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_SSD1306_v1_0\E2ForLife_SSD1306_v1_0.cysch</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_SSD1306_v1_0\E2ForLife_SSD1306_v1_0.cysym</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_SSD1325_v1_0\API</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_SSD1325_v1_0\API\font.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_SSD1325_v1_0\API\ssd1325.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_SSD1325_v1_0\API\ssd1325.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_SSD1325_v1_0\E2ForLife_SSD1325_v1_0.cysch</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_SSD1325_v1_0\E2ForLife_SSD1325_v1_0.cysym</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_TelnetServer_v1_0\API</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_TelnetServer_v1_0\API\telnet.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_TelnetServer_v1_0\API\telnet.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_TelnetServer_v1_0\E2ForLife_TelnetServer_v1_0.cysym</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_USBUART_v1_0\API</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_USBUART_v1_0\API\usb.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_USBUART_v1_0\API\usb.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_USBUART_v1_0\E2ForLife_USBUART_v1_0.cysch</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_USBUART_v1_0\E2ForLife_USBUART_v1_0.cysym</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_USBUART_v2_0\API</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_USBUART_v2_0\API\usb.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_USBUART_v2_0\API\usb.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_USBUART_v2_0\E2ForLife_USBUART_v2_0.cysym</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_W5200_v4_0\API</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_W5200_v4_0\API\w5200.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_W5200_v4_0\API\w5200.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_W5200_v4_0\E2ForLife_W5200_v4_0.cysym</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_W5500_v1_0\API</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_W5500_v1_0\API\socket.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_W5500_v1_0\API\tcp.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_W5500_v1_0\API\udp.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_W5500_v1_0\API\util.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_W5500_v1_0\API\w5500.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_W5500_v1_0\API\w5500.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_W5500_v1_0\E2ForLife_W5500_v1_0.cysym</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_W5500_v1_0\E2ForLife_W5500_v1_0.pdf</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_Task_v1_0</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_Task_v1_0\API</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\Config.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\croutine.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\croutine.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\event_groups.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\event_groups.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\FreeRTOS.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\FreeRTOS.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\heap_1.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\heap_2.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\heap_3.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\heap_4.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\heap_5.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\list.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\list.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\mpu_wrappers.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\port_CM0.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\port_CM3.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\portable.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\portmacro.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\portmacro_CM0.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\portmacro_CM3.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\projdefs.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\queue.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\queue.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\semphr.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\StackMacros.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\task.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\tasks.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\timers.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\API\timers.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2\FreeRTOS_v8_2.cysym</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\TopDesign</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\TopDesign\TopDesign.cysch</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>PSoC-FreeRTOS</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\E2ForLife_CLI_v1_2</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\E2ForLife_USBUART_v2_0</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_Task_v1_0</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_Task_v1_0\API</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_Task_v1_0\API\task.c</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_Task_v1_0\API\task.h</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_Task_v1_0\FreeRTOS_Task_v1_0.cysym</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\FreeRTOS_v8_2</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_CLI_v1_0</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_CLI_v1_1</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_CLI_v1_2</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_COMIO_v1_0</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_SSD1306_v1_0</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_SSD1325_v1_0</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_TelnetServer_v1_0</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_USBUART_v1_0</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_USBUART_v2_0</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_W5200_v4_0</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\E2ForLife_W5500_v1_0</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_Task_v1_0</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_Task_v1_0\API</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_Task_v1_0\API\task.c</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_Task_v1_0\API\task.h</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_Task_v1_0\FreeRTOS_Task_v1_0.cysym</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\FreeRTOS_v8_2</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>PSoC-FreeRTOS</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\CortexM0</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\CortexM0\ARM_GCC_493</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\CortexM0\ARM_GCC_493\Debug</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\CortexM0\ARM_GCC_493\Debug\E2ForLife+FreeRTOS.a</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\BLUE.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\Cm0Start.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\CyFlash.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\CyLFClk.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\CyLib.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\cymetadata.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\cyPm.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\cyutils.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\FreeRTOS.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\FreeRTOS_croutine.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\FreeRTOS_event_groups.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\FreeRTOS_heap_1.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\FreeRTOS_heap_2.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\FreeRTOS_heap_3.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\FreeRTOS_heap_4.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\FreeRTOS_heap_5.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\FreeRTOS_list.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\FreeRTOS_port_CM0.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\FreeRTOS_port_CM3.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\FreeRTOS_queue.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\FreeRTOS_tasks.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\FreeRTOS_timers.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\GREEN.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\main.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\RED.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\PSoC4-FreeRTOS.elf</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\PSoC4-FreeRTOS.hex</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\PSoC4-FreeRTOS.map</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\PSoC4-FreeRTOS.gpdsc</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\PSoC4-FreeRTOS.rpt</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\PSoC4-FreeRTOS_timing.html</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\CLI.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\CLI_comio.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\Cm3Start.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\CyDmac.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\CyFlash.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\CyLib.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\cymetadata.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\cyPm.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\CySpc.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\cyutils.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\ETH.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\ETHIO.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\ETHIO_PM.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\FreeRTOS.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\FreeRTOS_croutine.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\FreeRTOS_event_groups.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\FreeRTOS_heap_1.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\FreeRTOS_heap_2.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\FreeRTOS_heap_3.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\FreeRTOS_heap_4.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\FreeRTOS_heap_5.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\FreeRTOS_list.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\FreeRTOS_port_CM0.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\FreeRTOS_port_CM3.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\FreeRTOS_queue.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\FreeRTOS_tasks.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\FreeRTOS_timers.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\main.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\NVM_CSN.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\SPIM.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\SPIM_INT.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\SPIM_IntClock.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\SPIM_PM.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\USB.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\USBUART.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\USBUART_audio.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\USBUART_boot.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\USBUART_cdc.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\USBUART_cls.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\USBUART_descr.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\USBUART_Dm.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\USBUART_Dp.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\USBUART_drv.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\USBUART_episr.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\USBUART_hid.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\USBUART_midi.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\USBUART_pm.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\USBUART_std.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\Listing Files\USBUART_vnd.lst</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\PSoC-FreeRTOS.elf</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\PSoC-FreeRTOS.hex</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CortexM3\ARM_GCC_493\Debug\PSoC-FreeRTOS.map</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\PSoC-FreeRTOS.gpdsc</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\PSoC-FreeRTOS.rpt</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\PSoC-FreeRTOS_timing.html</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>PSoC-FreeRTOS</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\CortexM0</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\CortexM0\ARM_GCC_493</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\CortexM0\ARM_GCC_493\Debug</v>
+<v>PSoC-FreeRTOS\E2ForLife+FreeRTOS\CortexM0\ARM_GCC_493\Debug\E2ForLife+FreeRTOS.a</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\BLUE.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\Cm0Start.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\CyFlash.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\CyLFClk.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\CyLib.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\cymetadata.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\cyPm.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\cyutils.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\FreeRTOS.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\FreeRTOS_croutine.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\FreeRTOS_event_groups.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\FreeRTOS_heap_1.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\FreeRTOS_heap_2.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\FreeRTOS_heap_3.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\FreeRTOS_heap_4.lst</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\CortexM0\ARM_GCC_493\Debug\Listing Files\FreeRTOS_heap_5.lst</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStates>
+<TreeKeysV2>
+<v>Datasheet</v>
+</TreeKeysV2>
+<TreeStatesV2>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>PSoC-FreeRTOS</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\PSoC 4 Architecture TRM</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\PSoC 4200 Family Datasheet</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\System Reference Guides</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\System Reference Guides\cy_boot_v5_20</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\System Reference Guides\cy_lfclk_v1_0</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\cy_pins_v2_10</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\cy_pins_v2_10\cy_pins_v2_10.pdf</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\PSoC 5 Architecture TRM</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CY8C56LP Family Datasheet</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\System Reference Guides</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\System Reference Guides\cy_boot_v5_20</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\cy_pins_v2_10</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\cy_pins_v2_10\cy_pins_v2_10.pdf</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CyControlReg_v1_80.pdf</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\SPI_Master_v2_50.pdf</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\USBFS_v2_80.pdf</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>PSoC-FreeRTOS</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\PSoC 4 Architecture TRM</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\PSoC 4200 Family Datasheet</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\System Reference Guides</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\System Reference Guides\cy_boot_v5_20</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\System Reference Guides\cy_lfclk_v1_0</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\cy_pins_v2_10</v>
+<v>PSoC-FreeRTOS\PSoC4-FreeRTOS\cy_pins_v2_10\cy_pins_v2_10.pdf</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\PSoC 5 Architecture TRM</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CY8C56LP Family Datasheet</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\System Reference Guides</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\System Reference Guides\cy_boot_v5_20</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\cy_pins_v2_10</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\cy_pins_v2_10\cy_pins_v2_10.pdf</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\CyControlReg_v1_80.pdf</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\SPI_Master_v2_50.pdf</v>
+<v>PSoC-FreeRTOS\PSoC-FreeRTOS\USBFS_v2_80.pdf</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStatesV2>
+</CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35>
+</dataGuid>
+</userData>
+</CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
+<Unloaded />
+<OpenDocs>
+<name v=".\PSoC-FreeRTOS.cydsn\E2ForLife_W5500_v1_0\API\w5500.c" />
+<name v=".\PSoC-FreeRTOS.cydsn\FreeRTOS_Task_v1_0\API\task.c" />
+<name v=".\E2ForLife+FreeRTOS.cylib\FreeRTOS_Task_v1_0\API\task.c" />
+</OpenDocs>
+<config v="" />
+<AutoUpdate v="true" />
+</CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
+</CyXmlSerializer>

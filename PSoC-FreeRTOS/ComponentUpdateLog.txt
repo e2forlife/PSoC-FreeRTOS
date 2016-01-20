@@ -31,3 +31,9 @@ PSoC-FreeRTOS: TopDesign.cysch
 	USBUART [v2.0] to [v2.0]
 
 
+Last Modified Date & Time: 01/17/2016 11:56:34
+
+PSoC-FreeRTOS: TopDesign.cysch
+	CLI [v1.1] to [v1.2]
+
+

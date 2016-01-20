@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CyXmlSerializer>
+<!--This file is machine generated and read. It is not intended to be edited by hand.-->
+<!--Due to this, there is no schema for this file.-->
+<CyGuid_7a7929f8-5e3b-4f86-a093-2d4ee6513111 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtProjectCustomData" version="1">
+<CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997 type_name="CyDesigner.Common.Base.CyCustomData" version="2">
+<userData>
+<dataGuid v="925cc1e1-309e-4e08-b0a1-09a83c35b157">
+<CyGuid_925cc1e1-309e-4e08-b0a1-09a83c35b157 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtProjectPSoCExe+CyCodeGenDepUserInfo" version="1">
+<deps_list>
+<v>.\TopDesign\TopDesign.cysch</v>
+<v>.\FreeRTOS_v8_22\FreeRTOS_v8_22.cysym</v>
+<v>.\FreeRTOS_v8_22\API\croutine.c</v>
+<v>.\FreeRTOS_v8_22\API\event_groups.c</v>
+<v>.\FreeRTOS_v8_22\API\FreeRTOS.c</v>
+<v>.\FreeRTOS_v8_22\API\heap_1.c</v>
+<v>.\FreeRTOS_v8_22\API\heap_2.c</v>
+<v>.\FreeRTOS_v8_22\API\heap_3.c</v>
+<v>.\FreeRTOS_v8_22\API\heap_4.c</v>
+<v>.\FreeRTOS_v8_22\API\heap_5.c</v>
+<v>.\FreeRTOS_v8_22\API\list.c</v>
+<v>.\FreeRTOS_v8_22\API\port_CM0.c</v>
+<v>.\FreeRTOS_v8_22\API\port_CM3.c</v>
+<v>.\FreeRTOS_v8_22\API\queue.c</v>
+<v>.\FreeRTOS_v8_22\API\tasks.c</v>
+<v>.\FreeRTOS_v8_22\API\timers.c</v>
+<v>.\FreeRTOS_v8_22\API\Config.h</v>
+<v>.\FreeRTOS_v8_22\API\croutine.h</v>
+<v>.\FreeRTOS_v8_22\API\event_groups.h</v>
+<v>.\FreeRTOS_v8_22\API\FreeRTOS.h</v>
+<v>.\FreeRTOS_v8_22\API\list.h</v>
+<v>.\FreeRTOS_v8_22\API\mpu_wrappers.h</v>
+<v>.\FreeRTOS_v8_22\API\portable.h</v>
+<v>.\FreeRTOS_v8_22\API\portmacro_CM0.h</v>
+<v>.\FreeRTOS_v8_22\API\portmacro_CM3.h</v>
+<v>.\FreeRTOS_v8_22\API\projdefs.h</v>
+<v>.\FreeRTOS_v8_22\API\queue.h</v>
+<v>.\FreeRTOS_v8_22\API\semphr.h</v>
+<v>.\FreeRTOS_v8_22\API\StackMacros.h</v>
+<v>.\FreeRTOS_v8_22\API\task.h</v>
+<v>.\FreeRTOS_v8_22\API\timers.h</v>
+<v>.\FreeRTOS_v8_22\API\portmacro.h</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\cy_pins_v2_10.cysym</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\cy_pins_v2_10.pdf</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\cy_pins_v2_10.cystate</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\cy_pins_v2_10.cyprimitive</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\custom.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyenums.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinsdata.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinpicture.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinutils.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cygeneralcontrol.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cygeneralcontrol.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyinputcontrol.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyinputcontrol.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cymappingcontrol.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cymappingcontrol.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyoutputcontrol.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyoutputcontrol.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinaliasdialog.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinaliasdialog.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinscontrol.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinscontrol.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyporcontrol.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyporcontrol.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\Resource1.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyclockingcontrol.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyclockingcontrol.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cygeneralcontrol.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyinputcontrol.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cymappingcontrol.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyoutputcontrol.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinaliasdialog.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinscontrol.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyporcontrol.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\Resource1.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyclockingcontrol.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\PSoC4\API\pins.c</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\PSoC4\API\pins.h</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\PSoC4\API\aliases.h</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\cy_pins_v2_10.cysym</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\cy_pins_v2_10.pdf</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\cy_pins_v2_10.cystate</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\cy_pins_v2_10.cyprimitive</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\custom.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyenums.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinsdata.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinpicture.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinutils.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cygeneralcontrol.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cygeneralcontrol.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyinputcontrol.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyinputcontrol.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cymappingcontrol.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cymappingcontrol.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyoutputcontrol.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyoutputcontrol.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinaliasdialog.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinaliasdialog.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinscontrol.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinscontrol.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyporcontrol.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyporcontrol.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\Resource1.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyclockingcontrol.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyclockingcontrol.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cygeneralcontrol.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyinputcontrol.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cymappingcontrol.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyoutputcontrol.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinaliasdialog.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinscontrol.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyporcontrol.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\Resource1.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyclockingcontrol.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\PSoC4\API\pins.c</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\PSoC4\API\pins.h</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\PSoC4\API\aliases.h</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\cy_pins_v2_10.cysym</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\cy_pins_v2_10.pdf</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\cy_pins_v2_10.cystate</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\cy_pins_v2_10.cyprimitive</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\custom.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyenums.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinsdata.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinpicture.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinutils.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cygeneralcontrol.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cygeneralcontrol.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyinputcontrol.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyinputcontrol.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cymappingcontrol.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cymappingcontrol.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyoutputcontrol.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyoutputcontrol.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinaliasdialog.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinaliasdialog.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinscontrol.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinscontrol.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyporcontrol.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyporcontrol.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\Resource1.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyclockingcontrol.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyclockingcontrol.Designer.cs</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cygeneralcontrol.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyinputcontrol.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cymappingcontrol.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyoutputcontrol.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinaliasdialog.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cypinscontrol.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyporcontrol.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\Resource1.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\Custom\cyclockingcontrol.resx</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\PSoC4\API\pins.c</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\PSoC4\API\pins.h</v>
+<v>${CyRoot}\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\PSoC4\API\aliases.h</v>
+<v>.\PSoC4-FreeRTOS.cydwr</v>
+<v>${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\cy_boot_v5_20\PSoC4\API\cm0gcc.ld</v>
+<v>${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\cy_boot_v5_20\PSoC4\API\Cm0RealView.scat</v>
+<v>${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\cy_boot_v5_20\PSoC4\API\Cm0Start.c</v>
+<v>${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\cy_boot_v5_20\PSoC4\API\core_cm0.h</v>
+<v>${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\cy_boot_v5_20\PSoC4\API\core_cm0_psoc4.h</v>
+<v>${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\cy_boot_v5_20\PSoC4\API\CyBootAsmGnu.s</v>
+<v>${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\cy_boot_v5_20\PSoC4\API\CyBootAsmRv.s</v>
+<v>${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\cy_boot_v5_20\PSoC4\API\CyFlash.c</v>
+<v>${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\cy_boot_v5_20\PSoC4\API\CyFlash.h</v>
+<v>${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\cy_boot_v5_20\PSoC4\API\CyLib.c</v>
+<v>${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\cy_boot_v5_20\PSoC4\API\CyLib.h</v>
+<v>${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\cy_boot_v5_20\PSoC4\API\cyPm.c</v>
+<v>${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\cy_boot_v5_20\PSoC4\API\cyPm.h</v>
+<v>${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\cy_boot_v5_20\PSoC4\API\cytypes.h</v>
+<v>${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\cy_boot_v5_20\PSoC4\API\cyutils.c</v>
+<v>${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\cy_boot_v5_20\PSoC4\API\cypins.h</v>
+<v>${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\cy_boot_v5_20\PSoC4\API\core_cmFunc.h</v>
+<v>${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\cy_boot_v5_20\PSoC4\API\core_cmInstr.h</v>
+<v>${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\cy_boot_v5_20\PSoC4\API\Cm0Iar.icf</v>
+<v>${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\cy_boot_v5_20\PSoC4\API\CyBootAsmIar.s</v>
+</deps_list>
+<gen_list>
+<v>.\Generated_Source\PSoC4\cyfitter_cfg.h</v>
+<v>.\Generated_Source\PSoC4\cyfitter_cfg.c</v>
+<v>.\Generated_Source\PSoC4\protect.hex</v>
+<v>.\Generated_Source\PSoC4\cymetadata.c</v>
+<v>.\Generated_Source\PSoC4\cydevice_trm.h</v>
+<v>.\Generated_Source\PSoC4\cydevicegnu_trm.inc</v>
+<v>.\Generated_Source\PSoC4\cydevicerv_trm.inc</v>
+<v>.\Generated_Source\PSoC4\cydeviceiar_trm.inc</v>
+<v>.\Generated_Source\PSoC4\cyfittergnu.inc</v>
+<v>.\Generated_Source\PSoC4\cyfitterrv.inc</v>
+<v>.\Generated_Source\PSoC4\cyfitteriar.inc</v>
+<v>.\Generated_Source\PSoC4\cyfitter.h</v>
+<v>.\Generated_Source\PSoC4\cydisabledsheets.h</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_croutine.c</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_event_groups.c</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS.c</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_heap_1.c</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_heap_2.c</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_heap_3.c</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_heap_4.c</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_heap_5.c</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_list.c</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_port_CM0.c</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_port_CM3.c</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_queue.c</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_tasks.c</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_timers.c</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_Config.h</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_croutine.h</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_event_groups.h</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS.h</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_list.h</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_mpu_wrappers.h</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_portable.h</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_portmacro_CM0.h</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_portmacro_CM3.h</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_projdefs.h</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_queue.h</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_semphr.h</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_StackMacros.h</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_task.h</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_timers.h</v>
+<v>.\Generated_Source\PSoC4\FreeRTOS_portmacro.h</v>
+<v>.\Generated_Source\PSoC4\RED.c</v>
+<v>.\Generated_Source\PSoC4\RED.h</v>
+<v>.\Generated_Source\PSoC4\RED_aliases.h</v>
+<v>.\Generated_Source\PSoC4\GREEN.c</v>
+<v>.\Generated_Source\PSoC4\GREEN.h</v>
+<v>.\Generated_Source\PSoC4\GREEN_aliases.h</v>
+<v>.\Generated_Source\PSoC4\BLUE.c</v>
+<v>.\Generated_Source\PSoC4\BLUE.h</v>
+<v>.\Generated_Source\PSoC4\BLUE_aliases.h</v>
+<v>.\Generated_Source\PSoC4\cycodeshareimport.ld</v>
+<v>.\Generated_Source\PSoC4\cycodeshareimport.scat</v>
+<v>.\Generated_Source\PSoC4\cm0gcc.ld</v>
+<v>.\Generated_Source\PSoC4\Cm0RealView.scat</v>
+<v>.\Generated_Source\PSoC4\Cm0Start.c</v>
+<v>.\Generated_Source\PSoC4\core_cm0_psoc4.h</v>
+<v>.\Generated_Source\PSoC4\core_cm0.h</v>
+<v>.\Generated_Source\PSoC4\CyBootAsmGnu.s</v>
+<v>.\Generated_Source\PSoC4\CyBootAsmRv.s</v>
+<v>.\Generated_Source\PSoC4\CyFlash.c</v>
+<v>.\Generated_Source\PSoC4\CyFlash.h</v>
+<v>.\Generated_Source\PSoC4\CyLib.c</v>
+<v>.\Generated_Source\PSoC4\CyLib.h</v>
+<v>.\Generated_Source\PSoC4\cyPm.c</v>
+<v>.\Generated_Source\PSoC4\cyPm.h</v>
+<v>.\Generated_Source\PSoC4\cytypes.h</v>
+<v>.\Generated_Source\PSoC4\cyutils.c</v>
+<v>.\Generated_Source\PSoC4\cypins.h</v>
+<v>.\Generated_Source\PSoC4\core_cmFunc.h</v>
+<v>.\Generated_Source\PSoC4\core_cmInstr.h</v>
+<v>.\Generated_Source\PSoC4\Cm0Iar.icf</v>
+<v>.\Generated_Source\PSoC4\CyBootAsmIar.s</v>
+<v>.\Generated_Source\PSoC4\CyLFClk.c</v>
+<v>.\Generated_Source\PSoC4\CyLFClk.h</v>
+<v>.\Generated_Source\PSoC4\project.h</v>
+</gen_list>
+<warp_dep>
+<v>C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\warp\lib\ieee\work\stdlogic.vif</v>
+<v>C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\warp\lib\common\stdlogic\mod_genv.vif</v>
+<v>C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\warp\lib\common\stdlogic\rtlpkg.vif</v>
+</warp_dep>
+<deps_time v="130975231981866128" />
+<top_block v="TopDesign" />
+<last_generation v="0" />
+</CyGuid_925cc1e1-309e-4e08-b0a1-09a83c35b157>
+</dataGuid>
+<dataGuid v="47ec7058-2f43-4a2f-ae73-172624e235df">
+<CyGuid_47ec7058-2f43-4a2f-ae73-172624e235df type_name="CyDesigner.Common.ProjMgmt.Model.CyConfDepList" version="1">
+<name v="cmpl_deps">
+<CyGuid_f44455c5-3770-4452-b988-0a7a7ff46256 type_name="CyDesigner.Common.ProjMgmt.Model.CyConfigDependencies" version="1">
+<dependency_info name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM0" xml_contents_version="2">
+<CyGuid_1173175f-1b9b-4ad4-a065-754a48a27021 type_name="CyDesigner.Common.Base.CyFileDeps" version="1">
+<file name=".\CortexM0\ARM_GCC_493\Debug\main.o">
+<dep name=".\Generated_Source\PSoC4\BLUE.h" />
+<dep name=".\Generated_Source\PSoC4\BLUE_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\CyFlash.h" />
+<dep name=".\Generated_Source\PSoC4\CyLFClk.h" />
+<dep name=".\Generated_Source\PSoC4\CyLib.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_Config.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_StackMacros.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_croutine.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_event_groups.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_list.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_mpu_wrappers.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portable.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM0.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM3.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_projdefs.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_queue.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_semphr.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_task.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_timers.h" />
+<dep name=".\Generated_Source\PSoC4\GREEN.h" />
+<dep name=".\Generated_Source\PSoC4\GREEN_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\RED.h" />
+<dep name=".\Generated_Source\PSoC4\RED_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\core_cm0.h" />
+<dep name=".\Generated_Source\PSoC4\core_cm0_psoc4.h" />
+<dep name=".\Generated_Source\PSoC4\core_cmFunc.h" />
+<dep name=".\Generated_Source\PSoC4\core_cmInstr.h" />
+<dep name=".\Generated_Source\PSoC4\cyPm.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cydisabledsheets.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter_cfg.h" />
+<dep name=".\Generated_Source\PSoC4\cypins.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+<dep name=".\Generated_Source\PSoC4\project.h" />
+<dep name=".\main.c" />
+</file>
+<file name=".\Generated_Source\PSoC4\BLUE.h" />
+<file name=".\Generated_Source\PSoC4\BLUE_aliases.h" />
+<file name=".\Generated_Source\PSoC4\CyFlash.h" />
+<file name=".\Generated_Source\PSoC4\CyLFClk.h" />
+<file name=".\Generated_Source\PSoC4\CyLib.h" />
+<file name=".\Generated_Source\PSoC4\FreeRTOS.h" />
+<file name=".\Generated_Source\PSoC4\FreeRTOS_Config.h" />
+<file name=".\Generated_Source\PSoC4\FreeRTOS_StackMacros.h" />
+<file name=".\Generated_Source\PSoC4\FreeRTOS_croutine.h" />
+<file name=".\Generated_Source\PSoC4\FreeRTOS_event_groups.h" />
+<file name=".\Generated_Source\PSoC4\FreeRTOS_list.h" />
+<file name=".\Generated_Source\PSoC4\FreeRTOS_mpu_wrappers.h" />
+<file name=".\Generated_Source\PSoC4\FreeRTOS_portable.h" />
+<file name=".\Generated_Source\PSoC4\FreeRTOS_portmacro.h" />
+<file name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM0.h" />
+<file name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM3.h" />
+<file name=".\Generated_Source\PSoC4\FreeRTOS_projdefs.h" />
+<file name=".\Generated_Source\PSoC4\FreeRTOS_queue.h" />
+<file name=".\Generated_Source\PSoC4\FreeRTOS_semphr.h" />
+<file name=".\Generated_Source\PSoC4\FreeRTOS_task.h" />
+<file name=".\Generated_Source\PSoC4\FreeRTOS_timers.h" />
+<file name=".\Generated_Source\PSoC4\GREEN.h" />
+<file name=".\Generated_Source\PSoC4\GREEN_aliases.h" />
+<file name=".\Generated_Source\PSoC4\RED.h" />
+<file name=".\Generated_Source\PSoC4\RED_aliases.h" />
+<file name=".\Generated_Source\PSoC4\core_cm0.h" />
+<file name=".\Generated_Source\PSoC4\core_cm0_psoc4.h" />
+<file name=".\Generated_Source\PSoC4\core_cmFunc.h" />
+<file name=".\Generated_Source\PSoC4\core_cmInstr.h" />
+<file name=".\Generated_Source\PSoC4\cyPm.h" />
+<file name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<file name=".\Generated_Source\PSoC4\cydisabledsheets.h" />
+<file name=".\Generated_Source\PSoC4\cyfitter.h" />
+<file name=".\Generated_Source\PSoC4\cyfitter_cfg.h" />
+<file name=".\Generated_Source\PSoC4\cypins.h" />
+<file name=".\Generated_Source\PSoC4\cytypes.h" />
+<file name=".\Generated_Source\PSoC4\project.h" />
+<file name=".\main.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\BLUE.o">
+<dep name=".\Generated_Source\PSoC4\BLUE.c" />
+<dep name=".\Generated_Source\PSoC4\BLUE.h" />
+<dep name=".\Generated_Source\PSoC4\BLUE_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cypins.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\BLUE.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\Cm0Start.o">
+<dep name=".\Generated_Source\PSoC4\Cm0Start.c" />
+<dep name=".\Generated_Source\PSoC4\CyLFClk.h" />
+<dep name=".\Generated_Source\PSoC4\CyLib.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter_cfg.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+<dep name=".\cyapicallbacks.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\Cm0Start.c" />
+<file name=".\cyapicallbacks.h" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\CyFlash.o">
+<dep name=".\Generated_Source\PSoC4\CyFlash.c" />
+<dep name=".\Generated_Source\PSoC4\CyFlash.h" />
+<dep name=".\Generated_Source\PSoC4\CyLFClk.h" />
+<dep name=".\Generated_Source\PSoC4\CyLib.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\CyFlash.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\CyLFClk.o">
+<dep name=".\Generated_Source\PSoC4\CyLFClk.c" />
+<dep name=".\Generated_Source\PSoC4\CyLFClk.h" />
+<dep name=".\Generated_Source\PSoC4\CyLib.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\CyLFClk.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\CyLib.o">
+<dep name=".\Generated_Source\PSoC4\CyFlash.h" />
+<dep name=".\Generated_Source\PSoC4\CyLFClk.h" />
+<dep name=".\Generated_Source\PSoC4\CyLib.c" />
+<dep name=".\Generated_Source\PSoC4\CyLib.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\CyLib.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS.o">
+<dep name=".\Generated_Source\PSoC4\CyLFClk.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS.c" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_Config.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_event_groups.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_list.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_mpu_wrappers.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portable.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM0.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM3.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_projdefs.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_queue.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_task.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_timers.h" />
+<dep name=".\Generated_Source\PSoC4\core_cm0.h" />
+<dep name=".\Generated_Source\PSoC4\core_cm0_psoc4.h" />
+<dep name=".\Generated_Source\PSoC4\core_cmFunc.h" />
+<dep name=".\Generated_Source\PSoC4\core_cmInstr.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cylib.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\FreeRTOS.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_croutine.o">
+<dep name=".\Generated_Source\PSoC4\FreeRTOS.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_Config.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_croutine.c" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_croutine.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_list.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_mpu_wrappers.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portable.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM0.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM3.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_projdefs.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_task.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\FreeRTOS_croutine.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_event_groups.o">
+<dep name=".\Generated_Source\PSoC4\FreeRTOS.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_Config.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_event_groups.c" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_event_groups.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_list.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_mpu_wrappers.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portable.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM0.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM3.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_projdefs.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_task.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_timers.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\FreeRTOS_event_groups.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_heap_1.o">
+<dep name=".\Generated_Source\PSoC4\FreeRTOS.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_Config.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_heap_1.c" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_list.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_mpu_wrappers.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portable.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM0.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM3.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_projdefs.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_task.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\FreeRTOS_heap_1.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_heap_2.o">
+<dep name=".\Generated_Source\PSoC4\FreeRTOS.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_Config.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_heap_2.c" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_list.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_mpu_wrappers.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portable.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM0.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM3.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_projdefs.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_task.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\FreeRTOS_heap_2.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_heap_3.o">
+<dep name=".\Generated_Source\PSoC4\FreeRTOS.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_Config.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_heap_3.c" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_list.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_mpu_wrappers.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portable.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM0.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM3.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_projdefs.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_task.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\FreeRTOS_heap_3.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_heap_4.o">
+<dep name=".\Generated_Source\PSoC4\FreeRTOS.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_Config.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_heap_4.c" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_list.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_mpu_wrappers.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portable.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM0.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM3.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_projdefs.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_task.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\FreeRTOS_heap_4.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_heap_5.o">
+<dep name=".\Generated_Source\PSoC4\FreeRTOS.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_Config.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_heap_5.c" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_list.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_mpu_wrappers.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portable.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM0.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM3.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_projdefs.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_task.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\FreeRTOS_heap_5.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_list.o">
+<dep name=".\Generated_Source\PSoC4\FreeRTOS.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_Config.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_list.c" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_list.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_mpu_wrappers.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portable.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM0.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM3.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_projdefs.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\FreeRTOS_list.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_port_CM0.o">
+<dep name=".\Generated_Source\PSoC4\FreeRTOS.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_Config.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_list.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_mpu_wrappers.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_port_CM0.c" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portable.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM0.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM3.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_projdefs.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_task.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\FreeRTOS_port_CM0.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_port_CM3.o">
+<dep name=".\Generated_Source\PSoC4\FreeRTOS.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_Config.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_list.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_mpu_wrappers.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_port_CM3.c" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portable.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM0.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM3.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_projdefs.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_task.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\FreeRTOS_port_CM3.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_queue.o">
+<dep name=".\Generated_Source\PSoC4\FreeRTOS.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_Config.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_croutine.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_list.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_mpu_wrappers.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portable.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM0.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM3.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_projdefs.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_queue.c" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_queue.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_task.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\FreeRTOS_queue.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_tasks.o">
+<dep name=".\Generated_Source\PSoC4\FreeRTOS.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_Config.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_StackMacros.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_list.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_mpu_wrappers.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portable.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM0.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM3.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_projdefs.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_task.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_tasks.c" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_timers.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\FreeRTOS_tasks.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_timers.o">
+<dep name=".\Generated_Source\PSoC4\FreeRTOS.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_Config.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_list.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_mpu_wrappers.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portable.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM0.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_portmacro_CM3.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_projdefs.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_queue.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_task.h" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_timers.c" />
+<dep name=".\Generated_Source\PSoC4\FreeRTOS_timers.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\FreeRTOS_timers.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\GREEN.o">
+<dep name=".\Generated_Source\PSoC4\GREEN.c" />
+<dep name=".\Generated_Source\PSoC4\GREEN.h" />
+<dep name=".\Generated_Source\PSoC4\GREEN_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cypins.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\GREEN.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\RED.o">
+<dep name=".\Generated_Source\PSoC4\RED.c" />
+<dep name=".\Generated_Source\PSoC4\RED.h" />
+<dep name=".\Generated_Source\PSoC4\RED_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cypins.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\RED.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\cyPm.o">
+<dep name=".\Generated_Source\PSoC4\CyLFClk.h" />
+<dep name=".\Generated_Source\PSoC4\CyLib.h" />
+<dep name=".\Generated_Source\PSoC4\cyPm.c" />
+<dep name=".\Generated_Source\PSoC4\cyPm.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\cyPm.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\cyfitter_cfg.o">
+<dep name=".\Generated_Source\PSoC4\CyLFClk.h" />
+<dep name=".\Generated_Source\PSoC4\CyLib.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter_cfg.c" />
+<dep name=".\Generated_Source\PSoC4\cyfitter_cfg.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\cyfitter_cfg.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\cymetadata.o">
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cymetadata.c" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+</file>
+<file name=".\Generated_Source\PSoC4\cymetadata.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\cyutils.o">
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+<dep name=".\Generated_Source\PSoC4\cyutils.c" />
+</file>
+<file name=".\Generated_Source\PSoC4\cyutils.c" />
+<file name=".\CortexM0\ARM_GCC_493\Debug\CyBootAsmGnu.o">
+<dep name=".\Generated_Source\PSoC4\CyBootAsmGnu.s" />
+<dep name=".\Generated_Source\PSoC4\cydevicegnu_trm.inc" />
+<dep name=".\Generated_Source\PSoC4\cyfittergnu.inc" />
+</file>
+<file name=".\Generated_Source\PSoC4\CyBootAsmGnu.s" />
+<file name=".\Generated_Source\PSoC4\cydevicegnu_trm.inc" />
+<file name=".\Generated_Source\PSoC4\cyfittergnu.inc" />
+</CyGuid_1173175f-1b9b-4ad4-a065-754a48a27021>
+</dependency_info>
+</CyGuid_f44455c5-3770-4452-b988-0a7a7ff46256>
+</name>
+<name v="link_deps">
+<CyGuid_f44455c5-3770-4452-b988-0a7a7ff46256 type_name="CyDesigner.Common.ProjMgmt.Model.CyConfigDependencies" version="1">
+<dependency_info name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM0" xml_contents_version="2">
+<CyGuid_1173175f-1b9b-4ad4-a065-754a48a27021 type_name="CyDesigner.Common.Base.CyFileDeps" version="1">
+<file name=".\CortexM0\ARM_GCC_493\Debug\PSoC4-FreeRTOS.hex">
+<dep name=".\CortexM0\ARM_GCC_493\Debug\main.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\cyfitter_cfg.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\cymetadata.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_croutine.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_event_groups.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_heap_1.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_heap_2.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_heap_3.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_heap_4.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_heap_5.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_list.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_port_CM0.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_port_CM3.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_queue.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_tasks.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\FreeRTOS_timers.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\RED.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\GREEN.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\BLUE.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\Cm0Start.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\CyBootAsmGnu.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\CyFlash.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\CyLib.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\cyPm.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\cyutils.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\CyLFClk.o" />
+<dep name=".\CortexM0\ARM_GCC_493\Debug\PSoC4-FreeRTOS.a" />
+<dep name="${CyRoot}\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM0\ARM_GCC_493\Debug\CyComponentLibrary.a" />
+</file>
+</CyGuid_1173175f-1b9b-4ad4-a065-754a48a27021>
+</dependency_info>
+</CyGuid_f44455c5-3770-4452-b988-0a7a7ff46256>
+</name>
+</CyGuid_47ec7058-2f43-4a2f-ae73-172624e235df>
+</dataGuid>
+<dataGuid v="b0374e30-ce3a-47f2-ad85-821643292c68">
+<CyGuid_b0374e30-ce3a-47f2-ad85-821643292c68 type_name="CyDesigner.Common.ProjMgmt.Common.CyCmdLineData" version="2">
+<genericCmdLineData>
+<name v="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM0">
+<name_val_pair name=".\main.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\cyfitter_cfg.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\cymetadata.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\FreeRTOS_croutine.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\FreeRTOS_event_groups.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\FreeRTOS.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\FreeRTOS_heap_1.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\FreeRTOS_heap_2.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\FreeRTOS_heap_3.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\FreeRTOS_heap_4.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\FreeRTOS_heap_5.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\FreeRTOS_list.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\FreeRTOS_port_CM0.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\FreeRTOS_port_CM3.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\FreeRTOS_queue.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\FreeRTOS_tasks.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\FreeRTOS_timers.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\RED.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\GREEN.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\BLUE.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\Cm0Start.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\CyBootAsmGnu.s" v="-mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -alh=${OutputDir}/${CompileFile}.lst -g -W" />
+<name_val_pair name=".\Generated_Source\PSoC4\CyFlash.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\CyLib.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\cyPm.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\cyutils.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name=".\Generated_Source\PSoC4\CyLFClk.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects" />
+<name_val_pair name="C:\Users\chuck\Documents\GitHub\PSoC-FreeRTOS\PSoC-FreeRTOS\PSoC4-FreeRTOS.cydsn\CortexM0\ARM_GCC_493\Debug\PSoC4-FreeRTOS.hex" v="-mcpu=cortex-m0 -mthumb -g -ffunction-sections -Og -L Generated_Source\PSoC4 -Wl,-Map,${OutputDir}/${ProjectShortName}.map -T Generated_Source\PSoC4\cm0gcc.ld -specs=nano.specs -Wl,--gc-sections" />
+</name>
+</genericCmdLineData>
+<codeGenCmdLineTag v="-.appdatapath &quot;C:\Users\chuck\AppData\Local\Cypress Semiconductor\PSoC Creator\3.3&quot; -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -p C:\Users\chuck\Documents\GitHub\PSoC-FreeRTOS\PSoC-FreeRTOS\PSoC4-FreeRTOS.cydsn\PSoC4-FreeRTOS.cyprj -d CY8C4245AXI-483 -s C:\Users\chuck\Documents\GitHub\PSoC-FreeRTOS\PSoC-FreeRTOS\PSoC4-FreeRTOS.cydsn\Generated_Source\PSoC4 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE" />
+</CyGuid_b0374e30-ce3a-47f2-ad85-821643292c68>
+</dataGuid>
+<dataGuid v="769d31ea-68b1-4f0c-b90a-7c10a43ee563">
+<CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563 type_name="CyDesigner.Common.ProjMgmt.Model.CyLinkCustomData" version="1">
+<deps_time v="130975232321050942" />
+</CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563>
+</dataGuid>
+</userData>
+</CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
+<properties />
+</CyGuid_7a7929f8-5e3b-4f86-a093-2d4ee6513111>
+</CyXmlSerializer>
