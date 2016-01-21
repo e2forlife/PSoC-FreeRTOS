@@ -75,7 +75,12 @@
  * See heap_2.c, heap_3.c and heap_4.c for alternative implementations, and the
  * memory management pages of http://www.FreeRTOS.org for more information.
  */
+
+/* ======================================================================== */
+/* PSoC Component Customizations */
+
 #if (`$MemManager` == 1)
+/* ======================================================================== */
 	
 #include <stdlib.h>
 
@@ -84,8 +89,12 @@ all the API functions to use the MPU wrappers.  That should only be done when
 task.h is included from an application file. */
 #define MPU_WRAPPERS_INCLUDED_FROM_API_FILE
 
+/* ======================================================================== */
+/* PSoC Component Customizations */
+
 #include "`$INSTANCE_NAME`.h"
 #include "`$INSTANCE_NAME`_task.h"
+/* ======================================================================== */
 
 #undef MPU_WRAPPERS_INCLUDED_FROM_API_FILE
 
@@ -172,5 +181,9 @@ size_t xPortGetFreeHeapSize( void )
 	return ( configADJUSTED_HEAP_SIZE - xNextFreeByte );
 }
 
+/* ======================================================================== */
+/* PSoC Component Customizations */
+
 #endif
+/* ======================================================================== */
 

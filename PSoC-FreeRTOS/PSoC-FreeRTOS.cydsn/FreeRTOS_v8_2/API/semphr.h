@@ -76,7 +76,12 @@
 	#error "include FreeRTOS.h" must appear in source files before "include semphr.h"
 #endif
 
+/* ======================================================================== */
+/* PSoC Component Customizations */
+
 #include "`$INSTANCE_NAME`_queue.h"
+
+/* ======================================================================== */
 
 typedef QueueHandle_t SemaphoreHandle_t;
 

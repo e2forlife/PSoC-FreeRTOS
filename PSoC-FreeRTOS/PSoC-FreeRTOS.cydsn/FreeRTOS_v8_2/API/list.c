@@ -69,8 +69,12 @@
 
 
 #include <stdlib.h>
+/* ======================================================================== */
+/* PSoC Component Customizations */
+
 #include "`$INSTANCE_NAME`.h"
 #include "`$INSTANCE_NAME`_list.h"
+/* ======================================================================== */
 
 /*-----------------------------------------------------------
  * PUBLIC LIST API documented in list.h

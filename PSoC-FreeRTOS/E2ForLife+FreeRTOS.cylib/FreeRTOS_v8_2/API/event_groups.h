@@ -74,7 +74,12 @@
 	#error "include FreeRTOS.h" must appear in source files before "include event_groups.h"
 #endif
 
+/* ======================================================================== */
+/* PSoC Component Customizations */
+
 #include "`$INSTANCE_NAME`_timers.h"
+
+/* ======================================================================== */
 
 #ifdef __cplusplus
 extern "C" {

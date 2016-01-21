@@ -1,5 +1,5 @@
 /*
-    FreeRTOS V8.2.2 - Copyright (C) 2015 Real Time Engineers Ltd.
+    FreeRTOS V8.2.3 - Copyright (C) 2015 Real Time Engineers Ltd.
     All rights reserved
 
     VISIT http://www.FreeRTOS.org TO ENSURE YOU ARE USING THE LATEST VERSION.
@@ -8,7 +8,7 @@
 
     FreeRTOS is free software; you can redistribute it and/or modify it under
     the terms of the GNU General Public License (version 2) as published by the
-    Free Software Foundation >>!AND MODIFIED BY!<< the FreeRTOS exception.
+    Free Software Foundation >>>> AND MODIFIED BY <<<< the FreeRTOS exception.
 
     ***************************************************************************
     >>!   NOTE: The modification to the GPL is included to allow you to     !<<
@@ -95,6 +95,9 @@
 extern "C" {
 #endif
 
+/* ======================================================================== */
+/* PSoC Component Customizations */
+
 /* Application specific configuration options. */
 #include "`$INSTANCE_NAME`_Config.h"
 
@@ -103,6 +106,14 @@ extern "C" {
 
 /* Definitions specific to the port being used. */
 #include "`$INSTANCE_NAME`_portable.h"
+
+/* Added some shortcut procedures for initializing the RTOS on hte PSoC */
+void `$INSTANCE_NAME`_Start( void );
+void `$INSTANCE_NAME`_Init( void );
+void `$INSTANCE_NAME`_Enable( void );
+
+/* End of PSoC SPecififc code */
+/* ======================================================================== */
 
 /*
  * Check all the required application specific macros have been defined.
@@ -646,10 +657,6 @@ extern "C" {
 	#define traceTASK_NOTIFY_GIVE_FROM_ISR()
 #endif
 
-#ifndef traceTASK_DELAY_SUSPEND
-	#define traceTASK_DELAY_SUSPEND( pxCurrentTCB )
-#endif
-
 #ifndef configGENERATE_RUN_TIME_STATS
 	#define configGENERATE_RUN_TIME_STATS 0
 #endif
@@ -824,14 +831,13 @@ V8 if desired. */
 	#define xList List_t
 #endif /* configENABLE_BACKWARD_COMPATIBILITY */
 
-/*
- * These functions declarations were added by E2ForLife to support Cypress PSoC
- * implementations.
- */
-
-void `$INSTANCE_NAME`_Init( void );
-void `$INSTANCE_NAME`_Enable( void );
-void `$INSTANCE_NAME`_Start( void );
+/* Set configUSE_TASK_FPU_SUPPORT to 0 to omit floating point support even
+if floating point hardware is otherwise supported by the FreeRTOS port in use.
+This constant is not supported by all FreeRTOS ports that include floating 
+point support. */
+#ifndef configUSE_TASK_FPU_SUPPORT
+	#define configUSE_TASK_FPU_SUPPORT 1
+#endif
 
 #ifdef __cplusplus
 }

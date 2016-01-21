@@ -66,10 +66,13 @@
 
     1 tab == 4 spaces!
 */
+/* ======================================================================== */
+/* PSoC Component Customizations */
 
 #include "`$INSTANCE_NAME`.h"
 #include "`$INSTANCE_NAME`_task.h"
 #include "`$INSTANCE_NAME`_croutine.h"
+/* ======================================================================== */
 
 /* Remove the whole file is co-routines are not being used. */
 #if( configUSE_CO_ROUTINES != 0 )

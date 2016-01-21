@@ -66,7 +66,11 @@
 
     1 tab == 4 spaces!
 */
+/* ======================================================================== */
+/* PSoC Component Customizations */
+
 #if (`$MemManager` == 2)
+/* ======================================================================== */
 /*
  * A sample implementation of pvPortMalloc() and vPortFree() that permits
  * allocated blocks to be freed, but does not combine adjacent free blocks
@@ -83,8 +87,12 @@ all the API functions to use the MPU wrappers.  That should only be done when
 task.h is included from an application file. */
 #define MPU_WRAPPERS_INCLUDED_FROM_API_FILE
 
+/* ======================================================================== */
+/* PSoC Component Customizations */
+
 #include "`$INSTANCE_NAME`.h"
 #include "`$INSTANCE_NAME`_task.h"
+/* ======================================================================== */
 
 #undef MPU_WRAPPERS_INCLUDED_FROM_API_FILE
 
@@ -301,4 +309,7 @@ uint8_t *pucAlignedHeap;
 	pxFirstFreeBlock->pxNextFreeBlock = &xEnd;
 }
 /*-----------------------------------------------------------*/
+/* ======================================================================== */
+/* PSoC Component Customizations */
+
 #endif

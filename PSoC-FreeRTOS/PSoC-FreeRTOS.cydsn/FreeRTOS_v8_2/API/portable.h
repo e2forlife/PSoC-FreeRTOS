@@ -91,7 +91,12 @@ did not result in a portmacro.h header file being included - and it should be
 included here.  In this case the path to the correct portmacro.h header file
 must be set in the compiler's include path. */
 #ifndef portENTER_CRITICAL
+/* ======================================================================== */
+/* PSoC Component Customizations */
+
 	#include "`$INSTANCE_NAME`_portmacro.h"
+
+/* ======================================================================== */
 #endif
 
 #if portBYTE_ALIGNMENT == 32
@@ -130,7 +135,12 @@ must be set in the compiler's include path. */
 extern "C" {
 #endif
 
+/* ======================================================================== */
+/* PSoC Component Customizations */
+
 #include "`$INSTANCE_NAME`_mpu_wrappers.h"
+
+/* ======================================================================== */
 
 /*
  * Setup the stack of a new task so it is ready to be placed under the

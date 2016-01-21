@@ -1,5 +1,5 @@
 /*
-    FreeRTOS V8.2.2 - Copyright (C) 2015 Real Time Engineers Ltd.
+    FreeRTOS V8.2.3 - Copyright (C) 2015 Real Time Engineers Ltd.
     All rights reserved
 
     VISIT http://www.FreeRTOS.org TO ENSURE YOU ARE USING THE LATEST VERSION.
@@ -8,7 +8,7 @@
 
     FreeRTOS is free software; you can redistribute it and/or modify it under
     the terms of the GNU General Public License (version 2) as published by the
-    Free Software Foundation >>!AND MODIFIED BY!<< the FreeRTOS exception.
+    Free Software Foundation >>>> AND MODIFIED BY <<<< the FreeRTOS exception.
 
     ***************************************************************************
     >>!   NOTE: The modification to the GPL is included to allow you to     !<<
@@ -75,6 +75,9 @@ all the API functions to use the MPU wrappers.  That should only be done when
 task.h is included from an application file. */
 #define MPU_WRAPPERS_INCLUDED_FROM_API_FILE
 
+/* ======================================================================== */
+/* PSoC Component Customizations */
+
 #include "`$INSTANCE_NAME`.h"
 #include "`$INSTANCE_NAME`_task.h"
 #include "`$INSTANCE_NAME`_queue.h"
@@ -82,6 +85,8 @@ task.h is included from an application file. */
 #if ( configUSE_CO_ROUTINES == 1 )
 	#include "`$INSTANCE_NAME`_croutine.h"
 #endif
+
+/* ======================================================================== */
 
 /* Lint e961 and e750 are suppressed as a MISRA exception justified because the
 MPU ports require MPU_WRAPPERS_INCLUDED_FROM_API_FILE to be defined for the
@@ -444,7 +449,6 @@ QueueHandle_t xReturn = NULL;
 			traceCREATE_MUTEX_FAILED();
 		}
 
-		configASSERT( pxNewQueue );
 		return pxNewQueue;
 	}
 
@@ -1219,8 +1223,8 @@ Queue_t * const pxQueue = ( Queue_t * ) xQueue;
 	if the item size is not 0. */
 	configASSERT( pxQueue->uxItemSize == 0 );
 
-	/* Normally a mutex would not be given from an interrupt, especially if 
-	there is a mutex holder, as priority inheritance makes no sense for an 
+	/* Normally a mutex would not be given from an interrupt, especially if
+	there is a mutex holder, as priority inheritance makes no sense for an
 	interrupts, only tasks. */
 	configASSERT( !( ( pxQueue->uxQueueType == queueQUEUE_IS_MUTEX ) && ( pxQueue->pxMutexHolder != NULL ) ) );
 
@@ -2595,15 +2599,3 @@ BaseType_t xReturn;
 	}
 
 #endif /* configUSE_QUEUE_SETS */
-
-
-
-
-
-
-
-
-
-
-
-

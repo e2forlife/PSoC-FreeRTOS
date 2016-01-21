@@ -77,12 +77,15 @@
 /* editor like other PSoC Creator components                                */
 /* ************************************************************************ */
 
+/* ======================================================================== */
+/* PSoC Component Customizations */
 
 /* Include FreeRTOS APIs and defines */
-#include <FreeRTOS.h>
-#include <FreeRTOS_task.h>
-#include <FreeRTOS_queue.h>
-#include <FreeRTOS_event_groups.h>
+
+#include <`$INSTANCE_NAME`.h>
+#include <`$INSTANCE_NAME`_task.h>
+#include <`$INSTANCE_NAME`_queue.h>
+#include <`$INSTANCE_NAME`_event_groups.h>
 
 /* Declaration of NVIC base vector for FreeRTOS exception handling */
 #define CORTEX_INTERRUPT_BASE          (16)

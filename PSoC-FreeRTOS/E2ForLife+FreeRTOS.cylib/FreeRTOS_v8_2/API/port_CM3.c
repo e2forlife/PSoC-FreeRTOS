@@ -73,6 +73,9 @@
  */
 #include <cytypes.h>
 
+/* ======================================================================== */
+/* PSoC Component Customizations */
+
 #if (CY_PSOC5)
 /* ------------------------------------------------------------------------ */
 
@@ -83,6 +86,8 @@
 /* Scheduler includes. */
 #include "`$INSTANCE_NAME`.h"
 #include "`$INSTANCE_NAME`_task.h"
+
+/* ======================================================================== */
 
 /* For backward compatibility, ensure configKERNEL_INTERRUPT_PRIORITY is
 defined.  The value should also ensure backward compatibility.
@@ -736,6 +741,8 @@ __attribute__(( weak )) void vPortSetupTimerInterrupt( void )
 
 #endif /* configASSERT_DEFINED */
 
+/* ======================================================================== */
+/* PSoC Component Customizations */
 
 #endif
 

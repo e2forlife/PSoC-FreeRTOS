@@ -69,8 +69,11 @@
 
 #ifndef CO_ROUTINE_H
 #define CO_ROUTINE_H
+/* ======================================================================== */
+/* PSoC Component Customizations */
 
 	#include "`$INSTANCE_NAME`.h"
+/* ======================================================================== */
 	
 #ifndef INC_FREERTOS_H
 	#error "include FreeRTOS.h must appear in source files before include croutine.h"

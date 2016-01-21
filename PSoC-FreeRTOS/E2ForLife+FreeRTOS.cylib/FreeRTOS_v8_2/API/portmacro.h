@@ -71,6 +71,9 @@
  * This is a header to select the device type, and include the correct portmacro
  * header file when using the PSoC.
  */
+/* ======================================================================== */
+/* PSoC Component Customizations */
+
 #include <cytypes.h>
 
 #if (CY_PSOC4)
@@ -80,5 +83,6 @@
 #else
 	#error this device is not currently supported. please check future versions.
 #endif
+/* ======================================================================== */
 
 /* [] END OF FILE */

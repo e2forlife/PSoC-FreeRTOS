@@ -66,7 +66,11 @@
 
     1 tab == 4 spaces!
 */
+/* ======================================================================== */
+/* PSoC Component Customizations */
+
 #if (`$MemManager` == 3)
+/* ======================================================================== */
 
 /*
  * Implementation of pvPortMalloc() and vPortFree() that relies on the
@@ -86,8 +90,12 @@ all the API functions to use the MPU wrappers.  That should only be done when
 task.h is included from an application file. */
 #define MPU_WRAPPERS_INCLUDED_FROM_API_FILE
 
+/* ======================================================================== */
+/* PSoC Component Customizations */
+
 #include "`$INSTANCE_NAME`.h"
 #include "`$INSTANCE_NAME`_task.h"
+/* ======================================================================== */
 
 #undef MPU_WRAPPERS_INCLUDED_FROM_API_FILE
 
@@ -130,6 +138,8 @@ void vPortFree( void *pv )
 		( void ) xTaskResumeAll();
 	}
 }
+
+/* ======================================================================== */
+/* PSoC Component Customizations */
+
 #endif
-
-
